@@ -78,7 +78,8 @@ const TableView = async () => {
             <TableRow key={item.id_pegawai}>
               <TableCell>{item.nama}</TableCell>
               <TableCell>{item.tempat_lahir}</TableCell>
-              <TableCell>{formatDate(item.tanggal_lahir)}</TableCell>
+              {/* <TableCell>{formatDate(item.tanggal_lahir)}</TableCell> */}
+              <TableCell>{item.tanggal_lahir}</TableCell>
               <TableCell>{item.no_telepon}</TableCell>
             </TableRow>
           ))}
