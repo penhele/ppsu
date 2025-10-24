@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { formatCapital } from "@/lib/utils";
 
 export const InputText = ({
   title,
@@ -31,15 +32,17 @@ export const SelectOption = ({
   title,
   placeholder = "Pilih",
   options,
+  onChange,
 }: {
   title: string;
   placeholder?: string;
   options: { label: string; value: string }[];
+  onChange?: (value: string) => void;
 }) => {
   return (
     <div className="flex flex-col gap-2">
       <Label>{title}</Label>
-      <Select>
+      <Select onValueChange={onChange}>
         <SelectTrigger className="w-full">
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
@@ -47,7 +50,7 @@ export const SelectOption = ({
           <SelectGroup>
             {options.map((item) => (
               <SelectItem key={item.value} value={item.value}>
-                {item.label}
+                {formatCapital(item.label)}
               </SelectItem>
             ))}
           </SelectGroup>

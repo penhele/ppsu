@@ -13,3 +13,12 @@ export const formatDate = (dateStr: string) => {
 
   return formatter.format(date);
 };
+
+export const formatCapital = (textStr: string) => {
+  if (!textStr) return "";
+  textStr = textStr.toLowerCase();
+  return textStr
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
