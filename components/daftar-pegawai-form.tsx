@@ -1,4 +1,3 @@
-import React from "react";
 import CreateDaftarPegawaiForm from "./create-daftar-pegawai-form";
 
 const DaftarPegawaiForm = () => {
