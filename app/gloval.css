@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* warna brand PPSU */
+:root {
+  --ppsu-orange: #f97316;
+  --ppsu-orange-dark: #ea580c;
+  --bg-page: #f9fafb;
+}
+
+/* body dasar */
+body {
+  @apply bg-[var(--bg-page)] text-gray-900;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
