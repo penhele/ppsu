@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-import { faker } from '@faker-js/faker';
+import { PrismaClient } from "@prisma/client";
+import { faker } from "@faker-js/faker";
 
 const prisma = new PrismaClient();
 
@@ -7,7 +7,9 @@ async function main() {
   const pegawaiData = Array.from({ length: 40 }).map(() => ({
     nama: faker.person.fullName(),
     tempat_lahir: faker.location.city(),
-    tanggal_lahir: faker.date.birthdate({ min: 1970, max: 2000, mode: 'year' }).toString(),
+    tanggal_lahir: faker.date
+      .birthdate({ min: 1970, max: 2000, mode: "year" })
+      .toString(),
     alamat: faker.location.streetAddress(),
     rt: faker.number.int({ min: 1, max: 10 }).toString(),
     rw: faker.number.int({ min: 1, max: 10 }).toString(),
@@ -20,13 +22,13 @@ async function main() {
     npwp: faker.string.numeric(15),
     no_rekening: faker.finance.accountNumber(10),
     bank_dki_cabang: faker.location.city(),
-    pendidikan: faker.helpers.arrayElement(['SMA', 'SMK', 'D3', 'S1', 'S2']),
+    pendidikan: faker.helpers.arrayElement(["SMA", "SMK", "D3", "S1", "S2"]),
     jenis_pekerjaan: faker.helpers.arrayElement([
-      'Penyapu Jalan',
-      'Petugas Taman',
-      'Operator Sampah',
-      'Administrasi',
-      'Koordinator',
+      "Penyapu Jalan",
+      "Petugas Taman",
+      "Operator Sampah",
+      "Administrasi",
+      "Koordinator",
     ]),
   }));
 

@@ -4,7 +4,6 @@ const page = () => {
   return (
     <div className="px-4">
       <DataPegawaiPage />
-      halo dunia
     </div>
   );
 };
