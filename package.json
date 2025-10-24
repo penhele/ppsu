@@ -21,10 +21,16 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.546.0",
+<<<<<<< HEAD
     "next": "^15.5.4",
     "prisma": "^6.17.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+=======
+    "next": "16.0.0",
+    "react": "19.2.0",
+    "react-dom": "^19.2.0",
+>>>>>>> 0c62ad7 (save local changes before pull)
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
