@@ -1,7 +1,7 @@
-import React from "react";
+import DataPegawaiPage from "@/components/data-pegawai";
 
 const page = () => {
-  return <div>page</div>;
+  return <DataPegawaiPage />;
 };
 
 export default page;

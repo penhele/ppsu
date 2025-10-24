@@ -11,19 +11,19 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "./ui/input-group";
-import { SearchIcon, UserPlus } from "lucide-react";
+import { UserPlus } from "lucide-react";
 import { getPegawai } from "@/lib/data";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
+import SearchBar from "./search-bar";
 
 const TableView = async () => {
   const pegawai = await getPegawai();
+  if (!pegawai) return <p>kosong</p>;
 
   return (
     <div className="border p-4 rounded-xl flex flex-col gap-3 w-full overflow-x-auto">
@@ -36,12 +36,7 @@ const TableView = async () => {
         </div>
 
         <div className="flex gap-3">
-          <InputGroup>
-            <InputGroupInput placeholder="Search..." />
-            <InputGroupAddon>
-              <SearchIcon />
-            </InputGroupAddon>
-          </InputGroup>
+          <SearchBar />
 
           <Select>
             <SelectTrigger className="w-40">
@@ -59,7 +54,7 @@ const TableView = async () => {
 
           <Button className="bg-orange-400 hover:bg-orange-500">
             <Link
-              href={"/data-pegawai/add"}
+              href={"/data-pegawai/create"}
               className="flex justify-between items-center gap-2"
             >
               <UserPlus />
