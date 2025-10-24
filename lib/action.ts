@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { PegawaiSchema } from "@/lib/zod";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export const savePegawai = async (prevState: unknown, formData: FormData) => {
@@ -78,4 +79,17 @@ export const savePegawai = async (prevState: unknown, formData: FormData) => {
   console.log("berhasil mentimpan");
 
   redirect("/data-pegawai");
+};
+
+// Delete
+export const deletePegawaiById = async (id: string) => {
+  try {
+    await prisma.pegawai.delete({
+      where: { id_pegawai: id },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  revalidatePath("/data-pegawai");
 };

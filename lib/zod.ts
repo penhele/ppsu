@@ -16,10 +16,10 @@ export const PegawaiSchema = object({
   npwp: string().min(1, "NPWP wajib diisi"),
   no_rekening: string().min(1, "No. Rekening wajib diisi"),
   bank_dki_cabang: string().min(1, "Bank DKI Cabang wajib diisi"),
-  pendidikan: z.enum(["sd", "smp", "sma"], {
+  pendidikan: z.enum(["SD", "SMP", "SMA"], {
     message: "Input tidak valid",
   }),
-  jenis_pekerjaan: z.enum(["sd", "smp", "sma"], {
+  jenis_pekerjaan: z.enum(["PETUGAS_PPSU"], {
     message: "Input tidak valid",
   }),
 });

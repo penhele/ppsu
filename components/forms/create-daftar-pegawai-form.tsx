@@ -1,11 +1,43 @@
 "use client";
 
-import { InputText, SelectOption } from "@/components/input";
+import { InputText, SelectDate, SelectOption } from "@/components/input";
 import { savePegawai } from "@/lib/action";
-import { useActionState } from "react";
-import { Button } from "../ui/button";
+import { useActionState, useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const CreateDaftarPegawaiForm = () => {
+  const [pendidikanList, setPendidikanList] = useState<
+    { label: string; value: string }[]
+  >([]);
+  const [jenisPekerjaanList, setJenisPekerjaanList] = useState<
+    { label: string; value: string }[]
+  >([]);
+
+  useEffect(() => {
+    const fetchEnums = async () => {
+      const pendidikanRes = await fetch("/api/enum/pendidikan");
+      const pendidikanData: string[] = await pendidikanRes.json();
+
+      const formattedPendidikanData = pendidikanData.map((item) => ({
+        label: item.toUpperCase(),
+        value: item,
+      }));
+
+      const jenisPekerjaanRes = await fetch("/api/enum/jenis-pekerjaan");
+      const jenisPekerjaanData: string[] = await jenisPekerjaanRes.json();
+
+      const formattedJenisPekerjaanData = jenisPekerjaanData.map((item) => ({
+        label: item.toUpperCase(),
+        value: item,
+      }));
+
+      setPendidikanList(formattedPendidikanData);
+      setJenisPekerjaanList(formattedJenisPekerjaanData);
+    };
+
+    fetchEnums();
+  }, []);
+
   const [state, formAction, isPending] = useActionState(
     savePegawai.bind(null),
     null,
@@ -26,9 +58,9 @@ const CreateDaftarPegawaiForm = () => {
             title="Tempat Lahir"
             message={state?.error.tempat_lahir || []}
           />
-          <InputText
-            name="tanggal_lahir"
+          <SelectDate
             title="Tanggal Lahir"
+            name="tanggal_lahir"
             message={state?.error.tanggal_lahir || []}
           />
         </div>
@@ -113,22 +145,14 @@ const CreateDaftarPegawaiForm = () => {
           name="pendidikan"
           title="Pendidikan"
           message={state?.error.pendidikan || []}
-          options={[
-            { label: "SD", value: "sd" },
-            { label: "SMP", value: "smp" },
-            { label: "SMA", value: "sma" },
-          ]}
+          options={pendidikanList}
         />
 
         <SelectOption
           name="jenis_pekerjaan"
           title="Jenis Pekerjaan"
           message={state?.error.jenis_pekerjaan || []}
-          options={[
-            { label: "SD", value: "sd" },
-            { label: "SMP", value: "smp" },
-            { label: "SMA", value: "sma" },
-          ]}
+          options={jenisPekerjaanList}
         />
 
         <Button className="bg-orange-400">

@@ -15,7 +15,7 @@ datasource db {
 }
 
 model Pegawai {
-  id_pegawai      String @id @default(cuid())
+  id_pegawai      String         @id @default(cuid())
   nama            String
   tempat_lahir    String
   tanggal_lahir   String
@@ -27,12 +27,12 @@ model Pegawai {
   kota            String
   provinsi        String
   no_telepon      String
-  no_ktp          String @unique
-  npwp            String @unique
+  no_ktp          String         @unique
+  npwp            String         @unique
   no_rekening     String
   bank_dki_cabang String
-  pendidikan      String
-  jenis_pekerjaan String
+  pendidikan      Pendidikan
+  jenis_pekerjaan JenisPekerjaan
 
   cuti Cuti[]
 
@@ -51,7 +51,17 @@ model Cuti {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  Pegawai           Pegawai? @relation(fields: [id_pegawai], references: [id_pegawai])
+  Pegawai Pegawai? @relation(fields: [id_pegawai], references: [id_pegawai])
+}
+
+enum Pendidikan {
+  SD
+  SMP
+  SMA
+}
+
+enum JenisPekerjaan {
+  PETUGAS_PPSU
 }
 
 enum CutiStatus {
