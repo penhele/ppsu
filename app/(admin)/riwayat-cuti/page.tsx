@@ -1,5 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, Thead, Tbody, Tr, Th, Td } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 
 const data = [
@@ -33,21 +40,23 @@ export default function RiwayatCutiPage() {
         </CardHeader>
         <CardContent className="overflow-x-auto">
           <Table>
-            <Thead>
-              <Tr>
-                <Th>Nama</Th>
-                <Th>Tipe</Th>
-                <Th>Durasi</Th>
-                <Th>Status</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Nama</TableHead>
+                <TableHead>Tipe</TableHead>
+                <TableHead>Durasi</TableHead>
+                <TableHead>Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {data.map((row, i) => (
-                <Tr key={i}>
-                  <Td className="font-medium text-gray-900">{row.nama}</Td>
-                  <Td>{row.tipe}</Td>
-                  <Td>{row.durasi}</Td>
-                  <Td>
+                <TableRow key={i}>
+                  <TableCell className="font-medium text-gray-900">
+                    {row.nama}
+                  </TableCell>
+                  <TableCell>{row.tipe}</TableCell>
+                  <TableCell>{row.durasi}</TableCell>
+                  <TableCell>
                     {row.status === "APPROVED" ? (
                       <Badge color="approved">{row.status}</Badge>
                     ) : row.status === "PENDING" ? (
@@ -55,10 +64,10 @@ export default function RiwayatCutiPage() {
                     ) : (
                       <Badge color="rejected">{row.status}</Badge>
                     )}
-                  </Td>
-                </Tr>
+                  </TableCell>
+                </TableRow>
               ))}
-            </Tbody>
+            </TableBody>
           </Table>
         </CardContent>
       </Card>
