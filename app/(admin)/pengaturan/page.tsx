@@ -69,9 +69,8 @@ export default function PengaturanPage() {
       </Card>
 
       <div className="text-[12px] text-gray-500 text-center pt-6">
-        Versi Sistem: v1.0 PPSU  
-        <br />
-        © {new Date().getFullYear()} PPSU Kelurahan
+        Versi Sistem: v1.0 PPSU
+        <br />© {new Date().getFullYear()} PPSU Kelurahan
       </div>
     </div>
   );

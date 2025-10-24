@@ -30,9 +30,7 @@ export default function RegisterPage() {
   return (
     <div className="w-full max-w-md">
       <div className="text-center mb-6">
-        <h1 className="text-xl font-semibold text-gray-900">
-          Registrasi Akun
-        </h1>
+        <h1 className="text-xl font-semibold text-gray-900">Registrasi Akun</h1>
         <p className="text-sm text-gray-500">
           Sistem Cuti Pegawai PPSU Kelurahan
         </p>
@@ -49,7 +47,10 @@ export default function RegisterPage() {
         </CardHeader>
 
         <CardContent className="pt-4">
-          <form onSubmit={handleRegister} className="flex flex-col gap-4 text-sm">
+          <form
+            onSubmit={handleRegister}
+            className="flex flex-col gap-4 text-sm"
+          >
             <div className="flex flex-col gap-2">
               <Label htmlFor="nama">Nama Lengkap</Label>
               <Input
@@ -112,14 +113,22 @@ export default function RegisterPage() {
               />
             </div>
 
-            <Button type="submit" variant="primary" size="full" className="mt-2">
+            <Button
+              type="submit"
+              variant="primary"
+              size="full"
+              className="mt-2"
+            >
               Daftar
             </Button>
           </form>
 
           <div className="text-center text-[13px] text-gray-500 mt-6">
             Sudah punya akun?{" "}
-            <Link href="/login" className="font-medium text-ppsu hover:text-ppsu-dark">
+            <Link
+              href="/login"
+              className="font-medium text-ppsu hover:text-ppsu-dark"
+            >
               Masuk
             </Link>
           </div>

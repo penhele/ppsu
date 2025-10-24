@@ -9,7 +9,7 @@ export function Table({
     <table
       className={cn(
         "w-full text-left text-sm text-gray-800 border-collapse",
-        className
+        className,
       )}
       {...props}
     />
@@ -24,7 +24,7 @@ export function Thead({
     <thead
       className={cn(
         "bg-gray-50 text-gray-700 text-xs uppercase font-semibold border-b border-gray-200",
-        className
+        className,
       )}
       {...props}
     />
@@ -35,7 +35,9 @@ export function Tbody({
   className,
   ...props
 }: React.HTMLAttributes<HTMLTableSectionElement>) {
-  return <tbody className={cn("divide-y divide-gray-200", className)} {...props} />;
+  return (
+    <tbody className={cn("divide-y divide-gray-200", className)} {...props} />
+  );
 }
 
 export function Tr({
@@ -44,10 +46,7 @@ export function Tr({
 }: React.HTMLAttributes<HTMLTableRowElement>) {
   return (
     <tr
-      className={cn(
-        "hover:bg-gray-50 transition-colors",
-        className
-      )}
+      className={cn("hover:bg-gray-50 transition-colors", className)}
       {...props}
     />
   );
@@ -61,7 +60,7 @@ export function Th({
     <th
       className={cn(
         "px-4 py-3 font-semibold align-middle text-gray-700",
-        className
+        className,
       )}
       {...props}
     />
@@ -74,10 +73,7 @@ export function Td({
 }: React.TdHTMLAttributes<HTMLTableCellElement>) {
   return (
     <td
-      className={cn(
-        "px-4 py-3 align-middle text-gray-900",
-        className
-      )}
+      className={cn("px-4 py-3 align-middle text-gray-900", className)}
       {...props}
     />
   );

@@ -14,8 +14,7 @@ export function Badge({
     approved: "bg-green-100 text-green-800 border border-green-300",
     rejected: "bg-red-100 text-red-800 border border-red-300",
     "role-admin": "bg-ppsu-soft text-ppsu border border-ppsu/30",
-    "role-employee":
-      "bg-gray-100 text-gray-700 border border-gray-300",
+    "role-employee": "bg-gray-100 text-gray-700 border border-gray-300",
   };
 
   return (
@@ -23,7 +22,7 @@ export function Badge({
       className={cn(
         "inline-flex items-center rounded-md px-2 py-1 text-[11px] font-medium leading-none",
         styles[color || "pending"],
-        className
+        className,
       )}
     >
       {children}

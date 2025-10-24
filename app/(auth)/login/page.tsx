@@ -69,22 +69,36 @@ export default function LoginPage() {
 
             <div className="flex items-center justify-between text-[12px]">
               <label className="flex items-center gap-2 text-gray-600">
-                <input type="checkbox" className="rounded border-gray-300 text-ppsu focus:ring-ppsu" />
+                <input
+                  type="checkbox"
+                  className="rounded border-gray-300 text-ppsu focus:ring-ppsu"
+                />
                 <span>Ingat saya</span>
               </label>
-              <button type="button" className="text-ppsu hover:text-ppsu-dark font-medium">
+              <button
+                type="button"
+                className="text-ppsu hover:text-ppsu-dark font-medium"
+              >
                 Lupa password?
               </button>
             </div>
 
-            <Button type="submit" variant="primary" size="full" className="mt-2">
+            <Button
+              type="submit"
+              variant="primary"
+              size="full"
+              className="mt-2"
+            >
               Masuk
             </Button>
           </form>
 
           <div className="text-center text-[13px] text-gray-500 mt-6">
             Belum punya akun?{" "}
-            <Link href="/register" className="font-medium text-ppsu hover:text-ppsu-dark">
+            <Link
+              href="/register"
+              className="font-medium text-ppsu hover:text-ppsu-dark"
+            >
               Daftar
             </Link>
           </div>

@@ -17,9 +17,7 @@ export default function AuthLayout({
           <span className="text-sm font-semibold text-gray-900">
             PPSU Kelurahan
           </span>
-          <span className="text-[11px] text-gray-500">
-            Sistem Cuti Pegawai
-          </span>
+          <span className="text-[11px] text-gray-500">Sistem Cuti Pegawai</span>
         </div>
 
         <div className="hidden sm:flex flex-col items-end text-right leading-tight">

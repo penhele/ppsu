@@ -12,6 +12,13 @@
 /* body dasar */
 body {
   @apply bg-[var(--bg-page)] text-gray-900;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Inter",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
 }
