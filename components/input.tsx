@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { formatCapital } from "@/lib/utils";
+// import { formatCapital } from "@/lib/utils";
 
 export const InputText = ({
   title,
@@ -49,7 +49,8 @@ export const SelectOption = ({
           <SelectGroup>
             {options.map((item) => (
               <SelectItem key={item.value} value={item.value}>
-                {formatCapital(item.label)}
+                {/* {formatCapital(item.label)} */}
+                {item.label}
               </SelectItem>
             ))}
           </SelectGroup>
