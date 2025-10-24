@@ -15,7 +15,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -38,7 +38,7 @@
     ".next\\dev/types/**/*.ts",
     ".next\\dev/types/**/*.ts",
     "prisma/seed.js"
-  ],
+, "app/(auth)/register"  ],
   "exclude": [
     "node_modules"
   ]
