@@ -1,8 +1,12 @@
 import TableView from "@/components/table-view";
+import { getPegawai } from "@/lib/data";
 
-const DataPegawaiPage = () => {
+const DataPegawai = async () => {
+  const pegawai = await getPegawai();
+  if (!pegawai) return 0;
+
   const items = [
-    { title: "Total Pegawai", total: 19 },
+    { title: "Total Pegawai", total: pegawai.length },
     { title: "Aktif", total: 16 },
     { title: "Cuti", total: 3 },
     { title: "Tidak Aktif", total: 0 },
@@ -34,4 +38,4 @@ const DataPegawaiPage = () => {
   );
 };
 
-export default DataPegawaiPage;
+export default DataPegawai;

@@ -1,4 +1,4 @@
-import DaftarPegawaiForm from "@/components/daftar-pegawai-form";
+import DaftarPegawaiForm from "@/components/forms/daftar-pegawai-form";
 
 const page = () => {
   return (

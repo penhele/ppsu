@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { InputText, SelectOption } from "./input";
+import { InputText, SelectOption } from "@/components/input";
 
 const CreateDaftarPegawaiForm = () => {
   const [provinsi, setProvinsi] = useState([]);

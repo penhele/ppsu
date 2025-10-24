@@ -1,7 +1,7 @@
-import DataPegawaiPage from "@/components/data-pegawai";
+import DataPegawai from "@/components/data-pegawai";
 
 const page = () => {
-  return <DataPegawaiPage />;
+  return <DataPegawai />;
 };
 
 export default page;

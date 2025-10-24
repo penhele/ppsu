@@ -39,7 +39,7 @@ const TableView = async () => {
           <SearchBar />
 
           <Select>
-            <SelectTrigger className="w-40">
+            <SelectTrigger>
               <SelectValue placeholder="Semua Status" />
             </SelectTrigger>
             <SelectContent>
@@ -71,12 +71,6 @@ const TableView = async () => {
             <TableHead>Tempat Lahir</TableHead>
             <TableHead>Tanggal Lahir</TableHead>
             <TableHead>No. Telepon</TableHead>
-            {/* <TableHead>No. KTP</TableHead>
-            <TableHead>NPWP</TableHead>
-            <TableHead>No. Rekening</TableHead>
-            <TableHead>Bank DKI Cabang</TableHead>
-            <TableHead>Pendidikan</TableHead>
-            <TableHead>Jenis Pekerjaan</TableHead> */}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -86,12 +80,6 @@ const TableView = async () => {
               <TableCell>{item.tempat_lahir}</TableCell>
               <TableCell>{formatDate(item.tanggal_lahir)}</TableCell>
               <TableCell>{item.no_telepon}</TableCell>
-              {/* <TableCell>{item.no_ktp}</TableCell>
-              <TableCell>{item.npwp}</TableCell>
-              <TableCell>{item.no_rekening}</TableCell>
-              <TableCell>{item.bank_dki_cabang}</TableCell>
-              <TableCell>{item.pendidikan}</TableCell>
-              <TableCell>{item.jenis_pekerjaan}</TableCell> */}
             </TableRow>
           ))}
         </TableBody>
