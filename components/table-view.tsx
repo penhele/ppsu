@@ -69,7 +69,7 @@ const TableView = async () => {
         <TableHeader>
           <TableRow>
             <TableHead className="whitespace-nowrap">Nama</TableHead>
-            <TableHead className="whitespace-nowrap">Tempat Lahir</TableHead>
+            <TableHead className="whitespace-nowrap"> Tempat Lahir</TableHead>
             <TableHead className="whitespace-nowrap">Tanggal Lahir</TableHead>
             <TableHead className="whitespace-nowrap">No. Telepon</TableHead>
             <TableHead className="whitespace-nowrap">No. KTP</TableHead>

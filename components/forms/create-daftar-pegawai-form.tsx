@@ -155,7 +155,7 @@ const CreateDaftarPegawaiForm = () => {
           options={jenisPekerjaanList}
         />
 
-        <Button className="bg-orange-400">
+        <Button className="bg-orange-400 hover:bg-orange-500">
           {isPending ? "Menyimpan..." : "Simpan"}
         </Button>
       </div>
