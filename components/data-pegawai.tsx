@@ -1,5 +1,6 @@
 import TableView from "@/components/table-view";
 import { getPegawai } from "@/lib/data";
+import SectionHeader from "./header";
 
 const DataPegawai = async () => {
   const pegawai = await getPegawai();
@@ -14,12 +15,10 @@ const DataPegawai = async () => {
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="">
-        <h1 className="font-medium text-xl">Data Pegawai</h1>
-        <span className="text-base text-gray-400">
-          Kelola informasi dan jatah cuti pegawai
-        </span>
-      </div>
+      <SectionHeader
+        title="Data Pegawai"
+        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi sed delectus possimus tenetur fugiat nam?"
+      />
 
       <div className="grid grid-cols-4 gap-8">
         {items.map((item, index) => (

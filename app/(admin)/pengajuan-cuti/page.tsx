@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import SectionHeader from "@/components/header";
 
 export default function PengajuanCutiPage() {
   const [tipe, setTipe] = useState("");
@@ -15,12 +16,10 @@ export default function PengajuanCutiPage() {
 
   return (
     <div className="flex flex-col gap-6 max-w-xl">
-      <div>
-        <h1 className="text-xl font-semibold text-gray-900">Pengajuan Cuti</h1>
-        <p className="text-sm text-gray-500">
-          Ajukan cuti dan kirim untuk persetujuan atasan.
-        </p>
-      </div>
+      <SectionHeader
+        title="Pengajuan Cuti"
+        description="Ajukan cuti dan kirim untuk persetujuan atasan."
+      />
 
       <Card>
         <CardHeader>
@@ -75,9 +74,7 @@ export default function PengajuanCutiPage() {
               />
             </div>
 
-            <Button type="submit" variant="primary" size="full">
-              Kirim Pengajuan
-            </Button>
+            <Button type="submit">Kirim Pengajuan</Button>
           </form>
         </CardContent>
       </Card>

@@ -22,14 +22,8 @@ async function main() {
     npwp: faker.string.numeric(15),
     no_rekening: faker.finance.accountNumber(10),
     bank_dki_cabang: faker.location.city(),
-    pendidikan: faker.helpers.arrayElement(["SMA", "SMK", "D3", "S1", "S2"]),
-    jenis_pekerjaan: faker.helpers.arrayElement([
-      "Penyapu Jalan",
-      "Petugas Taman",
-      "Operator Sampah",
-      "Administrasi",
-      "Koordinator",
-    ]),
+    pendidikan: faker.helpers.arrayElement(["SD", "SMP", "SMA"]),
+    jenis_pekerjaan: faker.helpers.arrayElement(["PETUGAS_PPSU"]),
   }));
 
   await prisma.pegawai.createMany({ data: pegawaiData });
