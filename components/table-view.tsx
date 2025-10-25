@@ -72,10 +72,10 @@ const TableView = async () => {
             <TableHead className="whitespace-nowrap"> Tempat Lahir</TableHead>
             <TableHead className="whitespace-nowrap">Tanggal Lahir</TableHead>
             <TableHead className="whitespace-nowrap">No. Telepon</TableHead>
-            <TableHead className="whitespace-nowrap">No. KTP</TableHead>
+            {/* <TableHead className="whitespace-nowrap">No. KTP</TableHead>
             <TableHead className="whitespace-nowrap">NPWP</TableHead>
             <TableHead className="whitespace-nowrap">No. Rekening</TableHead>
-            <TableHead className="whitespace-nowrap">Bank DKI Cabang</TableHead>
+            <TableHead className="whitespace-nowrap">Bank DKI Cabang</TableHead> */}
             <TableHead className="whitespace-nowrap">Pendidikan</TableHead>
             <TableHead className="whitespace-nowrap">Jenis Pekerjaan</TableHead>
             <TableHead className="whitespace-nowrap">Aksi</TableHead>
@@ -94,14 +94,14 @@ const TableView = async () => {
               <TableCell className="whitespace-nowrap">
                 {item.no_telepon}
               </TableCell>
-              <TableCell className="whitespace-nowrap">{item.no_ktp}</TableCell>
+              {/* <TableCell className="whitespace-nowrap">{item.no_ktp}</TableCell>
               <TableCell className="whitespace-nowrap">{item.npwp}</TableCell>
               <TableCell className="whitespace-nowrap">
                 {item.no_rekening}
               </TableCell>
               <TableCell className="whitespace-nowrap">
                 {item.bank_dki_cabang}
-              </TableCell>
+              </TableCell> */}
               <TableCell className="whitespace-nowrap">
                 {item.pendidikan}
               </TableCell>

@@ -14,16 +14,19 @@ import { Button } from "./ui/button";
 import clsx from "clsx";
 import { ChevronRight } from "lucide-react";
 import { Calendar } from "./ui/calendar";
+import { Textarea } from "./ui/textarea";
 // import { formatCapital } from "@/lib/utils";
 
 export const InputText = ({
   title,
   name,
+  placeholder,
   type = "text",
   message = [],
 }: {
   title: string;
   name: string;
+  placeholder?: string;
   type?: string;
   message: string[];
 }) => {
@@ -36,6 +39,7 @@ export const InputText = ({
         id={name}
         type={type}
         name={name}
+        placeholder={placeholder}
         className={
           errorMessage ? "border-red-500 focus-visible:ring-red-500" : ""
         }
@@ -43,6 +47,23 @@ export const InputText = ({
       {errorMessage && (
         <span className="text-sm text-red-500">{errorMessage}</span>
       )}
+    </div>
+  );
+};
+
+export const InputTextarea = ({
+  title,
+  name,
+  placeholder,
+}: {
+  title: string;
+  name: string;
+  placeholder?: string;
+}) => {
+  return (
+    <div className="flex flex-col gap-2">
+      <Label>{title}</Label>
+      <Textarea name={name} placeholder={placeholder} />
     </div>
   );
 };
@@ -60,7 +81,7 @@ export const SelectOption = ({
   placeholder?: string;
   options: { label: string; value: string }[];
   onChange?: (value: string) => void;
-  message: string[];
+  message?: string[];
 }) => {
   const [selected, setSelected] = useState("");
   const errorMessage = message.length > 0 ? message[0] : "";
@@ -106,7 +127,7 @@ export const SelectDate = ({
 }: {
   title: string;
   name: string;
-  message: string[];
+  message?: string[];
 }) => {
   const [openCalendar, setOpenCalendar] = useState(false);
   const [date, setDate] = useState<Date | undefined>(undefined);
