@@ -20,7 +20,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
 import SearchBar from "./search-bar";
-import { DeleteButton } from "./button";
+import { DeleteButton, UpdateButton } from "./button";
 
 const TableView = async () => {
   const pegawai = await getPegawai();
@@ -109,7 +109,10 @@ const TableView = async () => {
                 {item.jenis_pekerjaan}
               </TableCell>
               <TableCell className="whitespace-nowrap">
-                <DeleteButton id={item.id_pegawai} />
+                <div className="flex gap-1">
+                  <UpdateButton />
+                  <DeleteButton id={item.id_pegawai} />
+                </div>
               </TableCell>
             </TableRow>
           ))}
