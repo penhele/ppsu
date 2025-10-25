@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { PegawaiSchema } from "@/lib/zod";
+import { CutiSchema, PegawaiSchema } from "@/lib/zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -76,9 +76,40 @@ export const savePegawai = async (prevState: unknown, formData: FormData) => {
     console.log(error);
   }
 
-  console.log("berhasil mentimpan");
-
   redirect("/data-pegawai");
+};
+
+export const saveCuti = async (prevState: unknown, formData: FormData) => {
+  const rawData = {
+    id_pegawai: formData.get("nama"),
+    tanggal_mulai: formData.get("tanggal_mulai"),
+    tanggal_selesai: formData.get("tanggal_selesai"),
+    alasan: formData.get("alasan"),
+  };
+
+  const validatedFields = CutiSchema.safeParse(rawData);
+  if (!validatedFields.success)
+    return { error: validatedFields.error.flatten().fieldErrors };
+
+  const { id_pegawai, tanggal_mulai, tanggal_selesai, alasan } =
+    validatedFields.data;
+
+  try {
+    await prisma.cuti.create({
+      data: {
+        id_pegawai,
+        tanggal_mulai,
+        tanggal_selesai,
+        alasan,
+      },
+    });
+  } catch (error) {
+    console.log("gagal");
+    console.log(error);
+  }
+  console.log("berhasil");
+
+  redirect("/pengajuan-cuti");
 };
 
 // Delete

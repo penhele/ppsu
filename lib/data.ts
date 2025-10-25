@@ -9,3 +9,17 @@ export const getPegawai = async () => {
     return [];
   }
 };
+
+export const getCuti = async () => {
+  try {
+    const result = await prisma.cuti.findMany({
+      include: {
+        Pegawai: true,
+      },
+    });
+    return result;
+  } catch (error) {
+    console.error("Error fetching cuti:", error);
+    return [];
+  }
+};

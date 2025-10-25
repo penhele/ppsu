@@ -23,3 +23,10 @@ export const PegawaiSchema = object({
     message: "Input tidak valid",
   }),
 });
+
+export const CutiSchema = object({
+  id_pegawai: string(),
+  tanggal_mulai: string(),
+  tanggal_selesai: string(),
+  alasan: string(),
+});

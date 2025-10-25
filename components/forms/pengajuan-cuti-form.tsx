@@ -1,11 +1,18 @@
+import { getPegawai } from "@/lib/data";
 import CreatePengajuanCutiForm from "./create-pengajuan-cuti-form";
 
-const PengajuanCutiForm = () => {
+const PengajuanCutiForm = async () => {
+  const pegawai = await getPegawai();
+  const pegawaiList = pegawai.map((item) => ({
+    label: item.nama,
+    value: item.id_pegawai,
+  }));
+
   return (
     <div className="flex flex-col gap-8 p-4 border rounded-lg">
       <h1 className="text-xl font-medium">Formulir Pengajuan</h1>
 
-      <CreatePengajuanCutiForm />
+      <CreatePengajuanCutiForm pegawaiList={pegawaiList} />
     </div>
   );
 };
