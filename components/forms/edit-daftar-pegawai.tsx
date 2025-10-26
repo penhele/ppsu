@@ -7,7 +7,7 @@ const EditDaftarPegawai = async ({ pegawaiId }: { pegawaiId: string }) => {
   if (!pegawai) return notFound();
 
   return (
-    <div className="flex flex-col gap-8 p-4 border rounded-lg">
+    <div className="flex flex-col gap-8 p-4 border rounded-lg bg-white">
       <div className="text-xl font-medium">Edit Pegawai</div>
 
       <EditDaftarPegawaiForm pegawai={pegawai} />

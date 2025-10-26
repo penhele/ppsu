@@ -95,7 +95,7 @@ export const SelectOption = ({
   message?: string[];
   defaultValue?: string;
 }) => {
-  const [selected, setSelected] = useState(defaultValue);
+  const [selected, setSelected] = useState(defaultValue ?? "");
   const errorMessage = message.length > 0 ? message[0] : "";
 
   const handleChange = (value: string) => {
@@ -145,7 +145,7 @@ export const SelectDate = ({
 }) => {
   const [openCalendar, setOpenCalendar] = useState(false);
   const [date, setDate] = useState<Date | undefined>(
-    defaultValue ? new Date(defaultValue) : undefined,
+    defaultValue ? new Date(defaultValue) : undefined
   );
 
   const errorMessage = message.length > 0 ? message[0] : "";
