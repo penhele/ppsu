@@ -1,4 +1,4 @@
-import { prisma } from "./prisma";
+import { prisma } from "@/lib/prisma";
 
 export const getPegawai = async () => {
   try {
@@ -7,6 +7,17 @@ export const getPegawai = async () => {
   } catch (error) {
     console.error("Error fetching pegawai:", error);
     return [];
+  }
+};
+
+export const getPegawaiById = async (pegawaiId: string) => {
+  try {
+    const result = await prisma.pegawai.findUnique({
+      where: { id_pegawai: pegawaiId },
+    });
+    return result;
+  } catch (error) {
+    console.error("Error fetching pegawai by id:", error);
   }
 };
 

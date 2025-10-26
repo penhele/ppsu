@@ -92,7 +92,7 @@ const TableView = async () => {
               </TableCell>
               <TableCell className="whitespace-nowrap">
                 <div className="flex gap-1">
-                  <UpdateButton />
+                  <UpdateButton id={item.id_pegawai} />
                   <DeleteButton id={item.id_pegawai} />
                 </div>
               </TableCell>

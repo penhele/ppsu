@@ -23,12 +23,14 @@ export const InputText = ({
   placeholder,
   type = "text",
   message = [],
+  defaultValue,
 }: {
   title: string;
   name: string;
   placeholder?: string;
   type?: string;
   message: string[];
+  defaultValue?: string;
 }) => {
   const errorMessage = message.length > 0 ? message[0] : "";
 
@@ -40,6 +42,7 @@ export const InputText = ({
         type={type}
         name={name}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         className={
           errorMessage ? "border-red-500 focus-visible:ring-red-500" : ""
         }
@@ -82,6 +85,7 @@ export const SelectOption = ({
   options,
   onChange,
   message = [],
+  defaultValue,
 }: {
   title: string;
   name: string;
@@ -89,8 +93,9 @@ export const SelectOption = ({
   options: { label: string; value: string }[];
   onChange?: (value: string) => void;
   message?: string[];
+  defaultValue?: string;
 }) => {
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(defaultValue);
   const errorMessage = message.length > 0 ? message[0] : "";
 
   const handleChange = (value: string) => {
@@ -131,13 +136,17 @@ export const SelectDate = ({
   title,
   name,
   message = [],
+  defaultValue,
 }: {
   title: string;
   name: string;
   message?: string[];
+  defaultValue?: string;
 }) => {
   const [openCalendar, setOpenCalendar] = useState(false);
-  const [date, setDate] = useState<Date | undefined>(undefined);
+  const [date, setDate] = useState<Date | undefined>(
+    defaultValue ? new Date(defaultValue) : undefined,
+  );
 
   const errorMessage = message.length > 0 ? message[0] : "";
 

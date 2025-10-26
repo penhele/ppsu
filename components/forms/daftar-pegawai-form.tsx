@@ -1,4 +1,4 @@
-import CreateDaftarPegawaiForm from "@/components/forms/create-daftar-pegawai-form";
+import CreateDaftarPegawaiForm from "./create-daftar-pegawai-form";
 
 const DaftarPegawaiForm = () => {
   return (

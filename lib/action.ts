@@ -124,3 +124,84 @@ export const deletePegawaiById = async (id: string) => {
 
   revalidatePath("/data-pegawai");
 };
+
+// Update
+export const updatePegawai = async (
+  peegawaiId: string,
+  prevState: unknown,
+  formData: FormData,
+) => {
+  const rawData = {
+    nama: formData.get("nama"),
+    tempat_lahir: formData.get("tempat_lahir"),
+    tanggal_lahir: formData.get("tanggal_lahir"),
+    alamat: formData.get("alamat"),
+    provinsi: formData.get("provinsi"),
+    kota: formData.get("kota"),
+    kecamatan: formData.get("kecamatan"),
+    kelurahan: formData.get("kelurahan"),
+    rt: formData.get("rt"),
+    rw: formData.get("rw"),
+    no_telepon: formData.get("no_telepon"),
+    no_ktp: formData.get("no_ktp"),
+    npwp: formData.get("npwp"),
+    no_rekening: formData.get("no_rekening"),
+    bank_dki_cabang: formData.get("bank_dki_cabang"),
+    pendidikan: formData.get("pendidikan"),
+    jenis_pekerjaan: formData.get("jenis_pekerjaan"),
+  };
+
+  const validatedFields = PegawaiSchema.safeParse(rawData);
+  if (!validatedFields.success)
+    return { error: validatedFields.error.flatten().fieldErrors };
+
+  const {
+    nama,
+    tempat_lahir,
+    tanggal_lahir,
+    alamat,
+    provinsi,
+    kota,
+    kecamatan,
+    kelurahan,
+    rt,
+    rw,
+    no_telepon,
+    no_ktp,
+    npwp,
+    no_rekening,
+    bank_dki_cabang,
+    pendidikan,
+    jenis_pekerjaan,
+  } = validatedFields.data;
+
+  try {
+    await prisma.pegawai.update({
+      where: { id_pegawai: peegawaiId },
+      data: {
+        nama,
+        tempat_lahir,
+        tanggal_lahir,
+        alamat,
+        provinsi,
+        kota,
+        kecamatan,
+        kelurahan,
+        rt,
+        rw,
+        no_telepon,
+        no_ktp,
+        npwp,
+        no_rekening,
+        bank_dki_cabang,
+        pendidikan,
+        jenis_pekerjaan,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  revalidatePath("/data-pegawai");
+  redirect("/data-pegawai");
+};
