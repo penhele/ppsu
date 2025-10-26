@@ -46,9 +46,9 @@ const TableRiwayatCuti = async () => {
               <TableCell>{item.Pegawai?.jenis_pekerjaan}</TableCell>
               <TableCell>
                 <div className="flex flex-col font-medium">
-                  <span>{item.tanggal_mulai}</span>
+                  <span>{formatDate(item.tanggal_mulai)}</span>
                   <span className="text-xs text-gray-500">
-                    s.d. {item.tanggal_selesai}
+                    s.d. {formatDate(item.tanggal_selesai)}
                   </span>
                 </div>
               </TableCell>
