@@ -51,7 +51,7 @@ const CreatePengajuanCutiForm = ({
           message={state?.error.tanggal_mulai || []}
         />
 
-        <Button className="bg-orange-400 hover:bg-orange-500">
+        <Button className="bg-primary hover:bg-orange-500">
           {isPending ? "Menyimpan..." : "Simpan"}
         </Button>
       </div>

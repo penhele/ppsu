@@ -5,11 +5,8 @@ import { Separator } from "../ui/separator";
 
 const PengaturanForm = () => {
   return (
-    <div className="flex flex-col gap-8 p-4 border rounded-lg">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-xl font-medium">Profil Admin</h1>
-        <Separator />
-      </div>
+    <div className="flex flex-col gap-8 p-4 border rounded-lg bg-white">
+      <h1 className="text-xl font-medium">Profil Admin</h1>
 
       <div className="flex flex-col gap-4">
         <div className="grid sm:grid-cols-2 gap-4">
@@ -34,10 +31,10 @@ const PengaturanForm = () => {
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">
-        <Button variant={"outline"} className="hover:border-orange-500">
+        <Button variant={"outline"} className="hover:border-primary">
           Ganti Password
         </Button>
-        <Button className="bg-orange-400 hover:bg-orange-500">Logout</Button>
+        <Button className="bg-primary hover:bg-orange-500">Logout</Button>
       </div>
     </div>
   );

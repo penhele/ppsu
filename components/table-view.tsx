@@ -21,7 +21,7 @@ const TableView = async () => {
   if (!pegawai) return <p>kosong</p>;
 
   return (
-    <div className="border p-4 rounded-xl flex flex-col gap-3 w-full">
+    <div className="border p-4 rounded-xl flex flex-col gap-3 w-full bg-white">
       <div className="flex justify-between">
         <div className="">
           <h1 className="font-medium text-lg">Daftar Pegawai</h1>
@@ -35,7 +35,7 @@ const TableView = async () => {
 
           <StatusSelect />
 
-          <Button className="bg-orange-400 hover:bg-orange-500">
+          <Button className="bg-primary hover:bg-orange-500">
             <Link
               href={"/data-pegawai/create"}
               className="flex justify-between items-center gap-2"

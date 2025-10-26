@@ -9,7 +9,7 @@ const PengajuanCutiForm = async () => {
   }));
 
   return (
-    <div className="flex flex-col gap-8 p-4 border rounded-lg">
+    <div className="flex flex-col gap-8 p-4 border rounded-lg bg-white">
       <h1 className="text-xl font-medium">Formulir Pengajuan</h1>
 
       <CreatePengajuanCutiForm pegawaiList={pegawaiList} />

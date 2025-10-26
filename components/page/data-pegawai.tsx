@@ -24,7 +24,7 @@ const DataPegawai = async () => {
         {items.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col items-center py-8 rounded-xl border"
+            className="flex flex-col items-center py-8 rounded-xl border bg-white"
           >
             <h2 className="text-sm text-gray-500">{item.title}</h2>
             <span className="text-lg">{item.total}</span>

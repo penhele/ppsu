@@ -167,7 +167,7 @@ const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
           defaultValue={pegawai.jenis_pekerjaan}
         />
         <Button
-          className={clsx("bg-orange-400 hover:bg-orange-500", {
+          className={clsx("bg-primary hover:bg-orange-500", {
             "cursor-progress": isPending,
           })}
         >

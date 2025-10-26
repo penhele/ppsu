@@ -17,7 +17,7 @@ const TableRiwayatCuti = async () => {
   if (!cuti) return null;
 
   return (
-    <div className="border p-4 rounded-xl flex flex-col gap-3">
+    <div className="border p-4 rounded-xl flex flex-col gap-3 bg-white">
       <div className="flex justify-between">
         <h1 className="font-medium text-lg">Riwayat Cuti</h1>
 

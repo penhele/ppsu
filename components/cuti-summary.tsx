@@ -23,7 +23,7 @@ const CutiSummaryCard = ({
       {items.map((item, index) => (
         <div
           key={index}
-          className="border rounded-xl p-4 flex justify-between items-center"
+          className="border rounded-xl p-4 flex justify-between items-center bg-white"
         >
           <div className="flex flex-col gap-2">
             <h1 className="text-gray-500">{item.title}</h1>
