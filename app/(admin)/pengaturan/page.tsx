@@ -1,9 +1,11 @@
+import Pengaturan from "@/components/page/pengaturan";
+
 export const metadata = {
   title: "Pengaturan",
 };
 
 const page = () => {
-  return <div>page</div>;
+  return <Pengaturan />;
 };
 
 export default page;
