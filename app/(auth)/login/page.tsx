@@ -85,8 +85,6 @@ export default function LoginPage() {
 
             <Button
               type="submit"
-              variant="primary"
-              size="full"
               className="mt-2"
             >
               Masuk

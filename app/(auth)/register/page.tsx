@@ -115,8 +115,6 @@ export default function RegisterPage() {
 
             <Button
               type="submit"
-              variant="primary"
-              size="full"
               className="mt-2"
             >
               Daftar
