@@ -12,7 +12,7 @@ const PengaturanForm = () => {
       </div>
 
       <div className="flex flex-col gap-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
           <div className="flex flex-col gap-2">
             <Label>Nama</Label>
             <Input defaultValue={"Stephen Helenus"} disabled />
@@ -33,7 +33,7 @@ const PengaturanForm = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid sm:grid-cols-2 gap-4">
         <Button variant={"outline"} className="hover:border-orange-500">
           Ganti Password
         </Button>
