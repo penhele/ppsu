@@ -1,13 +1,4 @@
-import {
-  Calendar,
-  ClipboardList,
-  FileText,
-  Home,
-  Inbox,
-  Search,
-  Settings,
-  Users,
-} from "lucide-react";
+import { ClipboardList, FileText, Home, Settings, Users } from "lucide-react";
 
 import {
   Sidebar,
@@ -20,7 +11,6 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-// Menu items.
 const items = [
   { url: "/", title: "Dashboard", icon: Home },
   { url: "/data-pegawai", title: "Data Pegawai", icon: Users },

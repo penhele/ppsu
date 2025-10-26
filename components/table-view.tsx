@@ -6,21 +6,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { UserPlus } from "lucide-react";
 import { getPegawai } from "@/lib/data";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
-import SearchBar from "./search-bar";
-import { DeleteButton, UpdateButton } from "./button";
+import SearchBar from "@/components/filters/search-bar";
+import StatusSelect from "@/components/filters/status-select";
+import { UpdateButton } from "@/components/buttons/update-button";
+import { DeleteButton } from "@/components/buttons/delete-button";
 
 const TableView = async () => {
   const pegawai = await getPegawai();
@@ -39,19 +33,7 @@ const TableView = async () => {
         <div className="flex gap-3">
           <SearchBar />
 
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="Semua Status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="semua-status">Semua Status</SelectItem>
-                <SelectItem value="aktif">Aktif</SelectItem>
-                <SelectItem value="sedang-cuti">Sedang Cuti</SelectItem>
-                <SelectItem value="tidak-aktif">Tidak Aktif</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <StatusSelect />
 
           <Button className="bg-orange-400 hover:bg-orange-500">
             <Link

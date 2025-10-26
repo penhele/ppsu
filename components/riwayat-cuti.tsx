@@ -1,5 +1,5 @@
-import SectionHeader from "./header";
-import TableRiwayatCuti from "./table-riwayat-cuti";
+import SectionHeader from "@/components/header";
+import TableRiwayatCuti from "@/components/table-riwayat-cuti";
 
 const RiwayatCuti = () => {
   return (

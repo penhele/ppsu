@@ -6,7 +6,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./ui/table";
+} from "@/components/ui/table";
+import { formatDate, getDurationDays } from "@/lib/utils";
+import SearchBar from "@/components/filters/search-bar";
+import StatusSelect from "@/components/filters/status-select";
+import { ViewButton } from "@/components/buttons/view-button";
 
 const TableRiwayatCuti = async () => {
   const cuti = await getCuti();
@@ -14,12 +18,20 @@ const TableRiwayatCuti = async () => {
 
   return (
     <div className="border p-4 rounded-xl flex flex-col gap-3">
-      <h1 className="font-medium text-lg">Riwayat Cuti</h1>
+      <div className="flex justify-between">
+        <h1 className="font-medium text-lg">Riwayat Cuti</h1>
 
+        <div className="flex gap-3">
+          <SearchBar />
+
+          <StatusSelect />
+        </div>
+      </div>
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead>Nama</TableHead>
+            <TableHead>Jenis Pekerjaan</TableHead>
             <TableHead>Tanggal</TableHead>
             <TableHead>Durasi</TableHead>
             <TableHead>Status</TableHead>
@@ -31,11 +43,23 @@ const TableRiwayatCuti = async () => {
           {cuti.map((item) => (
             <TableRow key={item.id_cuti}>
               <TableCell>{item.Pegawai?.nama}</TableCell>
-              <TableCell>{item.tanggal_mulai}</TableCell>
-              <TableCell>1 hari</TableCell>
+              <TableCell>{item.Pegawai?.jenis_pekerjaan}</TableCell>
+              <TableCell>
+                <div className="flex flex-col font-medium">
+                  <span>{item.tanggal_mulai}</span>
+                  <span className="text-xs text-gray-500">
+                    s.d. {item.tanggal_selesai}
+                  </span>
+                </div>
+              </TableCell>
+              <TableCell>
+                {getDurationDays(item.tanggal_mulai, item.tanggal_selesai)} hari
+              </TableCell>
               <TableCell>{item.status}</TableCell>
-              <TableCell>{item.created_at.toString()}</TableCell>
-              <TableCell>...</TableCell>
+              <TableCell>{formatDate(item.created_at.toString())}</TableCell>
+              <TableCell>
+                <ViewButton />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

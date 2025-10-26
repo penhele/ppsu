@@ -1,5 +1,5 @@
-import SectionHeader from "./header";
-import PengajuanCutiForm from "./forms/pengajuan-cuti-form";
+import SectionHeader from "@/components/header";
+import PengajuanCutiForm from "@/components/forms/pengajuan-cuti-form";
 
 const PengajuanCuti = () => {
   return (

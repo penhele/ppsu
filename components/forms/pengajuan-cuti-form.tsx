@@ -1,5 +1,5 @@
 import { getPegawai } from "@/lib/data";
-import CreatePengajuanCutiForm from "./create-pengajuan-cuti-form";
+import CreatePengajuanCutiForm from "@/components/forms/create-pengajuan-cuti-form";
 
 const PengajuanCutiForm = async () => {
   const pegawai = await getPegawai();

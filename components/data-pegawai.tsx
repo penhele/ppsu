@@ -1,6 +1,6 @@
 import TableView from "@/components/table-view";
 import { getPegawai } from "@/lib/data";
-import SectionHeader from "./header";
+import SectionHeader from "@/components/header";
 
 const DataPegawai = async () => {
   const pegawai = await getPegawai();
