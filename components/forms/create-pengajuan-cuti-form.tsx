@@ -1,9 +1,10 @@
 "use client";
 
 import { useActionState } from "react";
-import { InputTextarea, SelectDate, SelectOption } from "../input";
-import { Button } from "../ui/button";
+import { InputTextarea, SelectDate, SelectOption } from "@/components/input";
+import { Button } from "@/components/ui/button";
 import { saveCuti } from "@/lib/action";
+import clsx from "clsx";
 
 const CreatePengajuanCutiForm = ({
   pegawaiList,
@@ -51,7 +52,11 @@ const CreatePengajuanCutiForm = ({
           message={state?.error.tanggal_mulai || []}
         />
 
-        <Button className="bg-primary hover:bg-orange-500">
+        <Button
+          className={clsx("bg-primary hover:bg-orange-500", {
+            "cursor-progress": isPending,
+          })}
+        >
           {isPending ? "Menyimpan..." : "Simpan"}
         </Button>
       </div>

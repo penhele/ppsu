@@ -1,4 +1,4 @@
-import PersetujuanCuti from "@/components/page/persetujuan-cuti";
+import PersetujuanCuti from "@/components/pages/persetujuan-cuti";
 
 const page = () => {
   return <PersetujuanCuti />;

@@ -15,6 +15,7 @@ import SearchBar from "@/components/filters/search-bar";
 import StatusSelect from "@/components/filters/status-select";
 import { UpdateButton } from "@/components/buttons/update-button";
 import { DeleteButton } from "@/components/buttons/delete-button";
+import Tableheader from "@/components/table-header";
 
 const TableView = async () => {
   const pegawai = await getPegawai();
@@ -23,12 +24,10 @@ const TableView = async () => {
   return (
     <div className="border p-4 rounded-xl flex flex-col gap-3 w-full bg-white">
       <div className="flex justify-between">
-        <div className="">
-          <h1 className="font-medium text-lg">Daftar Pegawai</h1>
-          <span className="text-sm text-gray-400">
-            Total {pegawai.length} pegawai terdaftar
-          </span>
-        </div>
+        <Tableheader
+          title="Daftar Pegawai"
+          description={`Total ${pegawai.length} pegawai terdaftar`}
+        />
 
         <div className="flex gap-3">
           <SearchBar />
@@ -54,10 +53,6 @@ const TableView = async () => {
             <TableHead className="whitespace-nowrap"> Tempat Lahir</TableHead>
             <TableHead className="whitespace-nowrap">Tanggal Lahir</TableHead>
             <TableHead className="whitespace-nowrap">No. Telepon</TableHead>
-            {/* <TableHead className="whitespace-nowrap">No. KTP</TableHead>
-            <TableHead className="whitespace-nowrap">NPWP</TableHead>
-            <TableHead className="whitespace-nowrap">No. Rekening</TableHead>
-            <TableHead className="whitespace-nowrap">Bank DKI Cabang</TableHead> */}
             <TableHead className="whitespace-nowrap">Pendidikan</TableHead>
             <TableHead className="whitespace-nowrap">Jenis Pekerjaan</TableHead>
             <TableHead className="whitespace-nowrap">Aksi</TableHead>
@@ -76,14 +71,6 @@ const TableView = async () => {
               <TableCell className="whitespace-nowrap">
                 {item.no_telepon}
               </TableCell>
-              {/* <TableCell className="whitespace-nowrap">{item.no_ktp}</TableCell>
-              <TableCell className="whitespace-nowrap">{item.npwp}</TableCell>
-              <TableCell className="whitespace-nowrap">
-                {item.no_rekening}
-              </TableCell>
-              <TableCell className="whitespace-nowrap">
-                {item.bank_dki_cabang}
-              </TableCell> */}
               <TableCell className="whitespace-nowrap">
                 {item.pendidikan}
               </TableCell>

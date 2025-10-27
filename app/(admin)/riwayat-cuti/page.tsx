@@ -1,4 +1,4 @@
-import RiwayatCuti from "@/components/riwayat-cuti";
+import RiwayatCuti from "@/components/pages/riwayat-cuti";
 
 export const metadata = {
   title: "Riwayat Cuti",

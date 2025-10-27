@@ -1,4 +1,4 @@
-import DataPegawai from "@/components/page/data-pegawai";
+import DataPegawai from "@/components/pages/data-pegawai";
 
 export const metadata = {
   title: "Data Pegawai",

@@ -13,6 +13,8 @@ import {
 import { CutiStatus } from "@prisma/client";
 import { formatDate, getDurationDays } from "@/lib/utils";
 import StatusLabel from "@/components/status-label";
+import Tableheader from "@/components/table-header";
+import { Clock } from "lucide-react";
 
 const TablePersetujuanCuti = async () => {
   const menungguStatus = await getCutiByStatus({
@@ -21,7 +23,13 @@ const TablePersetujuanCuti = async () => {
   if (!menungguStatus) return null;
 
   return (
-    <div className="bg-white p-4 border rounded-xl">
+    <div className="flex flex-col gap-3 bg-white p-4 border rounded-xl">
+      <Tableheader
+        title="Pengajuan Menunggu Persetujuan"
+        Icon={Clock}
+        description={`${menungguStatus.length} pengajuan cuti menunggu persetujuan`}
+      />
+
       <Table>
         <TableHeader>
           <TableRow>

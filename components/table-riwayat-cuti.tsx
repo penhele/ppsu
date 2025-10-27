@@ -13,6 +13,7 @@ import StatusSelect from "@/components/filters/status-select";
 import { ViewButton } from "@/components/buttons/view-button";
 import { CutiStatus } from "@prisma/client";
 import StatusValue from "@/components/status-label";
+import Tableheader from "@/components/table-header";
 
 const TableRiwayatCuti = async () => {
   const cuti = await getCutiByStatus({
@@ -22,8 +23,10 @@ const TableRiwayatCuti = async () => {
   return (
     <div className="border p-4 rounded-xl flex flex-col gap-3 bg-white">
       <div className="flex justify-between">
-        <h1 className="font-medium text-lg">Riwayat Cuti</h1>
-
+        <Tableheader
+          title="Riwayat Cuti"
+          description="Pengajuan cuti yang telah diproses"
+        />
         <div className="flex gap-3">
           <SearchBar />
 

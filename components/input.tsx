@@ -9,13 +9,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Button } from "./ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 import clsx from "clsx";
 import { ChevronRight } from "lucide-react";
-import { Calendar } from "./ui/calendar";
-import { Textarea } from "./ui/textarea";
-// import { formatCapital } from "@/lib/utils";
+import { Calendar } from "@/components/ui/calendar";
+import { Textarea } from "@/components/ui/textarea";
 
 export const InputText = ({
   title,
