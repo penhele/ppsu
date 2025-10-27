@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { LucideIcon } from "lucide-react";
 
-const CutiSummaryCard = ({
+const CutiSummaryCard = async ({
   items,
 }: {
   items: {

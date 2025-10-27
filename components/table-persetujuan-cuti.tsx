@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/table";
 import { CutiStatus } from "@prisma/client";
 import { formatDate, getDurationDays } from "@/lib/utils";
+import StatusLabel from "@/components/status-label";
 
 const TablePersetujuanCuti = async () => {
   const menungguStatus = await getCutiByStatus({
@@ -49,7 +50,9 @@ const TablePersetujuanCuti = async () => {
               <TableCell>
                 {getDurationDays(item.tanggal_mulai, item.tanggal_selesai)}
               </TableCell>
-              <TableCell>{item.status}</TableCell>
+              <TableCell>
+                <StatusLabel value={item.status} />
+              </TableCell>
               <TableCell>{formatDate(item.created_at.toString())}</TableCell>
               <TableCell>
                 <div className="flex gap-2">

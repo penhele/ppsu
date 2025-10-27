@@ -1,4 +1,4 @@
-import { getCuti, getCutiByStatus } from "@/lib/data";
+import { getCutiByStatus } from "@/lib/data";
 import {
   Table,
   TableBody,
@@ -12,6 +12,7 @@ import SearchBar from "@/components/filters/search-bar";
 import StatusSelect from "@/components/filters/status-select";
 import { ViewButton } from "@/components/buttons/view-button";
 import { CutiStatus } from "@prisma/client";
+import StatusValue from "@/components/status-label";
 
 const TableRiwayatCuti = async () => {
   const cuti = await getCutiByStatus({
@@ -57,7 +58,9 @@ const TableRiwayatCuti = async () => {
               <TableCell>
                 {getDurationDays(item.tanggal_mulai, item.tanggal_selesai)} hari
               </TableCell>
-              <TableCell>{item.status}</TableCell>
+              <TableCell>
+                <StatusValue value={item.status} />
+              </TableCell>
               <TableCell>{formatDate(item.created_at.toString())}</TableCell>
               <TableCell>
                 <ViewButton />

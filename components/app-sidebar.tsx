@@ -1,4 +1,11 @@
-import { CheckCircle, ClipboardList, FileText, Home, Settings, Users } from "lucide-react";
+import {
+  CheckCircle,
+  ClipboardList,
+  FileText,
+  Home,
+  Settings,
+  Users,
+} from "lucide-react";
 
 import {
   Sidebar,
