@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 const prisma = new PrismaClient();
 
 async function main() {
-  const pegawaiData = Array.from({ length: 5 }).map(() => ({
+  const pegawaiData = Array.from({ length: 10 }).map(() => ({
     nama: faker.person.fullName(),
     tempat_lahir: faker.location.city(),
     tanggal_lahir: faker.date
@@ -17,7 +17,7 @@ async function main() {
     kecamatan: faker.location.county(),
     kota: faker.location.city(),
     provinsi: faker.location.state(),
-    no_telepon: `+62${faker.string.numeric(10)}`,
+    no_telepon: `62${faker.string.numeric(10)}`,
     no_ktp: faker.string.numeric(16),
     npwp: faker.string.numeric(15),
     no_rekening: faker.finance.accountNumber(10),

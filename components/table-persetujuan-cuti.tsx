@@ -1,4 +1,7 @@
-import { getCuti, getCutiByStatus } from "@/lib/data";
+import { getCutiByStatus } from "@/lib/data";
+import AcceptButton from "@/components/buttons/accept-button";
+import RejectButton from "@/components/buttons/reject-button";
+import { ViewButton } from "@/components/buttons/view-button";
 import {
   Table,
   TableBody,
@@ -7,32 +10,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { formatDate, getDurationDays } from "@/lib/utils";
-import SearchBar from "@/components/filters/search-bar";
-import StatusSelect from "@/components/filters/status-select";
-import { ViewButton } from "@/components/buttons/view-button";
 import { CutiStatus } from "@prisma/client";
+import { formatDate, getDurationDays } from "@/lib/utils";
 
-const TableRiwayatCuti = async () => {
-  const cuti = await getCutiByStatus({
-    status: [CutiStatus.DISETUJUI, CutiStatus.DITOLAK],
+const TablePersetujuanCuti = async () => {
+  const menungguStatus = await getCutiByStatus({
+    status: CutiStatus.MENUNGGU,
   });
+  if (!menungguStatus) return null;
 
   return (
-    <div className="border p-4 rounded-xl flex flex-col gap-3 bg-white">
-      <div className="flex justify-between">
-        <h1 className="font-medium text-lg">Riwayat Cuti</h1>
-
-        <div className="flex gap-3">
-          <SearchBar />
-
-          <StatusSelect />
-        </div>
-      </div>
+    <div className="bg-white p-4 border rounded-xl">
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Nama</TableHead>
+            <TableHead>Pegawai</TableHead>
             <TableHead>Jenis Pekerjaan</TableHead>
             <TableHead>Tanggal</TableHead>
             <TableHead>Durasi</TableHead>
@@ -42,7 +34,7 @@ const TableRiwayatCuti = async () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {cuti.map((item) => (
+          {menungguStatus.map((item) => (
             <TableRow key={item.id_cuti}>
               <TableCell>{item.Pegawai?.nama}</TableCell>
               <TableCell>{item.Pegawai?.jenis_pekerjaan}</TableCell>
@@ -55,12 +47,16 @@ const TableRiwayatCuti = async () => {
                 </div>
               </TableCell>
               <TableCell>
-                {getDurationDays(item.tanggal_mulai, item.tanggal_selesai)} hari
+                {getDurationDays(item.tanggal_mulai, item.tanggal_selesai)}
               </TableCell>
               <TableCell>{item.status}</TableCell>
               <TableCell>{formatDate(item.created_at.toString())}</TableCell>
               <TableCell>
-                <ViewButton />
+                <div className="flex gap-2">
+                  <ViewButton />
+                  <AcceptButton id={item.id_cuti} />
+                  <RejectButton id={item.id_cuti} />
+                </div>
               </TableCell>
             </TableRow>
           ))}
@@ -70,4 +66,4 @@ const TableRiwayatCuti = async () => {
   );
 };
 
-export default TableRiwayatCuti;
+export default TablePersetujuanCuti;

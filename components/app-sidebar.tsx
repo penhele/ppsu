@@ -1,4 +1,4 @@
-import { ClipboardList, FileText, Home, Settings, Users } from "lucide-react";
+import { CheckCircle, ClipboardList, FileText, Home, Settings, Users } from "lucide-react";
 
 import {
   Sidebar,
@@ -15,6 +15,7 @@ const items = [
   { url: "/", title: "Dashboard", icon: Home },
   { url: "/data-pegawai", title: "Data Pegawai", icon: Users },
   { url: "/pengajuan-cuti", title: "Pengajuan Cuti", icon: FileText },
+  { url: "/persetujuan-cuti", title: "Persetujuan Cuti", icon: CheckCircle },
   { url: "/riwayat-cuti", title: "Riwayat Cuti", icon: ClipboardList },
   { url: "/pengaturan", title: "Pengaturan", icon: Settings },
 ];

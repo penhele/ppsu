@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { CutiSchema, PegawaiSchema } from "@/lib/zod";
+import { CutiStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -127,7 +128,7 @@ export const deletePegawaiById = async (id: string) => {
 
 // Update
 export const updatePegawai = async (
-  peegawaiId: string,
+  pegawaiId: string,
   prevState: unknown,
   formData: FormData,
 ) => {
@@ -177,7 +178,7 @@ export const updatePegawai = async (
 
   try {
     await prisma.pegawai.update({
-      where: { id_pegawai: peegawaiId },
+      where: { id_pegawai: pegawaiId },
       data: {
         nama,
         tempat_lahir,
@@ -204,4 +205,32 @@ export const updatePegawai = async (
 
   revalidatePath("/data-pegawai");
   redirect("/data-pegawai");
+};
+
+export const approveCutiById = async (id: string) => {
+  try {
+    await prisma.cuti.update({
+      where: { id_cuti: id },
+      data: { status: CutiStatus.DISETUJUI },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  revalidatePath("/persetujuan-cuti");
+  redirect("/persetujuan-cuti");
+};
+
+export const rejectCutiById = async (id: string) => {
+  try {
+    await prisma.cuti.update({
+      where: { id_cuti: id },
+      data: { status: CutiStatus.DITOLAK },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  revalidatePath("/persetujuan-cuti");
+  redirect("/persetujuan-cuti");
 };
