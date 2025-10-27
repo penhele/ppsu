@@ -83,10 +83,7 @@ export default function LoginPage() {
               </button>
             </div>
 
-            <Button
-              type="submit"
-              className="mt-2"
-            >
+            <Button type="submit" className="mt-2">
               Masuk
             </Button>
           </form>

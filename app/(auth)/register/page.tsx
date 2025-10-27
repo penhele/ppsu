@@ -113,10 +113,7 @@ export default function RegisterPage() {
               />
             </div>
 
-            <Button
-              type="submit"
-              className="mt-2"
-            >
+            <Button type="submit" className="mt-2">
               Daftar
             </Button>
           </form>
