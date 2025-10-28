@@ -34,3 +34,7 @@ export const capitalizeWords = (text: string) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 };
+
+export const getSafeCatatan = (text?: string | null) => {
+  return text && text.trim() !== "" ? text : "Tidak ada catatan";
+};

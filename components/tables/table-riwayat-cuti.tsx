@@ -42,6 +42,7 @@ const TableRiwayatCuti = async () => {
             <TableHead>Durasi</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Tanggal Pengajuan</TableHead>
+            <TableHead>Tanggal Respon</TableHead>
             <TableHead>Aksi</TableHead>
           </TableRow>
         </TableHeader>
@@ -65,8 +66,9 @@ const TableRiwayatCuti = async () => {
                 <StatusValue value={item.status} />
               </TableCell>
               <TableCell>{formatDate(item.created_at.toString())}</TableCell>
+              <TableCell>{formatDate(item.updated_at.toString())}</TableCell>
               <TableCell>
-                <ViewButton />
+                <ViewButton id={item.id_cuti} />
               </TableCell>
             </TableRow>
           ))}

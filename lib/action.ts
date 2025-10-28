@@ -207,6 +207,29 @@ export const updatePegawai = async (
   redirect("/data-pegawai");
 };
 
+export const updateCutiCatatan = async (
+  cutiId: string,
+  prevState: unknown,
+  formData: FormData,
+) => {
+  const catatan = (formData.get("catatan") as string | null)?.trim() ?? null;
+
+  try {
+    await prisma.cuti.update({
+      where: { id_cuti: cutiId },
+      data: {
+        catatan: catatan,
+        status: CutiStatus.DISETUJUI,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  revalidatePath("/persetujuan-cuti");
+  redirect("/persetujuan-cuti");
+};
+
 export const approveCutiById = async (id: string) => {
   try {
     await prisma.cuti.update({

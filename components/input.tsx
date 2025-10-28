@@ -1,3 +1,5 @@
+"use client";
+
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import {
@@ -27,13 +29,15 @@ export const InputText = ({
   type = "text",
   message = [],
   defaultValue,
+  readOnly = false,
 }: {
   title: string;
   name: string;
   placeholder?: string;
   type?: string;
-  message: string[];
+  message?: string[];
   defaultValue?: string;
+  readOnly?: boolean;
 }) => {
   const errorMessage = message.length > 0 ? message[0] : "";
 
@@ -46,6 +50,7 @@ export const InputText = ({
         name={name}
         placeholder={placeholder}
         defaultValue={defaultValue}
+        readOnly={readOnly}
         className={
           errorMessage ? "border-red-500 focus-visible:ring-red-500" : ""
         }
@@ -62,18 +67,27 @@ export const InputTextarea = ({
   name,
   placeholder,
   message = [],
+  defaultValue,
+  readOnly = false,
 }: {
   title: string;
   name: string;
   placeholder?: string;
-  message: string[];
+  message?: string[];
+  defaultValue?: string;
+  readOnly?: boolean;
 }) => {
   const errorMessage = message.length > 0 ? message[0] : "";
 
   return (
     <div className="flex flex-col gap-2">
       <Label>{title}</Label>
-      <Textarea name={name} placeholder={placeholder} />
+      <Textarea
+        name={name}
+        placeholder={placeholder}
+        readOnly={readOnly}
+        defaultValue={defaultValue}
+      />
       {errorMessage && (
         <span className="text-sm text-red-500">{errorMessage}</span>
       )}

@@ -36,6 +36,18 @@ export const getCuti = async () => {
   }
 };
 
+export const getCutiById = async ({ id }: { id: string }) => {
+  try {
+    const result = await prisma.cuti.findFirst({
+      where: { id_cuti: id },
+      include: { Pegawai: true },
+    });
+    return result;
+  } catch (error) {
+    console.error("Error fetching cuti by ID:", error);
+  }
+};
+
 export const getCutiByStatus = async ({
   status,
 }: {

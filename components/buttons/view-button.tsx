@@ -1,13 +1,36 @@
 import { Eye } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import DetailCutiDialog from "../forms/detail-cuti-dialog";
+import { getCutiById } from "@/lib/data";
+import { CutiStatus } from "@prisma/client";
 
-export const ViewButton = () => {
+export const ViewButton = async ({ id }: { id: string }) => {
+  const cuti = await getCutiById({ id });
+  if (!cuti) return null;
+
   return (
-    <Button
-      variant={"outline"}
-      className="w-8 h-8 border-gray-200 hover:border-gray-500"
-    >
-      <Eye />
-    </Button>
+    <Dialog>
+      <DialogTrigger className="border rounded-md w-8 h-8 flex items-center justify-center border-gray-200 hover:border-gray-500">
+        <Eye className="size-4" />
+      </DialogTrigger>
+
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Setujui Pengajuan Cuti</DialogTitle>
+          <DialogDescription>
+            Setujui pengajuan cuti dari {cuti.Pegawai?.nama}
+          </DialogDescription>
+        </DialogHeader>
+
+        <DetailCutiDialog id={id} value={CutiStatus.MENUNGGU} />
+      </DialogContent>
+    </Dialog>
   );
 };

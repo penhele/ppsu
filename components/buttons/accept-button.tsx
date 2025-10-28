@@ -1,32 +1,37 @@
-"use client";
-
 import { CircleCheck } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useTransition } from "react";
-import { approveCutiById } from "@/lib/action";
+import { getCutiById } from "@/lib/data";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import DetailCutiDialog from "../forms/detail-cuti-dialog";
+import { CutiStatus } from "@prisma/client";
 
-const AcceptButton = ({ id }: { id: string }) => {
-  const [isPending, startTransition] = useTransition();
-
-  const handleApprove = () => {
-    startTransition(async () => {
-      try {
-        await approveCutiById(id);
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  };
+export const AcceptButton = async ({ id }: { id: string }) => {
+  const cuti = await getCutiById({ id });
+  if (!cuti) return null;
 
   return (
-    <Button
-      variant="outline"
-      onClick={handleApprove}
-      className="text-green-700 hover:text-green-800 border-green-200 hover:border-green-500 w-8 h-8"
-    >
-      <CircleCheck className={isPending ? "animate-spin" : ""} />
-    </Button>
+    <Dialog>
+      <DialogTrigger className="border rounded-md flex items-center justify-center text-green-700 hover:text-green-800 border-green-200 hover:border-green-500 w-8 h-8">
+        <CircleCheck className="size-4" />
+      </DialogTrigger>
+
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Detail Pengajuan Cuti</DialogTitle>
+          <DialogDescription>
+            detail pengajuan cuti dari {cuti.Pegawai?.nama}
+          </DialogDescription>
+        </DialogHeader>
+
+        <DetailCutiDialog id={id} value={CutiStatus.DISETUJUI} />
+      </DialogContent>
+    </Dialog>
   );
 };
-
 export default AcceptButton;

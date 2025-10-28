@@ -1,32 +1,37 @@
-"use client";
+import { CircleX, Trash } from "lucide-react";
+import { getCutiById } from "@/lib/data";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import DetailCutiDialog from "../forms/detail-cuti-dialog";
+import { CutiStatus } from "@prisma/client";
 
-import { useTransition } from "react";
-import { Button } from "@/components/ui/button";
-import { CircleX } from "lucide-react";
-import { rejectCutiById } from "@/lib/action";
-
-const RejectButton = ({ id }: { id: string }) => {
-  const [isPending, startTransition] = useTransition();
-
-  const handleReject = () => {
-    startTransition(async () => {
-      try {
-        await rejectCutiById(id);
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  };
+export const RejectButton = async ({ id }: { id: string }) => {
+  const cuti = await getCutiById({ id });
+  if (!cuti) return null;
 
   return (
-    <Button
-      variant="outline"
-      onClick={handleReject}
-      className="text-red-700 hover:text-red-800 border-red-200 hover:border-red-500 w-8 h-8"
-    >
-      <CircleX />
-    </Button>
+    <Dialog>
+      <DialogTrigger className="border rounded-md flex items-center justify-center text-red-700 hover:text-red-800 border-red-200 hover:border-red-500 w-8 h-8">
+        <CircleX className="size-4" />
+      </DialogTrigger>
+
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Detail Pengajuan Cuti</DialogTitle>
+          <DialogDescription>
+            detail pengajuan cuti dari {cuti.Pegawai?.nama}
+          </DialogDescription>
+        </DialogHeader>
+
+        <DetailCutiDialog id={id} value={CutiStatus.DITOLAK} />
+      </DialogContent>
+    </Dialog>
   );
 };
-
 export default RejectButton;

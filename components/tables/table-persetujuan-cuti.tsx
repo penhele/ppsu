@@ -56,7 +56,7 @@ const TablePersetujuanCuti = async () => {
                 </div>
               </TableCell>
               <TableCell>
-                {getDurationDays(item.tanggal_mulai, item.tanggal_selesai)}
+                {getDurationDays(item.tanggal_mulai, item.tanggal_selesai)} hari
               </TableCell>
               <TableCell>
                 <StatusLabel value={item.status} />
@@ -64,7 +64,6 @@ const TablePersetujuanCuti = async () => {
               <TableCell>{formatDate(item.created_at.toString())}</TableCell>
               <TableCell>
                 <div className="flex gap-2">
-                  <ViewButton />
                   <AcceptButton id={item.id_cuti} />
                   <RejectButton id={item.id_cuti} />
                 </div>

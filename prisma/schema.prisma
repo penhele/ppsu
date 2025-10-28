@@ -47,6 +47,7 @@ model Cuti {
   tanggal_mulai   String
   tanggal_selesai String
   alasan          String?
+  catatan      String?
   status          CutiStatus @default(MENUNGGU)
 
   created_at DateTime @default(now())
