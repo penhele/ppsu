@@ -1,8 +1,8 @@
 import SectionHeader from "@/components/header";
-import TableRiwayatCuti from "@/components/table-riwayat-cuti";
+import TableRiwayatCuti from "@/components/tables/table-riwayat-cuti";
 import CutiSummaryCard from "@/components/cuti-summary";
 import { Activity, CheckCircle, Clock, XCircle } from "lucide-react";
-import { getCuti, getCutiByStatus } from "@/lib/data";
+import { getCuti } from "@/lib/data";
 import { CutiStatus } from "@prisma/client";
 import { capitalizeWords } from "@/lib/utils";
 

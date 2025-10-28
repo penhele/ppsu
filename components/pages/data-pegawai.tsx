@@ -1,4 +1,4 @@
-import TableView from "@/components/table-view";
+import TableView from "@/components/tables/table-view";
 import { getPegawai } from "@/lib/data";
 import SectionHeader from "@/components/header";
 

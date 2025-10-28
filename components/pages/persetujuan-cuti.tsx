@@ -1,6 +1,6 @@
 import SectionHeader from "@/components/header";
-import TablePersetujuanCuti from "@/components/table-persetujuan-cuti";
-import TableRiwayatCuti from "@/components/table-riwayat-cuti";
+import TablePersetujuanCuti from "@/components/tables/table-persetujuan-cuti";
+import TableRiwayatCuti from "@/components/tables/table-riwayat-cuti";
 
 const PersetujuanCuti = () => {
   return (
