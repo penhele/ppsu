@@ -1,4 +1,4 @@
-import Tableheader from "./table-header";
+import Tableheader from "@/components/table-header";
 import {
   Table,
   TableBody,
@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./ui/table";
+} from "@/components/ui/table";
 
 const CutiTerbanyak = () => {
   return (

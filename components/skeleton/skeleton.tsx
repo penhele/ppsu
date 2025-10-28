@@ -1,4 +1,4 @@
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const SkeletonTitle = () => {
   return <Skeleton className="h-4 w-20" />;

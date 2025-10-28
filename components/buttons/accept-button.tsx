@@ -7,8 +7,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
-import DetailCutiDialog from "../forms/detail-cuti-dialog";
+} from "@/components/ui/dialog";
+import DetailCutiDialog from "@/components/forms/detail-cuti-dialog";
 import { CutiStatus } from "@prisma/client";
 
 export const AcceptButton = async ({ id }: { id: string }) => {

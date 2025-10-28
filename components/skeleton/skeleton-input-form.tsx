@@ -1,4 +1,4 @@
-import { SkeletonLabel, SkeletonInput, SkeletonTitle } from "./skeleton";
+import { SkeletonLabel, SkeletonInput } from "@/components/skeleton/skeleton";
 
 const SkeletonInputForm = () => {
   return (

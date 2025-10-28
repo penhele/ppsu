@@ -1,7 +1,7 @@
 import { getCutiByStatus } from "@/lib/data";
-import Tableheader from "./table-header";
+import Tableheader from "@/components/table-header";
 import { CutiStatus } from "@prisma/client";
-import StatusLabel from "./status-label";
+import StatusLabel from "@/components/status-label";
 import { formatDate, getDurationDays } from "@/lib/utils";
 
 const Permohonan = async () => {

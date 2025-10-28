@@ -1,8 +1,8 @@
 "use client";
 
 import { useActionState } from "react";
-import { InputTextarea } from "../input";
-import { Button } from "../ui/button";
+import { InputTextarea } from "@/components/input";
+import { Button } from "@/components/ui/button";
 import { updateCutiCatatan } from "@/lib/action";
 import { CutiProps } from "@/types/cuti";
 import { CutiStatus } from "@prisma/client";

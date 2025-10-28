@@ -1,7 +1,6 @@
 import { getCutiByStatus } from "@/lib/data";
 import AcceptButton from "@/components/buttons/accept-button";
 import RejectButton from "@/components/buttons/reject-button";
-import { ViewButton } from "@/components/buttons/view-button";
 import {
   Table,
   TableBody,

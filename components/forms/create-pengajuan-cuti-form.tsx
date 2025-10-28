@@ -1,7 +1,11 @@
 "use client";
 
 import { useActionState } from "react";
-import { InputTextarea, SelectDate, SelectOption } from "@/components/input";
+import {
+  InputTextarea,
+  SelectOption,
+  SelectRangeDate,
+} from "@/components/input";
 import { Button } from "@/components/ui/button";
 import { saveCuti } from "@/lib/action";
 import clsx from "clsx";
@@ -32,18 +36,12 @@ const CreatePengajuanCutiForm = ({
           options={[{ label: "Sakit", value: "sakit" }]}
         />
 
-        <div className="grid sm:grid-cols-2 gap-4">
-          <SelectDate
-            title="Tanggal Mulai"
-            name="tanggal_mulai"
-            message={state?.error.tanggal_mulai}
-          />
-          <SelectDate
-            title="Tanggal Selesai"
-            name="tanggal_selesai"
-            message={state?.error.tanggal_selesai}
-          />
-        </div>
+        <SelectRangeDate
+          title="Tanggal Cuti"
+          placeholder="Pilih tanggal cuti"
+          tanggal_mulai="tanggal_mulai"
+          tanggal_selesai="tanggal_selesai"
+        />
 
         <InputTextarea
           title="Alasan"

@@ -18,9 +18,11 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import clsx from "clsx";
-import { ChevronRight } from "lucide-react";
+import { ChevronDownIcon, ChevronRight } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Textarea } from "@/components/ui/textarea";
+import { DateRange } from "react-day-picker";
+import { formatDate } from "@/lib/utils";
 
 export const InputText = ({
   title,
@@ -222,3 +224,81 @@ export const SelectDate = ({
     </div>
   );
 };
+
+export function SelectRangeDate({
+  title,
+  placeholder,
+  tanggal_mulai,
+  tanggal_selesai,
+}: {
+  title: string;
+  placeholder: string;
+  tanggal_mulai: string;
+  tanggal_selesai: string;
+}) {
+  const [range, setRange] = useState<DateRange | undefined>(undefined);
+
+  return (
+    <div className="flex flex-col gap-2">
+      <Label>{title}</Label>
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            id="dates"
+            className="w-56 justify-between font-normal"
+          >
+            {range?.from && range?.to
+              ? `${formatDate(
+                  range.from.toLocaleDateString("en-CA", {
+                    timeZone: "Asia/Jakarta",
+                  }),
+                )} - ${formatDate(
+                  range.to.toLocaleDateString("en-CA", {
+                    timeZone: "Asia/Jakarta",
+                  }),
+                )}`
+              : `${placeholder}`}
+            <ChevronDownIcon />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto overflow-hidden p-0" align="start">
+          <Calendar
+            mode="range"
+            selected={range}
+            captionLayout="label"
+            max={5}
+            disabled={{
+              before: new Date(new Date().setHours(0, 0, 0, 0)),
+            }}
+            onSelect={(range) => {
+              setRange(range);
+            }}
+          />
+        </PopoverContent>
+      </Popover>
+      <input
+        name={tanggal_mulai}
+        type="hidden"
+        value={
+          range?.from
+            ? range.from.toLocaleDateString("en-CA", {
+                timeZone: "Asia/Jakarta",
+              })
+            : ""
+        }
+      />
+      <input
+        name={tanggal_selesai}
+        type="hidden"
+        value={
+          range?.to
+            ? range.to.toLocaleDateString("en-CA", {
+                timeZone: "Asia/Jakarta",
+              })
+            : ""
+        }
+      />
+    </div>
+  );
+}

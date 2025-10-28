@@ -1,5 +1,5 @@
-import PengaturanForm from "../forms/pengaturan-form";
-import SectionHeader from "../header";
+import PengaturanForm from "@/components/forms/pengaturan-form";
+import SectionHeader from "@/components/header";
 
 const Pengaturan = () => {
   return (

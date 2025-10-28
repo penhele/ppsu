@@ -1,4 +1,4 @@
-import { CircleX, Trash } from "lucide-react";
+import { CircleX } from "lucide-react";
 import { getCutiById } from "@/lib/data";
 import {
   Dialog,
@@ -7,8 +7,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
-import DetailCutiDialog from "../forms/detail-cuti-dialog";
+} from "@/components/ui/dialog";
+import DetailCutiDialog from "@/components/forms/detail-cuti-dialog";
 import { CutiStatus } from "@prisma/client";
 
 export const RejectButton = async ({ id }: { id: string }) => {

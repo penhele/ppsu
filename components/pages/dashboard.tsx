@@ -1,7 +1,7 @@
 import SectionHeader from "@/components/header";
 import Permohonan from "@/components/permohonan";
-import Overview from "../overview";
-import CutiTerbanyak from "../cuti-terbanyak";
+import Overview from "@/components/overview";
+import CutiTerbanyak from "@/components/cuti-terbanyak";
 
 const Dashboard = () => {
   return (
