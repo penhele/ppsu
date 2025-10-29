@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { CutiSchema, PegawaiSchema } from "@/lib/zod";
-import { CutiStatus } from "@prisma/client";
+import { CutiStatus, PegawaiStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -207,12 +207,17 @@ export const updatePegawai = async (
   redirect("/data-pegawai");
 };
 
-export const updateCutiCatatan = async (
+export const approveCutiById = async (
   cutiId: string,
   prevState: unknown,
   formData: FormData,
 ) => {
   const catatan = (formData.get("catatan") as string | null)?.trim() ?? null;
+
+  const cuti = await prisma.cuti.findUnique({
+    where: { id_cuti: cutiId },
+    select: { id_pegawai: true },
+  });
 
   try {
     await prisma.cuti.update({
@@ -222,20 +227,13 @@ export const updateCutiCatatan = async (
         status: CutiStatus.DISETUJUI,
       },
     });
-  } catch (error) {
-    console.log(error);
-  }
 
-  revalidatePath("/persetujuan-cuti");
-  redirect("/persetujuan-cuti");
-};
-
-export const approveCutiById = async (id: string) => {
-  try {
-    await prisma.cuti.update({
-      where: { id_cuti: id },
-      data: { status: CutiStatus.DISETUJUI },
+    await prisma.pegawai.update({
+      where: { id_pegawai: cuti?.id_pegawai },
+      data: { status: PegawaiStatus.CUTI },
     });
+
+    console.log("berhasil");
   } catch (error) {
     console.log(error);
   }

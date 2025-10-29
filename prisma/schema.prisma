@@ -32,6 +32,7 @@ model Pegawai {
   npwp            String         @unique
   no_rekening     String
   bank_dki_cabang String
+  status          PegawaiStatus @default(AKTIF)
   pendidikan      Pendidikan
   jenis_pekerjaan JenisPekerjaan
 
@@ -47,7 +48,7 @@ model Cuti {
   tanggal_mulai   String
   tanggal_selesai String
   alasan          String?
-  catatan      String?
+  catatan         String?
   status          CutiStatus @default(MENUNGGU)
 
   created_at DateTime @default(now())
@@ -70,4 +71,10 @@ enum CutiStatus {
   MENUNGGU
   DISETUJUI
   DITOLAK
+}
+
+enum PegawaiStatus {
+  AKTIF
+  TIDAK_AKTIF
+  CUTI
 }

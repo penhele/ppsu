@@ -10,12 +10,17 @@ import { UserPlus } from "lucide-react";
 import { getPegawai } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { formatDate } from "@/lib/utils";
+import {
+  capitalizeWords,
+  formatDate,
+  getTextWithoutUnderscore,
+} from "@/lib/utils";
 import SearchBar from "@/components/filters/search-bar";
 import StatusSelect from "@/components/filters/status-select";
 import { UpdateButton } from "@/components/buttons/update-button";
 import { DeleteButton } from "@/components/buttons/delete-button";
 import Tableheader from "@/components/table-header";
+import StatusLabel from "../status-label";
 
 const TableView = async () => {
   const pegawai = await getPegawai();
@@ -55,6 +60,7 @@ const TableView = async () => {
             <TableHead className="whitespace-nowrap">No. Telepon</TableHead>
             <TableHead className="whitespace-nowrap">Pendidikan</TableHead>
             <TableHead className="whitespace-nowrap">Jenis Pekerjaan</TableHead>
+            <TableHead className="whitespace-nowrap">Status</TableHead>
             <TableHead className="whitespace-nowrap">Aksi</TableHead>
           </TableRow>
         </TableHeader>
@@ -76,6 +82,9 @@ const TableView = async () => {
               </TableCell>
               <TableCell className="whitespace-nowrap">
                 {item.jenis_pekerjaan}
+              </TableCell>
+              <TableCell className="whitespace-nowrap">
+                <StatusLabel value={getTextWithoutUnderscore(item.status)} />
               </TableCell>
               <TableCell className="whitespace-nowrap">
                 <div className="flex gap-1">

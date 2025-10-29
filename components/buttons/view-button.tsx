@@ -23,9 +23,9 @@ export const ViewButton = async ({ id }: { id: string }) => {
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Setujui Pengajuan Cuti</DialogTitle>
+          <DialogTitle>Detail Pengajuan Cuti</DialogTitle>
           <DialogDescription>
-            Setujui pengajuan cuti dari {cuti.Pegawai?.nama}
+            Detail pengajuan cuti dari {cuti.Pegawai?.nama}
           </DialogDescription>
         </DialogHeader>
 

@@ -38,3 +38,12 @@ export const capitalizeWords = (text: string) => {
 export const getSafeCatatan = (text?: string | null) => {
   return text && text.trim() !== "" ? text : "Tidak ada catatan";
 };
+
+export const getTextWithoutUnderscore = (text: string) => {
+  if (!text) return "";
+
+  return text
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};

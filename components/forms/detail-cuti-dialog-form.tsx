@@ -3,9 +3,9 @@
 import { useActionState } from "react";
 import { InputTextarea } from "@/components/input";
 import { Button } from "@/components/ui/button";
-import { updateCutiCatatan } from "@/lib/action";
 import { CutiProps } from "@/types/cuti";
 import { CutiStatus } from "@prisma/client";
+import { approveCutiById } from "@/lib/action";
 
 const DetailCutiDialogForm = ({
   cuti,
@@ -15,7 +15,7 @@ const DetailCutiDialogForm = ({
   value: CutiStatus;
 }) => {
   const [state, formAction, isPending] = useActionState(
-    updateCutiCatatan.bind(null, cuti.id_cuti),
+    approveCutiById.bind(null, cuti.id_cuti),
     null,
   );
 

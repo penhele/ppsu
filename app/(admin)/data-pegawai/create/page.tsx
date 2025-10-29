@@ -8,7 +8,7 @@ export const metadata = {
 
 const page = () => {
   return (
-    <div className="px-4">
+    <div className="">
       <Suspense fallback={<SkeletonDaftarPegawaiForm />}>
         <DaftarPegawaiForm />
       </Suspense>

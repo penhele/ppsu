@@ -1,5 +1,5 @@
 import { getCutiById } from "@/lib/data";
-import { InputText, InputTextarea } from "../input";
+import { InputDisplayed, InputText, InputTextarea } from "../input";
 import { formatDate, getDurationDays, getSafeCatatan } from "@/lib/utils";
 import DetailCutiDialogForm from "./detail-cuti-dialog-form";
 import { Separator } from "../ui/separator";
@@ -18,60 +18,45 @@ const DetailCutiDialog = async ({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-4">
-        <InputText
-          title="Nama"
-          name="nama"
-          defaultValue={cuti.Pegawai?.nama}
-          readOnly
-        />
+        <div className="bg-white px-4 py-2 rounded-xl flex flex-col gap-6">
+          <InputDisplayed title="Nama" value={cuti.Pegawai?.nama} />
 
-        <div className="grid grid-cols-5 gap-4">
-          <div className="grid grid-cols-2 col-span-4 gap-4">
-            <InputText
-              title="Tanggal Mulai"
-              name="tanggal_mulai"
-              defaultValue={cuti.tanggal_mulai}
-              readOnly
-            />
-            <InputText
-              title="Tanggal Selesai"
-              name="tanggal_selesai"
-              defaultValue={cuti.tanggal_selesai}
-              readOnly
+          <div className="grid grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 col-span-4 gap-4">
+              <InputDisplayed
+                title="Tanggal Mulai"
+                value={cuti.tanggal_mulai}
+              />
+              <InputDisplayed
+                title="Tanggal Selesai"
+                value={cuti.tanggal_selesai}
+              />
+            </div>
+
+            <InputDisplayed
+              title="Durasi"
+              value={getDurationDays(
+                cuti.tanggal_mulai,
+                cuti.tanggal_selesai,
+              ).toString()}
             />
           </div>
-
-          <InputText
-            title="Durasi"
-            name="durasi"
-            defaultValue={getDurationDays(
-              cuti.tanggal_mulai,
-              cuti.tanggal_selesai,
-            ).toString()}
-            readOnly
-          />
         </div>
 
-        <InputText
-          title="Tanggal Pengajuan"
-          name="tanggal_pengajuan"
-          defaultValue={formatDate(cuti.created_at.toString())}
-          readOnly
+        <InputDisplayed
+          title="Tanggal Pegajuan"
+          value={formatDate(cuti.created_at.toString())}
         />
 
-        <InputTextarea
+        <InputDisplayed
           title="Alasan/Keterangan"
-          name="alasan"
-          defaultValue={cuti.alasan ?? "Tidak ada alasan"}
-          readOnly
+          value={cuti.alasan ?? "Tidak ada alasan"}
         />
 
         {cuti.status !== CutiStatus.MENUNGGU ? (
-          <InputTextarea
+          <InputDisplayed
             title="Catatan"
-            name="catatan"
-            defaultValue={getSafeCatatan(cuti.catatan)}
-            readOnly
+            value={getSafeCatatan(cuti.catatan)}
           />
         ) : null}
       </div>
