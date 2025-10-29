@@ -17,6 +17,7 @@ import { UpdateButton } from "@/components/buttons/update-button";
 import { DeleteButton } from "@/components/buttons/delete-button";
 import Tableheader from "@/components/table-header";
 import StatusLabel from "@/components/status-label";
+import { Slider } from "@/components/ui/slider";
 
 const TableView = async () => {
   const pegawai = await getPegawai();
@@ -51,12 +52,11 @@ const TableView = async () => {
         <TableHeader>
           <TableRow>
             <TableHead className="whitespace-nowrap">Nama</TableHead>
-            <TableHead className="whitespace-nowrap">Tempat Lahir</TableHead>
             <TableHead className="whitespace-nowrap">Tanggal Lahir</TableHead>
             <TableHead className="whitespace-nowrap">No. Telepon</TableHead>
-            <TableHead className="whitespace-nowrap">Pendidikan</TableHead>
             <TableHead className="whitespace-nowrap">Jenis Pekerjaan</TableHead>
             <TableHead className="whitespace-nowrap">Status</TableHead>
+            <TableHead className="whitespace-nowrap">Jatah Cuti</TableHead>
             <TableHead className="whitespace-nowrap">Aksi</TableHead>
           </TableRow>
         </TableHeader>
@@ -65,22 +65,29 @@ const TableView = async () => {
             <TableRow key={item.id_pegawai}>
               <TableCell className="whitespace-nowrap">{item.nama}</TableCell>
               <TableCell className="whitespace-nowrap">
-                {item.tempat_lahir}
-              </TableCell>
-              <TableCell className="whitespace-nowrap">
                 {formatDate(item.tanggal_lahir)}
               </TableCell>
               <TableCell className="whitespace-nowrap">
                 {item.no_telepon}
               </TableCell>
               <TableCell className="whitespace-nowrap">
-                {item.pendidikan}
-              </TableCell>
-              <TableCell className="whitespace-nowrap">
-                {item.jenis_pekerjaan}
+                {getTextWithoutUnderscore(item.jenis_pekerjaan)}
               </TableCell>
               <TableCell className="whitespace-nowrap">
                 <StatusLabel value={getTextWithoutUnderscore(item.status)} />
+              </TableCell>
+              <TableCell>
+                <div className="flex flex-col gap-1">
+                  <span className="text-xs text-gray-500">
+                    Terpakai {item._count.cuti}/12
+                  </span>
+                  <Slider
+                    defaultValue={[item._count.cuti]}
+                    max={12}
+                    step={1}
+                    className="[&_[role=slider]]:hidden bg-gray-200 rounded-full"
+                  />
+                </div>
               </TableCell>
               <TableCell className="whitespace-nowrap">
                 <div className="flex gap-1">

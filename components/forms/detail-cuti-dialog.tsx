@@ -1,5 +1,5 @@
 import { getCutiById } from "@/lib/data";
-import { formatDate, getDurationDays, getSafeCatatan } from "@/lib/utils";
+import { formatDate, getDurationDays, getTextTrim } from "@/lib/utils";
 import DetailCutiDialogForm from "@/components/forms/detail-cuti-dialog-form";
 import { Separator } from "@/components/ui/separator";
 import { CutiStatus } from "@prisma/client";
@@ -50,13 +50,13 @@ const DetailCutiDialog = async ({
 
         <InputDisplayed
           title="Alasan/Keterangan"
-          value={cuti.alasan ?? "Tidak ada alasan"}
+          value={getTextTrim(cuti.alasan, "Tidak ada alasan/keterangan")}
         />
 
         {cuti.status !== CutiStatus.MENUNGGU ? (
           <InputDisplayed
             title="Catatan"
-            value={getSafeCatatan(cuti.catatan)}
+            value={getTextTrim(cuti.catatan, "Tidak ada catatan")}
           />
         ) : null}
       </div>

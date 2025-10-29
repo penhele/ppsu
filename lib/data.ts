@@ -3,7 +3,13 @@ import { CutiStatus } from "@prisma/client";
 
 export const getPegawai = async () => {
   try {
-    const result = await prisma.pegawai.findMany({});
+    const result = await prisma.pegawai.findMany({
+      include: {
+        _count: {
+          select: { cuti: true },
+        },
+      },
+    });
     return result;
   } catch (error) {
     console.error("Error fetching pegawai:", error);

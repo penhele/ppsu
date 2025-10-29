@@ -39,8 +39,8 @@ export const capitalizeWords = (text: string) => {
     .join(" ");
 };
 
-export const getSafeCatatan = (text?: string | null) => {
-  return text && text.trim() !== "" ? text : "Tidak ada catatan";
+export const getTextTrim = (text?: string | null, message?: string) => {
+  return text && text.trim() !== "" ? text : message;
 };
 
 export const getTextWithoutUnderscore = (text: string) => {
