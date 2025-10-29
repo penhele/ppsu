@@ -65,8 +65,8 @@ const TableRiwayatCuti = async () => {
               <TableCell>
                 <StatusValue value={item.status} />
               </TableCell>
-              <TableCell>{formatDate(item.created_at.toString())}</TableCell>
-              <TableCell>{formatDate(item.updated_at.toString())}</TableCell>
+              <TableCell>{formatDate(item.created_at)}</TableCell>
+              <TableCell>{formatDate(item.updated_at)}</TableCell>
               <TableCell>
                 <ViewButton id={item.id_cuti} />
               </TableCell>

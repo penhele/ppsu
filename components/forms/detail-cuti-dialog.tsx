@@ -25,11 +25,11 @@ const DetailCutiDialog = async ({
             <div className="grid grid-cols-2 col-span-4 gap-4">
               <InputDisplayed
                 title="Tanggal Mulai"
-                value={cuti.tanggal_mulai}
+                value={formatDate(cuti.tanggal_mulai)}
               />
               <InputDisplayed
                 title="Tanggal Selesai"
-                value={cuti.tanggal_selesai}
+                value={formatDate(cuti.tanggal_selesai)}
               />
             </div>
 
@@ -45,7 +45,7 @@ const DetailCutiDialog = async ({
 
         <InputDisplayed
           title="Tanggal Pegajuan"
-          value={formatDate(cuti.created_at.toString())}
+          value={formatDate(cuti.created_at)}
         />
 
         <InputDisplayed

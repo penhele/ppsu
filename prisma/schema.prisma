@@ -19,7 +19,7 @@ model Pegawai {
   id_pegawai      String         @id @default(cuid())
   nama            String
   tempat_lahir    String
-  tanggal_lahir   String
+  tanggal_lahir   DateTime
   alamat          String
   rt              String
   rw              String
@@ -45,8 +45,8 @@ model Pegawai {
 model Cuti {
   id_cuti         String     @id @default(cuid())
   id_pegawai      String
-  tanggal_mulai   String
-  tanggal_selesai String
+  tanggal_mulai   DateTime
+  tanggal_selesai DateTime
   alasan          String?
   catatan         String?
   status          CutiStatus @default(MENUNGGU)

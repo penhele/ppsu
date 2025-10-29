@@ -4,12 +4,10 @@ import { faker } from "@faker-js/faker";
 const prisma = new PrismaClient();
 
 async function main() {
-  const pegawaiData = Array.from({ length: 10 }).map(() => ({
+  const pegawaiData = Array.from({ length: 15 }).map(() => ({
     nama: faker.person.fullName(),
     tempat_lahir: faker.location.city(),
-    tanggal_lahir: faker.date
-      .birthdate({ min: 1970, max: 2000, mode: "year" })
-      .toString(),
+    tanggal_lahir: faker.date.birthdate({ min: 1970, max: 2000, mode: "year" }),
     alamat: faker.location.streetAddress(),
     rt: faker.number.int({ min: 1, max: 10 }).toString(),
     rw: faker.number.int({ min: 1, max: 10 }).toString(),

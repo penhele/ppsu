@@ -176,7 +176,7 @@ export const SelectDate = ({
   title: string;
   name: string;
   message?: string[];
-  defaultValue?: string;
+  defaultValue?: Date;
 }) => {
   const [openCalendar, setOpenCalendar] = useState(false);
   const [date, setDate] = useState<Date | undefined>(
@@ -223,17 +223,7 @@ export const SelectDate = ({
           />
         </PopoverContent>
       </Popover>
-      <input
-        name={name}
-        type="hidden"
-        value={
-          date
-            ? date.toLocaleDateString("en-CA", {
-                timeZone: "Asia/Jakarta",
-              })
-            : ""
-        }
-      />
+      <input name={name} type="hidden" value={date ? date.toISOString() : ""} />
       {errorMessage && (
         <span className="text-sm text-red-500">{errorMessage}</span>
       )}
@@ -262,18 +252,10 @@ export function SelectRangeDate({
           <Button
             variant="outline"
             id="dates"
-            className="w-56 justify-between font-normal"
+            className="w-full justify-between font-normal"
           >
             {range?.from && range?.to
-              ? `${formatDate(
-                  range.from.toLocaleDateString("en-CA", {
-                    timeZone: "Asia/Jakarta",
-                  }),
-                )} - ${formatDate(
-                  range.to.toLocaleDateString("en-CA", {
-                    timeZone: "Asia/Jakarta",
-                  }),
-                )}`
+              ? `${formatDate(range.from)} - ${formatDate(range.to)}`
               : `${placeholder}`}
             <ChevronDownIcon />
           </Button>
@@ -296,24 +278,12 @@ export function SelectRangeDate({
       <input
         name={tanggal_mulai}
         type="hidden"
-        value={
-          range?.from
-            ? range.from.toLocaleDateString("en-CA", {
-                timeZone: "Asia/Jakarta",
-              })
-            : ""
-        }
+        value={range?.from ? range.from.toISOString() : ""}
       />
       <input
         name={tanggal_selesai}
         type="hidden"
-        value={
-          range?.to
-            ? range.to.toLocaleDateString("en-CA", {
-                timeZone: "Asia/Jakarta",
-              })
-            : ""
-        }
+        value={range?.from ? range.from.toISOString() : ""}
       />
     </div>
   );

@@ -60,7 +60,7 @@ const TablePersetujuanCuti = async () => {
               <TableCell>
                 <StatusLabel value={item.status} />
               </TableCell>
-              <TableCell>{formatDate(item.created_at.toString())}</TableCell>
+              <TableCell>{formatDate(item.created_at)}</TableCell>
               <TableCell>
                 <div className="flex gap-2">
                   <AcceptButton id={item.id_cuti} />

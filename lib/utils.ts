@@ -5,24 +5,28 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const formatDate = (dateStr: string) => {
-  const date = new Date(dateStr);
+export const formatDate = (date: Date) => {
   const formatter = new Intl.DateTimeFormat("id-ID", {
-    dateStyle: "medium",
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
   });
 
   return formatter.format(date);
 };
 
-export const getDurationDays = (startDate: string, endDate: string) => {
+export const getDurationDays = (startDate: Date, endDate: Date) => {
   const start = new Date(startDate);
   const end = new Date(endDate);
 
-  const diffTime = end.getTime() - start.getTime();
+  // Samakan jam supaya perhitungan murni hari
+  start.setHours(0, 0, 0, 0);
+  end.setHours(0, 0, 0, 0);
 
+  const diffTime = end.getTime() - start.getTime();
   const diffDays = diffTime / (1000 * 60 * 60 * 24);
 
-  return diffDays + 1;
+  return diffDays + 1; // termasuk hari pertama
 };
 
 export const capitalizeWords = (text: string) => {

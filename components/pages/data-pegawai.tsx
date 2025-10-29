@@ -1,6 +1,7 @@
 import TableView from "@/components/tables/table-view";
 import { getPegawai } from "@/lib/data";
 import SectionHeader from "@/components/header";
+import { PegawaiStatus } from "@prisma/client";
 
 const DataPegawai = async () => {
   const pegawai = await getPegawai();
@@ -8,9 +9,21 @@ const DataPegawai = async () => {
 
   const items = [
     { title: "Total Pegawai", total: pegawai.length },
-    { title: "Aktif", total: 16 },
-    { title: "Cuti", total: 3 },
-    { title: "Tidak Aktif", total: 0 },
+    {
+      title: "Aktif",
+      total: pegawai.filter((item) => item.status === PegawaiStatus.AKTIF)
+        .length,
+    },
+    {
+      title: "Cuti",
+      total: pegawai.filter((item) => item.status === PegawaiStatus.CUTI)
+        .length,
+    },
+    {
+      title: "Tidak Aktif",
+      total: pegawai.filter((item) => item.status === PegawaiStatus.TIDAK_AKTIF)
+        .length,
+    },
   ];
 
   return (
