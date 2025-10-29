@@ -1,11 +1,12 @@
 "use client";
 
 import { useActionState } from "react";
-import { InputTextarea } from "@/components/input";
 import { Button } from "@/components/ui/button";
 import { CutiProps } from "@/types/cuti";
 import { CutiStatus } from "@prisma/client";
-import { approveCutiById } from "@/lib/action";
+import { approveCutiById, rejectCutiById } from "@/lib/action";
+import clsx from "clsx";
+import InputTextarea from "@/components/inputs/input-textarea";
 
 const DetailCutiDialogForm = ({
   cuti,
@@ -14,10 +15,12 @@ const DetailCutiDialogForm = ({
   cuti: CutiProps;
   value: CutiStatus;
 }) => {
-  const [state, formAction, isPending] = useActionState(
-    approveCutiById.bind(null, cuti.id_cuti),
-    null,
-  );
+  const actionFn =
+    value === CutiStatus.DISETUJUI
+      ? approveCutiById.bind(null, cuti.id_cuti)
+      : rejectCutiById.bind(null, cuti.id_cuti);
+
+  const [state, formAction, isPending] = useActionState(actionFn, null);
 
   return (
     <form action={formAction}>
@@ -28,7 +31,11 @@ const DetailCutiDialogForm = ({
           placeholder="Masukkan catatan jika diperlukan"
         />
 
-        <Button className="bg-primary hover:bg-orange-500">
+        <Button
+          className={clsx("bg-primary hover:bg-orange-500", {
+            "cursor-progress": isPending,
+          })}
+        >
           {value === CutiStatus.DISETUJUI
             ? isPending
               ? "Menyetujui Cuti..."

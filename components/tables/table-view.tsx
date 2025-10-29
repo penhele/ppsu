@@ -10,17 +10,13 @@ import { UserPlus } from "lucide-react";
 import { getPegawai } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import {
-  capitalizeWords,
-  formatDate,
-  getTextWithoutUnderscore,
-} from "@/lib/utils";
+import { formatDate, getTextWithoutUnderscore } from "@/lib/utils";
 import SearchBar from "@/components/filters/search-bar";
 import StatusSelect from "@/components/filters/status-select";
 import { UpdateButton } from "@/components/buttons/update-button";
 import { DeleteButton } from "@/components/buttons/delete-button";
 import Tableheader from "@/components/table-header";
-import StatusLabel from "../status-label";
+import StatusLabel from "@/components/status-label";
 
 const TableView = async () => {
   const pegawai = await getPegawai();

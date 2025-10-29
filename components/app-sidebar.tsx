@@ -1,4 +1,5 @@
 import {
+  ChartArea,
   CheckCircle,
   ClipboardList,
   FileText,
@@ -25,6 +26,7 @@ const items = [
   { url: "/persetujuan-cuti", title: "Persetujuan Cuti", icon: CheckCircle },
   { url: "/riwayat-cuti", title: "Riwayat Cuti", icon: ClipboardList },
   { url: "/pengaturan", title: "Pengaturan", icon: Settings },
+  { url: "/laporan", title: "Laporan", icon: ChartArea },
 ];
 
 export function AppSidebar() {

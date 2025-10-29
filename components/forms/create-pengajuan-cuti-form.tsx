@@ -1,14 +1,12 @@
 "use client";
 
 import { useActionState } from "react";
-import {
-  InputTextarea,
-  SelectOption,
-  SelectRangeDate,
-} from "@/components/input";
 import { Button } from "@/components/ui/button";
 import { saveCuti } from "@/lib/action";
 import clsx from "clsx";
+import InputOption from "@/components/inputs/input-option";
+import InputRangeDate from "@/components/inputs/input-range-date";
+import InputTextarea from "@/components/inputs/input-textarea";
 
 const CreatePengajuanCutiForm = ({
   pegawaiList,
@@ -23,20 +21,20 @@ const CreatePengajuanCutiForm = ({
   return (
     <form action={formAction}>
       <div className="flex flex-col gap-4">
-        <SelectOption
+        <InputOption
           title="Nama"
           name="nama"
           message={state?.error.id_pegawai}
           options={pegawaiList}
         />
 
-        <SelectOption
+        <InputOption
           title="Tipe Cuti"
           name="tipe_cuti"
           options={[{ label: "Sakit", value: "sakit" }]}
         />
 
-        <SelectRangeDate
+        <InputRangeDate
           title="Tanggal Cuti"
           placeholder="Pilih tanggal cuti"
           tanggal_mulai="tanggal_mulai"

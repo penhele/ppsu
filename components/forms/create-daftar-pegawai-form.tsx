@@ -1,9 +1,11 @@
 "use client";
 
-import { InputText, SelectDate, SelectOption } from "@/components/input";
 import { savePegawai } from "@/lib/action";
 import { useActionState, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import InputText from "@/components/inputs/input-text";
+import InputSingleDate from "@/components/inputs/input-single-date";
+import InputOption from "@/components/inputs/input-option";
 
 const CreateDaftarPegawaiForm = () => {
   const [pendidikanList, setPendidikanList] = useState<
@@ -58,7 +60,7 @@ const CreateDaftarPegawaiForm = () => {
             title="Tempat Lahir"
             message={state?.error.tempat_lahir || []}
           />
-          <SelectDate
+          <InputSingleDate
             title="Tanggal Lahir"
             name="tanggal_lahir"
             message={state?.error.tanggal_lahir || []}
@@ -141,14 +143,14 @@ const CreateDaftarPegawaiForm = () => {
           />
         </div>
 
-        <SelectOption
+        <InputOption
           name="pendidikan"
           title="Pendidikan"
           message={state?.error.pendidikan || []}
           options={pendidikanList}
         />
 
-        <SelectOption
+        <InputOption
           name="jenis_pekerjaan"
           title="Jenis Pekerjaan"
           message={state?.error.jenis_pekerjaan || []}

@@ -1,11 +1,13 @@
 "use client";
 
-import { InputText, SelectDate, SelectOption } from "@/components/input";
 import { updatePegawai } from "@/lib/action";
 import { useActionState, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { PegawaiProps } from "@/types/pegawai";
 import clsx from "clsx";
+import InputText from "@/components/inputs/input-text";
+import InputSingleDate from "@/components/inputs/input-single-date";
+import InputOption from "@/components/inputs/input-option";
 
 const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
   const [pendidikanList, setPendidikanList] = useState<
@@ -61,7 +63,7 @@ const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
             message={state?.error.tempat_lahir || []}
             defaultValue={pegawai.tempat_lahir}
           />
-          <SelectDate
+          <InputSingleDate
             title="Tanggal Lahir"
             name="tanggal_lahir"
             message={state?.error.tanggal_lahir || []}
@@ -152,14 +154,14 @@ const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
             defaultValue={pegawai.bank_dki_cabang}
           />
         </div>
-        <SelectOption
+        <InputOption
           name="pendidikan"
           title="Pendidikan"
           message={state?.error.pendidikan || []}
           options={pendidikanList}
           defaultValue={pegawai.pendidikan}
         />
-        <SelectOption
+        <InputOption
           name="jenis_pekerjaan"
           title="Jenis Pekerjaan"
           message={state?.error.jenis_pekerjaan || []}
