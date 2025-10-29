@@ -54,6 +54,7 @@ const InputRangeDate = ({
             onSelect={(range) => {
               setRange(range);
             }}
+            className="bg-white"
           />
         </PopoverContent>
       </Popover>

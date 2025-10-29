@@ -65,6 +65,7 @@ const InputSingleDate = ({
               setDate(date);
               setOpenCalendar(false);
             }}
+            className="bg-white"
           />
         </PopoverContent>
       </Popover>
