@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import { getPegawaiById } from "@/lib/data";
 
-export async function GET(req: Request, context: { params: Promise<{ id: string }> }) {
-  const { id } = await context.params; 
+export async function GET(
+  req: Request,
+  context: { params: Promise<{ id: string }> },
+) {
+  const { id } = await context.params;
 
   const data = await getPegawaiById(id);
 
