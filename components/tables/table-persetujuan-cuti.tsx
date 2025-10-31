@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getCutiByStatus } from "@/lib/data";
 import AcceptButton from "@/components/buttons/accept-button";
 import RejectButton from "@/components/buttons/reject-button";
