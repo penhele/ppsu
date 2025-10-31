@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import RiwayatCuti from "@/components/pages/riwayat-cuti";
 
 export const metadata = {
