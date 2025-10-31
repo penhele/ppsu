@@ -10,9 +10,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  // directUrl = env("POSTGRES_URL_NON_POOLING")
+  provider = "postgresql"
+  url      = env("STORAGE_DATABASE_URL")
 }
 
 model Pegawai {
@@ -32,7 +31,7 @@ model Pegawai {
   npwp            String         @unique
   no_rekening     String
   bank_dki_cabang String
-  status          PegawaiStatus @default(AKTIF)
+  status          PegawaiStatus  @default(AKTIF)
   pendidikan      Pendidikan
   jenis_pekerjaan JenisPekerjaan
 
