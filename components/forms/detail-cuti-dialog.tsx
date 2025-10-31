@@ -12,7 +12,7 @@ const DetailCutiDialog = async ({
   id: string;
   value: CutiStatus;
 }) => {
-  const cuti = await getCutiById({ id });
+  const cuti = await getCutiById(id);
   if (!cuti) return null;
 
   return (

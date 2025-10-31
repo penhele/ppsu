@@ -12,7 +12,7 @@ import DetailCutiDialog from "@/components/forms/detail-cuti-dialog";
 import { CutiStatus } from "@prisma/client";
 
 export const RejectButton = async ({ id }: { id: string }) => {
-  const cuti = await getCutiById({ id });
+  const cuti = await getCutiById(id);
   if (!cuti) return null;
 
   return (

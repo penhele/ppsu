@@ -42,10 +42,10 @@ export const getCuti = async () => {
   }
 };
 
-export const getCutiById = async ({ id }: { id: string }) => {
+export const getCutiById = async (cutiId: string) => {
   try {
-    const result = await prisma.cuti.findFirst({
-      where: { id_cuti: id },
+    const result = await prisma.cuti.findUnique({
+      where: { id_cuti: cutiId },
       include: { Pegawai: true },
     });
     return result;

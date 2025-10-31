@@ -105,7 +105,6 @@ export const saveCuti = async (prevState: unknown, formData: FormData) => {
       },
     });
   } catch (error) {
-    console.log("gagal");
     console.log(error);
   }
 
@@ -231,8 +230,6 @@ export const approveCutiById = async (
       where: { id_pegawai: cuti?.id_pegawai },
       data: { status: PegawaiStatus.CUTI },
     });
-
-    console.log("berhasil");
   } catch (error) {
     console.log(error);
   }
