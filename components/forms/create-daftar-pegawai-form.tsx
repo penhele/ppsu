@@ -1,13 +1,41 @@
 "use client";
 
 import { savePegawai } from "@/lib/action";
-import { useActionState, useEffect, useState } from "react";
+import { startTransition, useActionState, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import InputText from "@/components/inputs/input-text";
-import InputSingleDate from "@/components/inputs/input-single-date";
-import InputOption from "@/components/inputs/input-option";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { PegawaiSchema, PegawaiType } from "@/lib/zod";
+import clsx from "clsx";
+import InputTextController from "../inputs/input-text-controller";
+import InputOptionController from "../inputs/input-option-controller";
+import InputSingleDateController from "../inputs/input-single-date-controller";
+import { getTextWithoutUnderscore } from "@/lib/utils";
 
 const CreateDaftarPegawaiForm = () => {
+  const form = useForm<PegawaiType>({
+    resolver: zodResolver(PegawaiSchema),
+    defaultValues: {
+      nama: "",
+      tempat_lahir: "",
+      tanggal_lahir: "",
+      alamat: "",
+      provinsi: "",
+      kota: "",
+      kecamatan: "",
+      kelurahan: "",
+      rt: "",
+      rw: "",
+      no_telepon: "",
+      no_ktp: "",
+      npwp: "",
+      no_rekening: "",
+      bank_dki_cabang: "",
+      pendidikan: undefined,
+      jenis_pekerjaan: undefined,
+    },
+  });
+
   const [pendidikanList, setPendidikanList] = useState<
     { label: string; value: string }[]
   >([]);
@@ -29,7 +57,7 @@ const CreateDaftarPegawaiForm = () => {
       const jenisPekerjaanData: string[] = await jenisPekerjaanRes.json();
 
       const formattedJenisPekerjaanData = jenisPekerjaanData.map((item) => ({
-        label: item.toUpperCase(),
+        label: getTextWithoutUnderscore(item),
         value: item,
       }));
 
@@ -40,127 +68,138 @@ const CreateDaftarPegawaiForm = () => {
     fetchEnums();
   }, []);
 
-  const [state, formAction, isPending] = useActionState(
-    savePegawai.bind(null),
-    null,
-  );
+  const onSubmit = async (data: PegawaiType) => {
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        formData.append(key, String(value));
+      }
+    });
+
+    startTransition(() => {
+      formAction(formData);
+    });
+  };
+
+  const [state, formAction, isPending] = useActionState(savePegawai, null);
 
   return (
-    <form action={formAction}>
-      <div className="flex flex-col gap-4">
-        <InputText
-          name="nama"
-          title="Nama Lengkap"
-          message={state?.error.nama || []}
+    <form
+      id="form-rhf-demo"
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="flex flex-col gap-4"
+    >
+      <InputTextController
+        name="nama"
+        title="Nama"
+        control={form.control}
+        placeholder="Masukkan nama pegawai"
+      />
+
+      <div className="grid grid-cols-2 gap-4">
+        <InputTextController
+          name="tempat_lahir"
+          title="Tempat Lahir"
+          control={form.control}
         />
-
-        <div className="grid grid-cols-2 gap-4">
-          <InputText
-            name="tempat_lahir"
-            title="Tempat Lahir"
-            message={state?.error.tempat_lahir || []}
-          />
-          <InputSingleDate
-            title="Tanggal Lahir"
-            name="tanggal_lahir"
-            message={state?.error.tanggal_lahir || []}
-          />
-        </div>
-
-        <InputText
-          name="alamat"
-          title="Alamat"
-          message={state?.error.alamat || []}
+        <InputSingleDateController
+          title="Tanggal Lahir"
+          name="tanggal_lahir"
+          control={form.control}
         />
-
-        <div className="grid grid-cols-5 gap-4">
-          <InputText
-            name="provinsi"
-            title="Provinsi"
-            message={state?.error.provinsi || []}
-          />
-          <InputText
-            name="kota"
-            title="Kota"
-            message={state?.error.kota || []}
-          />
-          <InputText
-            name="kecamatan"
-            title="Kecamatan"
-            message={state?.error.kecamatan || []}
-          />
-          <InputText
-            name="kelurahan"
-            title="Kelurahan"
-            message={state?.error.kelurahan || []}
-          />
-          <div className="flex gap-4">
-            <InputText
-              title="RT"
-              name="rt"
-              type="number"
-              message={state?.error.rt || []}
-            />
-            <InputText
-              title="RW"
-              name="rw"
-              type="number"
-              message={state?.error.rw || []}
-            />
-          </div>
-        </div>
-
-        <InputText
-          title="No. Telepon"
-          name="no_telepon"
-          type="number"
-          message={state?.error.no_telepon || []}
-        />
-        <InputText
-          title="No. KTP"
-          name="no_ktp"
-          type="number"
-          message={state?.error.no_ktp || []}
-        />
-        <InputText
-          title="NPWP"
-          name="npwp"
-          type="number"
-          message={state?.error.npwp || []}
-        />
-
-        <div className="grid grid-cols-2 gap-4">
-          <InputText
-            name="no_rekening"
-            title="No. Rekening"
-            type="number"
-            message={state?.error.no_rekening || []}
-          />
-          <InputText
-            name="bank_dki_cabang"
-            title="Bank DKI Cabang"
-            message={state?.error.bank_dki_cabang || []}
-          />
-        </div>
-
-        <InputOption
-          name="pendidikan"
-          title="Pendidikan"
-          message={state?.error.pendidikan || []}
-          options={pendidikanList}
-        />
-
-        <InputOption
-          name="jenis_pekerjaan"
-          title="Jenis Pekerjaan"
-          message={state?.error.jenis_pekerjaan || []}
-          options={jenisPekerjaanList}
-        />
-
-        <Button className="bg-primary hover:bg-orange-500">
-          {isPending ? "Menyimpan..." : "Simpan"}
-        </Button>
       </div>
+
+      <InputTextController
+        name="alamat"
+        title="Alamat"
+        control={form.control}
+      />
+
+      <div className="grid grid-cols-5 gap-4">
+        <InputTextController
+          name="provinsi"
+          title="Provinsi"
+          control={form.control}
+        />
+        <InputTextController name="kota" title="Kota" control={form.control} />
+        <InputTextController
+          name="kecamatan"
+          title="Kecamatan"
+          control={form.control}
+        />
+        <InputTextController
+          name="kelurahan"
+          title="Kelurahan"
+          control={form.control}
+        />
+        <div className="flex gap-4">
+          <InputTextController
+            title="RT"
+            name="rt"
+            isNumeric
+            control={form.control}
+          />
+          <InputTextController
+            title="RW"
+            name="rw"
+            isNumeric
+            control={form.control}
+          />
+        </div>
+      </div>
+      <InputTextController
+        title="No. Telepon"
+        name="no_telepon"
+        isNumeric
+        control={form.control}
+      />
+
+      <InputTextController
+        title="No. KTP"
+        name="no_ktp"
+        isNumeric
+        control={form.control}
+      />
+      <InputTextController
+        title="NPWP"
+        name="npwp"
+        isNumeric
+        control={form.control}
+      />
+
+      <div className="grid grid-cols-2 gap-4">
+        <InputTextController
+          name="no_rekening"
+          title="No. Rekening"
+          isNumeric
+          control={form.control}
+        />
+        <InputTextController
+          name="bank_dki_cabang"
+          title="Bank DKI Cabang"
+          control={form.control}
+        />
+      </div>
+      <InputOptionController
+        name="pendidikan"
+        title="Pendidikan"
+        control={form.control}
+        options={pendidikanList}
+      />
+      <InputOptionController
+        name="jenis_pekerjaan"
+        title="Jenis Pekerjaan"
+        control={form.control}
+        options={jenisPekerjaanList}
+      />
+
+      <Button
+        className={clsx("", {
+          "curp-progress": isPending,
+        })}
+      >
+        {isPending ? "Menyimpan..." : "Simpan"}
+      </Button>
     </form>
   );
 };

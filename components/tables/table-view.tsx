@@ -85,6 +85,7 @@ const TableView = async () => {
                     defaultValue={[item._count.cuti]}
                     max={12}
                     step={1}
+                    disabled
                     className="[&_[role=slider]]:hidden bg-gray-200 rounded-full"
                   />
                 </div>

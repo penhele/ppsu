@@ -4,6 +4,7 @@ import DetailCutiDialogForm from "@/components/forms/detail-cuti-dialog-form";
 import { Separator } from "@/components/ui/separator";
 import { CutiStatus } from "@prisma/client";
 import InputDisplayed from "@/components/inputs/input-displayed";
+import StatusLabel from "@/components/status-label";
 
 const DetailCutiDialog = async ({
   id,
@@ -54,10 +55,14 @@ const DetailCutiDialog = async ({
         />
 
         {cuti.status !== CutiStatus.MENUNGGU ? (
-          <InputDisplayed
-            title="Catatan"
-            value={getTextTrim(cuti.catatan, "Tidak ada catatan")}
-          />
+          <>
+            <InputDisplayed
+              title="Catatan"
+              value={getTextTrim(cuti.catatan, "Tidak ada catatan")}
+            />
+
+            <StatusLabel value={cuti.status} isFullWidth />
+          </>
         ) : null}
       </div>
 

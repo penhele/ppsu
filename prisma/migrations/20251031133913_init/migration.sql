@@ -10,6 +10,9 @@ CREATE TYPE "CutiStatus" AS ENUM ('MENUNGGU', 'DISETUJUI', 'DITOLAK');
 -- CreateEnum
 CREATE TYPE "PegawaiStatus" AS ENUM ('AKTIF', 'TIDAK_AKTIF', 'CUTI');
 
+-- CreateEnum
+CREATE TYPE "TipeCuti" AS ENUM ('SAKIT', 'LIBURAN', 'HAMIL', 'KEDUKAAN');
+
 -- CreateTable
 CREATE TABLE "Pegawai" (
     "id_pegawai" TEXT NOT NULL,
@@ -43,6 +46,7 @@ CREATE TABLE "Cuti" (
     "id_pegawai" TEXT NOT NULL,
     "tanggal_mulai" TIMESTAMP(3) NOT NULL,
     "tanggal_selesai" TIMESTAMP(3) NOT NULL,
+    "tipe_cuti" "TipeCuti" NOT NULL,
     "alasan" TEXT,
     "catatan" TEXT,
     "status" "CutiStatus" NOT NULL DEFAULT 'MENUNGGU',

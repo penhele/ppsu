@@ -1,3 +1,4 @@
+import { JenisPekerjaan, Pendidikan, TipeCuti } from "@prisma/client";
 import { z, object, string } from "zod";
 
 export const PegawaiSchema = object({
@@ -16,16 +17,21 @@ export const PegawaiSchema = object({
   npwp: string().min(1, "NPWP wajib diisi"),
   no_rekening: string().min(1, "No. Rekening wajib diisi"),
   bank_dki_cabang: string().min(1, "Bank DKI Cabang wajib diisi"),
-  pendidikan: z.enum(["SD", "SMP", "SMA"], {
+  pendidikan: z.enum(Pendidikan, {
     message: "Input tidak valid",
   }),
-  jenis_pekerjaan: z.enum(["PETUGAS_PPSU"], {
+  jenis_pekerjaan: z.enum(JenisPekerjaan, {
     message: "Input tidak valid",
   }),
 });
 
+export type PegawaiType = z.infer<typeof PegawaiSchema>;
+
 export const CutiSchema = object({
   id_pegawai: string(),
+  tipe_cuti: z.enum(TipeCuti, {
+    message: "Input tidak valid",
+  }),
   tanggal_mulai: string(),
   tanggal_selesai: string(),
   alasan: string(),

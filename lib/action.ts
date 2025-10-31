@@ -7,70 +7,35 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export const savePegawai = async (prevState: unknown, formData: FormData) => {
-  const rawData = {
-    nama: formData.get("nama"),
-    tempat_lahir: formData.get("tempat_lahir"),
-    tanggal_lahir: formData.get("tanggal_lahir"),
-    alamat: formData.get("alamat"),
-    provinsi: formData.get("provinsi"),
-    kota: formData.get("kota"),
-    kecamatan: formData.get("kecamatan"),
-    kelurahan: formData.get("kelurahan"),
-    rt: formData.get("rt"),
-    rw: formData.get("rw"),
-    no_telepon: formData.get("no_telepon"),
-    no_ktp: formData.get("no_ktp"),
-    npwp: formData.get("npwp"),
-    no_rekening: formData.get("no_rekening"),
-    bank_dki_cabang: formData.get("bank_dki_cabang"),
-    pendidikan: formData.get("pendidikan"),
-    jenis_pekerjaan: formData.get("jenis_pekerjaan"),
-  };
-
+  const rawData = Object.fromEntries(formData.entries());
   const validatedFields = PegawaiSchema.safeParse(rawData);
-  if (!validatedFields.success)
-    return { error: validatedFields.error.flatten().fieldErrors };
 
-  const {
-    nama,
-    tempat_lahir,
-    tanggal_lahir,
-    alamat,
-    provinsi,
-    kota,
-    kecamatan,
-    kelurahan,
-    rt,
-    rw,
-    no_telepon,
-    no_ktp,
-    npwp,
-    no_rekening,
-    bank_dki_cabang,
-    pendidikan,
-    jenis_pekerjaan,
-  } = validatedFields.data;
+  if (!validatedFields.success) {
+    return { error: validatedFields.error.flatten().fieldErrors };
+  }
+
+  const { data } = validatedFields;
 
   try {
     await prisma.pegawai.create({
       data: {
-        nama,
-        tempat_lahir,
-        tanggal_lahir,
-        alamat,
-        provinsi,
-        kota,
-        kecamatan,
-        kelurahan,
-        rt,
-        rw,
-        no_telepon,
-        no_ktp,
-        npwp,
-        no_rekening,
-        bank_dki_cabang,
-        pendidikan,
-        jenis_pekerjaan,
+        nama: data.nama,
+        tempat_lahir: data.tempat_lahir,
+        tanggal_lahir: data.tanggal_lahir,
+        alamat: data.alamat,
+        provinsi: data.provinsi,
+        kota: data.kota,
+        kecamatan: data.kecamatan,
+        kelurahan: data.kelurahan,
+        rt: data.rt,
+        rw: data.rw,
+        no_telepon: data.no_telepon,
+        no_ktp: data.no_ktp,
+        npwp: data.npwp,
+        no_rekening: data.no_rekening,
+        bank_dki_cabang: data.bank_dki_cabang,
+        pendidikan: data.pendidikan,
+        jenis_pekerjaan: data.jenis_pekerjaan,
       },
     });
   } catch (error) {
@@ -83,6 +48,7 @@ export const savePegawai = async (prevState: unknown, formData: FormData) => {
 export const saveCuti = async (prevState: unknown, formData: FormData) => {
   const rawData = {
     id_pegawai: formData.get("nama"),
+    tipe_cuti: formData.get("tipe_cuti"),
     tanggal_mulai: formData.get("tanggal_mulai"),
     tanggal_selesai: formData.get("tanggal_selesai"),
     alasan: formData.get("alasan"),
@@ -92,13 +58,14 @@ export const saveCuti = async (prevState: unknown, formData: FormData) => {
   if (!validatedFields.success)
     return { error: validatedFields.error.flatten().fieldErrors };
 
-  const { id_pegawai, tanggal_mulai, tanggal_selesai, alasan } =
+  const { id_pegawai, tipe_cuti, tanggal_mulai, tanggal_selesai, alasan } =
     validatedFields.data;
 
   try {
     await prisma.cuti.create({
       data: {
         id_pegawai,
+        tipe_cuti,
         tanggal_mulai,
         tanggal_selesai,
         alasan,

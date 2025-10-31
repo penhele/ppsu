@@ -39,6 +39,7 @@ model Cuti {
   id_pegawai      String
   tanggal_mulai   DateTime
   tanggal_selesai DateTime
+  tipe_cuti       TipeCuti
   alasan          String?
   catatan         String?
   status          CutiStatus @default(MENUNGGU)
@@ -69,4 +70,11 @@ enum PegawaiStatus {
   AKTIF
   TIDAK_AKTIF
   CUTI
+}
+
+enum TipeCuti {
+  SAKIT
+  LIBURAN
+  HAMIL
+  KEDUKAAN
 }

@@ -1,18 +1,39 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { saveCuti } from "@/lib/action";
 import clsx from "clsx";
 import InputOption from "@/components/inputs/input-option";
 import InputRangeDate from "@/components/inputs/input-range-date";
 import InputTextarea from "@/components/inputs/input-textarea";
+import { capitalizeWords } from "@/lib/utils";
 
 const CreatePengajuanCutiForm = ({
   pegawaiList,
 }: {
   pegawaiList: { label: string; value: string }[];
 }) => {
+  const [tipeCutiList, setTipeCutiList] = useState<
+    { label: string; value: string }[]
+  >([]);
+
+  useEffect(() => {
+    const fetchEnums = async () => {
+      const tipeCutiRes = await fetch("/api/enum/tipe-cuti");
+      const tipeCutiData: string[] = await tipeCutiRes.json();
+
+      const formattedTipeCutiData = tipeCutiData.map((item) => ({
+        label: capitalizeWords(item),
+        value: item,
+      }));
+
+      setTipeCutiList(formattedTipeCutiData);
+    };
+
+    fetchEnums();
+  }, []);
+
   const [state, formAction, isPending] = useActionState(
     saveCuti.bind(null),
     null,
@@ -31,7 +52,8 @@ const CreatePengajuanCutiForm = ({
         <InputOption
           title="Tipe Cuti"
           name="tipe_cuti"
-          options={[{ label: "Sakit", value: "sakit" }]}
+          message={state?.error.tipe_cuti}
+          options={tipeCutiList}
         />
 
         <InputRangeDate
