@@ -108,7 +108,6 @@ export const saveCuti = async (prevState: unknown, formData: FormData) => {
     console.log("gagal");
     console.log(error);
   }
-  console.log("berhasil");
 
   redirect("/pengajuan-cuti");
 };
