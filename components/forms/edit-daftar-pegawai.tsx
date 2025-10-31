@@ -3,7 +3,7 @@ import EditDaftarPegawaiForm from "@/components/forms/edit-daftar-pegawai-form";
 import { notFound } from "next/navigation";
 
 const EditDaftarPegawai = async ({ pegawaiId }: { pegawaiId: string }) => {
-  const [pegawai] = await Promise.all([getPegawaiById(pegawaiId)]);
+  const pegawai = await getPegawaiById(pegawaiId);
   if (!pegawai) return notFound();
 
   return (
