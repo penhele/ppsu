@@ -1,12 +1,21 @@
 import { prisma } from "@/lib/prisma";
 import { CutiStatus } from "@prisma/client";
+import { updatePegawaiStatusIfCutiEnded } from "./action";
 
 export const getPegawai = async () => {
   try {
+    await updatePegawaiStatusIfCutiEnded();
+
     const result = await prisma.pegawai.findMany({
       include: {
         _count: {
-          select: { cuti: true },
+          select: {
+            cuti: {
+              where: {
+                status: CutiStatus.DISETUJUI,
+              },
+            },
+          },
         },
       },
     });

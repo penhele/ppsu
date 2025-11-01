@@ -9,7 +9,7 @@ const Permohonan = async () => {
   if (!cuti) return null;
 
   return (
-    <div className="flex flex-col gap-4 col-span-2 border p-4 bg-white rounded-xl">
+    <div className="flex flex-col gap-4 col-span-3 md:col-span-2 border p-4 bg-white rounded-xl">
       <Tableheader
         title="Permohonan Terbaru"
         description="Permohonan cuti yang menunggu persetujuan"

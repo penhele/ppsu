@@ -32,10 +32,6 @@ const TableView = async () => {
         />
 
         <div className="flex gap-3">
-          <SearchBar />
-
-          <StatusSelect />
-
           <Button className="bg-primary hover:bg-orange-500">
             <Link
               href={"/data-pegawai/create"}
@@ -52,10 +48,10 @@ const TableView = async () => {
         <TableHeader>
           <TableRow>
             <TableHead className="whitespace-nowrap">Nama</TableHead>
+            <TableHead className="whitespace-nowrap">Status</TableHead>
             <TableHead className="whitespace-nowrap">Tanggal Lahir</TableHead>
             <TableHead className="whitespace-nowrap">No. Telepon</TableHead>
             <TableHead className="whitespace-nowrap">Jenis Pekerjaan</TableHead>
-            <TableHead className="whitespace-nowrap">Status</TableHead>
             <TableHead className="whitespace-nowrap">Jatah Cuti</TableHead>
             <TableHead className="whitespace-nowrap">Aksi</TableHead>
           </TableRow>
@@ -64,6 +60,9 @@ const TableView = async () => {
           {pegawai.map((item) => (
             <TableRow key={item.id_pegawai}>
               <TableCell className="whitespace-nowrap">{item.nama}</TableCell>
+              <TableCell className="whitespace-nowrap">
+                <StatusLabel value={getTextWithoutUnderscore(item.status)} />
+              </TableCell>
               <TableCell className="whitespace-nowrap">
                 {formatDate(item.tanggal_lahir)}
               </TableCell>
@@ -74,9 +73,6 @@ const TableView = async () => {
                 {getTextWithoutUnderscore(item.jenis_pekerjaan)}
               </TableCell>
               <TableCell className="whitespace-nowrap">
-                <StatusLabel value={getTextWithoutUnderscore(item.status)} />
-              </TableCell>
-              <TableCell>
                 <div className="flex flex-col gap-1">
                   <span className="text-xs text-gray-500">
                     Terpakai {item._count.cuti}/12

@@ -34,11 +34,11 @@ const DataPegawai = async () => {
         description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi sed delectus possimus tenetur fugiat nam?"
       />
 
-      <div className="grid grid-cols-4 gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-4">
         {items.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col items-center py-8 rounded-xl border bg-white"
+            className="flex flex-col items-center py-4 sm:py-8 rounded-xl border bg-white"
           >
             <h2 className="text-sm text-gray-500">{item.title}</h2>
             <span className="text-lg">{item.total}</span>

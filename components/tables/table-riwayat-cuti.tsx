@@ -31,11 +31,11 @@ const TableRiwayatCuti = async () => {
           title="Riwayat Cuti"
           description="Pengajuan cuti yang telah diproses"
         />
-        <div className="flex gap-3">
+        {/* <div className="flex gap-3">
           <SearchBar />
 
           <StatusSelect />
-        </div>
+        </div> */}
       </div>
       <Table>
         <TableHeader>

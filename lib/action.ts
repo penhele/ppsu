@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { CutiSchema, PegawaiSchema, PegawaiType } from "@/lib/zod";
+import { CutiSchema, PegawaiType } from "@/lib/zod";
 import { CutiStatus, PegawaiStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -160,4 +160,28 @@ export const rejectCutiById = async (id: string) => {
 
   revalidatePath("/persetujuan-cuti");
   redirect("/persetujuan-cuti");
+};
+
+// cron job action
+export const updatePegawaiStatusIfCutiEnded = async () => {
+  const today = new Date();
+
+  try {
+    const cutiList = await prisma.cuti.findMany({
+      where: {
+        status: CutiStatus.DISETUJUI,
+        tanggal_selesai: { lt: today },
+      },
+      select: { id_pegawai: true },
+    });
+
+    const pegawaiIds = cutiList.map((cuti) => cuti.id_pegawai);
+
+    await prisma.pegawai.updateMany({
+      where: { id_pegawai: { in: pegawaiIds }, status: PegawaiStatus.CUTI },
+      data: { status: PegawaiStatus.AKTIF },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };

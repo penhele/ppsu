@@ -11,7 +11,7 @@ import {
 
 const CutiTerbanyak = () => {
   return (
-    <div className="flex flex-col gap-4 border p-4 bg-white rounded-xl">
+    <div className="flex flex-col gap-4 border p-4 col-span-3 md:col-span-1 bg-white rounded-xl">
       <Tableheader title="Top Cuti" description="Cuti terbanyak pegawai PPSU" />
 
       <Table>
