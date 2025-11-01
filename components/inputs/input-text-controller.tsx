@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 const InputTextController = <T extends FieldValues>({
   title,
   name,
-  placeholder,
+  placeholder = "",
   control,
   isNumeric,
 }: {
@@ -24,6 +24,7 @@ const InputTextController = <T extends FieldValues>({
           <FieldLabel>{title}</FieldLabel>
           <Input
             {...field}
+            value={field.value}
             aria-invalid={fieldState.invalid}
             placeholder={placeholder}
             type={isNumeric ? "number" : "text"}
