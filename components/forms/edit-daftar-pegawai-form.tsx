@@ -1,21 +1,63 @@
 "use client";
 
 import { updatePegawai } from "@/lib/action";
-import { useActionState, useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { PegawaiProps } from "@/types/pegawai";
 import clsx from "clsx";
-import InputText from "@/components/inputs/input-text";
-import InputSingleDate from "@/components/inputs/input-single-date";
-import InputOption from "@/components/inputs/input-option";
+import { zodResolver } from "@hookform/resolvers/zod";
+import InputTextController from "@/components/inputs/input-text-controller";
+import InputOptionController from "@/components/inputs/input-option-controller";
+import InputSingleDateController from "@/components/inputs/input-single-date-controller";
+import { useForm } from "react-hook-form";
+import { PegawaiSchema, PegawaiType } from "@/lib/zod";
+import { toast } from "sonner";
 
 const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
+  const [isPending, startTransition] = useTransition();
+
+  const form = useForm<PegawaiType>({
+    resolver: zodResolver(PegawaiSchema),
+    defaultValues: {
+      nama: pegawai.nama,
+      tempat_lahir: pegawai.tempat_lahir,
+      tanggal_lahir: pegawai.tanggal_lahir.toISOString(),
+      alamat: pegawai.alamat,
+      provinsi: pegawai.provinsi,
+      kota: pegawai.kota,
+      kecamatan: pegawai.kecamatan,
+      kelurahan: pegawai.kelurahan,
+      rt: pegawai.rt,
+      rw: pegawai.rw,
+      no_telepon: pegawai.no_telepon,
+      no_ktp: pegawai.no_ktp,
+      npwp: pegawai.npwp,
+      no_rekening: pegawai.no_rekening,
+      bank_dki_cabang: pegawai.bank_dki_cabang,
+      pendidikan: pegawai.pendidikan,
+      jenis_pekerjaan: pegawai.jenis_pekerjaan,
+    },
+  });
+
   const [pendidikanList, setPendidikanList] = useState<
     { label: string; value: string }[]
   >([]);
   const [jenisPekerjaanList, setJenisPekerjaanList] = useState<
     { label: string; value: string }[]
   >([]);
+
+  function onSubmit(data: PegawaiType) {
+    console.log(data);
+
+    startTransition(async () => {
+      try {
+        await updatePegawai(pegawai.id_pegawai, data);
+        toast.success("Data pegawai berhasil disimpan!");
+      } catch (error) {
+        toast.error("Gagal menyimpan data pegawai.");
+      }
+    });
+  }
 
   useEffect(() => {
     const fetchEnums = async () => {
@@ -42,140 +84,123 @@ const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
     fetchEnums();
   }, []);
 
-  const [state, formAction, isPending] = useActionState(
-    updatePegawai.bind(null, pegawai.id_pegawai),
-    null,
-  );
-
   return (
-    <form action={formAction}>
-      <div className="flex flex-col gap-4 ">
-        <InputText
-          name="nama"
-          title="Nama Lengkap"
-          message={state?.error.nama || []}
-          defaultValue={pegawai.nama}
-        />
-        <div className="grid grid-cols-2 gap-4">
-          <InputText
-            name="tempat_lahir"
-            title="Tempat Lahir"
-            message={state?.error.tempat_lahir || []}
-            defaultValue={pegawai.tempat_lahir}
-          />
-          <InputSingleDate
-            title="Tanggal Lahir"
-            name="tanggal_lahir"
-            message={state?.error.tanggal_lahir || []}
-            defaultValue={pegawai.tanggal_lahir}
-          />
-        </div>
-        <InputText
-          name="alamat"
-          title="Alamat"
-          message={state?.error.alamat || []}
-          defaultValue={pegawai.alamat}
-        />
-        <div className="grid grid-cols-5 gap-4">
-          <InputText
-            name="provinsi"
-            title="Provinsi"
-            message={state?.error.provinsi || []}
-            defaultValue={pegawai.provinsi}
-          />
-          <InputText
-            name="kota"
-            title="Kota"
-            message={state?.error.kota || []}
-            defaultValue={pegawai.kota}
-          />
-          <InputText
-            name="kecamatan"
-            title="Kecamatan"
-            message={state?.error.kecamatan || []}
-            defaultValue={pegawai.kecamatan}
-          />
-          <InputText
-            name="kelurahan"
-            title="Kelurahan"
-            message={state?.error.kelurahan || []}
-            defaultValue={pegawai.kelurahan}
-          />
-          <div className="flex gap-4">
-            <InputText
-              title="RT"
-              name="rt"
-              type="number"
-              message={state?.error.rt || []}
-              defaultValue={pegawai.rt}
-            />
-            <InputText
-              title="RW"
-              name="rw"
-              type="number"
-              message={state?.error.rw || []}
-              defaultValue={pegawai.rw}
-            />
-          </div>
-        </div>
+    <form
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="flex flex-col gap-4"
+    >
+      <InputTextController
+        name="nama"
+        title="Nama"
+        control={form.control}
+        placeholder="Masukkan nama pegawai"
+      />
 
-        <InputText
-          title="No. Telepon"
-          name="no_telepon"
-          message={state?.error.no_telepon || []}
-          defaultValue={pegawai.no_telepon}
+      <div className="grid grid-cols-2 gap-4">
+        <InputTextController
+          name="tempat_lahir"
+          title="Tempat Lahir"
+          control={form.control}
         />
-        <InputText
-          title="No. KTP"
-          name="no_ktp"
-          type="number"
-          message={state?.error.no_ktp || []}
-          defaultValue={pegawai.no_ktp}
+        <InputSingleDateController
+          title="Tanggal Lahir"
+          name="tanggal_lahir"
+          control={form.control}
+          defaultValue={pegawai.tanggal_lahir}
         />
-        <InputText
-          title="NPWP"
-          name="npwp"
-          type="number"
-          message={state?.error.npwp || []}
-          defaultValue={pegawai.npwp}
+      </div>
+
+      <InputTextController
+        name="alamat"
+        title="Alamat"
+        control={form.control}
+      />
+
+      <div className="grid grid-cols-5 gap-4">
+        <InputTextController
+          name="provinsi"
+          title="Provinsi"
+          control={form.control}
         />
-        <div className="grid grid-cols-2 gap-4">
-          <InputText
-            name="no_rekening"
-            title="No. Rekening"
-            type="number"
-            message={state?.error.no_rekening || []}
-            defaultValue={pegawai.no_rekening}
+        <InputTextController name="kota" title="Kota" control={form.control} />
+        <InputTextController
+          name="kecamatan"
+          title="Kecamatan"
+          control={form.control}
+        />
+        <InputTextController
+          name="kelurahan"
+          title="Kelurahan"
+          control={form.control}
+        />
+        <div className="flex gap-4">
+          <InputTextController
+            title="RT"
+            name="rt"
+            isNumeric
+            control={form.control}
           />
-          <InputText
-            name="bank_dki_cabang"
-            title="Bank DKI Cabang"
-            message={state?.error.bank_dki_cabang || []}
-            defaultValue={pegawai.bank_dki_cabang}
+          <InputTextController
+            title="RW"
+            name="rw"
+            isNumeric
+            control={form.control}
           />
         </div>
-        <InputOption
-          name="pendidikan"
-          title="Pendidikan"
-          message={state?.error.pendidikan || []}
-          options={pendidikanList}
-          defaultValue={pegawai.pendidikan}
-        />
-        <InputOption
-          name="jenis_pekerjaan"
-          title="Jenis Pekerjaan"
-          message={state?.error.jenis_pekerjaan || []}
-          options={jenisPekerjaanList}
-          defaultValue={pegawai.jenis_pekerjaan}
-        />
-        <Button
-          className={clsx("bg-primary hover:bg-orange-500", {
-            "cursor-progress": isPending,
-          })}
-        >
-          {isPending ? "Menyimpan..." : "Simpan"}
-        </Button>
       </div>
+      <InputTextController
+        title="No. Telepon"
+        name="no_telepon"
+        isNumeric
+        control={form.control}
+      />
+
+      <InputTextController
+        title="No. KTP"
+        name="no_ktp"
+        isNumeric
+        control={form.control}
+      />
+      <InputTextController
+        title="NPWP"
+        name="npwp"
+        isNumeric
+        control={form.control}
+      />
+
+      <div className="grid grid-cols-2 gap-4">
+        <InputTextController
+          name="no_rekening"
+          title="No. Rekening"
+          isNumeric
+          control={form.control}
+        />
+        <InputTextController
+          name="bank_dki_cabang"
+          title="Bank DKI Cabang"
+          control={form.control}
+        />
+      </div>
+      <InputOptionController
+        name="pendidikan"
+        title="Pendidikan"
+        control={form.control}
+        options={pendidikanList}
+      />
+      <InputOptionController
+        name="jenis_pekerjaan"
+        title="Jenis Pekerjaan"
+        control={form.control}
+        options={jenisPekerjaanList}
+      />
+
+      <Button
+        className={clsx("", {
+          "curp-progress": isPending,
+        })}
+      >
+        {isPending ? "Mempebarui..." : "Perbarui"}
+      </Button>
     </form>
   );
 };

@@ -1,18 +1,21 @@
 "use client";
 
 import { savePegawai } from "@/lib/action";
-import { startTransition, useActionState, useEffect, useState } from "react";
+import { startTransition, useEffect, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PegawaiSchema, PegawaiType } from "@/lib/zod";
-import clsx from "clsx";
-import InputTextController from "../inputs/input-text-controller";
-import InputOptionController from "../inputs/input-option-controller";
-import InputSingleDateController from "../inputs/input-single-date-controller";
+import InputTextController from "@/components/inputs/input-text-controller";
+import InputOptionController from "@/components/inputs/input-option-controller";
+import InputSingleDateController from "@/components/inputs/input-single-date-controller";
 import { getTextWithoutUnderscore } from "@/lib/utils";
+import { toast } from "sonner";
+import clsx from "clsx";
 
 const CreateDaftarPegawaiForm = () => {
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<PegawaiType>({
     resolver: zodResolver(PegawaiSchema),
     defaultValues: {
@@ -68,24 +71,20 @@ const CreateDaftarPegawaiForm = () => {
     fetchEnums();
   }, []);
 
-  const onSubmit = async (data: PegawaiType) => {
-    const formData = new FormData();
-    Object.entries(data).forEach(([key, value]) => {
-      if (value !== undefined && value !== null) {
-        formData.append(key, String(value));
+  function onSubmit(data: PegawaiType) {
+    console.log("submit data", data);
+    startTransition(async () => {
+      try {
+        await savePegawai(data);
+        toast.success("Data pegawai berhasil disimpan!");
+      } catch (error) {
+        toast.error("Gagal menyimpan data pegawai.");
       }
     });
-
-    startTransition(() => {
-      formAction(formData);
-    });
-  };
-
-  const [state, formAction, isPending] = useActionState(savePegawai, null);
+  }
 
   return (
     <form
-      id="form-rhf-demo"
       onSubmit={form.handleSubmit(onSubmit)}
       className="flex flex-col gap-4"
     >
