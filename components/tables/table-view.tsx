@@ -11,8 +11,6 @@ import { getPegawai } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { formatDate, getTextWithoutUnderscore } from "@/lib/utils";
-import SearchBar from "@/components/filters/search-bar";
-import StatusSelect from "@/components/filters/status-select";
 import { UpdateButton } from "@/components/buttons/update-button";
 import { DeleteButton } from "@/components/buttons/delete-button";
 import Tableheader from "@/components/table-header";
@@ -34,7 +32,7 @@ const TableView = async () => {
         <div className="flex gap-3">
           <Button className="bg-primary hover:bg-orange-500">
             <Link
-              href={"/data-pegawai/create"}
+              href={"/dashboard/data-pegawai/create"}
               className="flex justify-between items-center gap-2"
             >
               <UserPlus />

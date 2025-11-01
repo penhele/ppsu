@@ -19,14 +19,20 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
+const path = "dashboard";
+
 const items = [
-  { url: "/", title: "Dashboard", icon: Home },
-  { url: "/data-pegawai", title: "Data Pegawai", icon: Users },
-  { url: "/pengajuan-cuti", title: "Pengajuan Cuti", icon: FileText },
-  { url: "/persetujuan-cuti", title: "Persetujuan Cuti", icon: CheckCircle },
-  { url: "/riwayat-cuti", title: "Riwayat Cuti", icon: ClipboardList },
-  { url: "/pengaturan", title: "Pengaturan", icon: Settings },
-  { url: "/laporan", title: "Laporan", icon: ChartArea },
+  { url: `/${path}`, title: "Dashboard", icon: Home },
+  { url: `/${path}/data-pegawai`, title: "Data Pegawai", icon: Users },
+  { url: `/${path}/pengajuan-cuti`, title: "Pengajuan Cuti", icon: FileText },
+  {
+    url: `/${path}/persetujuan-cuti`,
+    title: "Persetujuan Cuti",
+    icon: CheckCircle,
+  },
+  { url: `/${path}/riwayat-cuti`, title: "Riwayat Cuti", icon: ClipboardList },
+  { url: `/${path}/pengaturan`, title: "Pengaturan", icon: Settings },
+  { url: `/${path}/laporan`, title: "Laporan", icon: ChartArea },
 ];
 
 export function AppSidebar() {

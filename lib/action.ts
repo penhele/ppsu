@@ -33,7 +33,7 @@ export const savePegawai = async (data: PegawaiType) => {
     console.log(error);
   }
 
-  redirect("/data-pegawai");
+  redirect("/dashboard/data-pegawai");
 };
 
 export const saveCuti = async (prevState: unknown, formData: FormData) => {
@@ -66,7 +66,7 @@ export const saveCuti = async (prevState: unknown, formData: FormData) => {
     console.log(error);
   }
 
-  redirect("/pengajuan-cuti");
+  redirect("/dashboard/pengajuan-cuti");
 };
 
 // Delete
@@ -79,7 +79,7 @@ export const deletePegawaiById = async (id: string) => {
     console.log(error);
   }
 
-  revalidatePath("/data-pegawai");
+  revalidatePath("/dashboard/data-pegawai");
 };
 
 // Update
@@ -111,8 +111,8 @@ export const updatePegawai = async (pegawaiId: string, data: PegawaiType) => {
     console.log(error);
   }
 
-  revalidatePath("/data-pegawai");
-  redirect("/data-pegawai");
+  revalidatePath("/dashboard/data-pegawai");
+  redirect("/dashboard/data-pegawai");
 };
 
 export const approveCutiById = async (
@@ -144,8 +144,8 @@ export const approveCutiById = async (
     console.log(error);
   }
 
-  revalidatePath("/persetujuan-cuti");
-  redirect("/persetujuan-cuti");
+  revalidatePath("/dashboard/persetujuan-cuti");
+  redirect("/dashboard/persetujuan-cuti");
 };
 
 export const rejectCutiById = async (id: string) => {
@@ -158,8 +158,8 @@ export const rejectCutiById = async (id: string) => {
     console.log(error);
   }
 
-  revalidatePath("/persetujuan-cuti");
-  redirect("/persetujuan-cuti");
+  revalidatePath("/dashboard/persetujuan-cuti");
+  redirect("/dashboard/persetujuan-cuti");
 };
 
 // cron job action
