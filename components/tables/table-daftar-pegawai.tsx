@@ -63,7 +63,7 @@ const TableDaftarPegawai = async () => {
                 <StatusLabel value={getTextWithoutUnderscore(item.status)} />
               </TableCell>
               <TableCell className="whitespace-nowrap">
-                {item.User.email}
+                {item.user.email}
               </TableCell>
               <TableCell className="whitespace-nowrap">
                 {formatDate(item.tanggal_lahir)}

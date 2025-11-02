@@ -14,6 +14,9 @@ model User {
   role     Role   @default(PEGAWAI)
 
   pegawai Pegawai?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model Pegawai {
@@ -40,7 +43,7 @@ model Pegawai {
   cuti Cuti[]
 
   user_id String @unique
-  User    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

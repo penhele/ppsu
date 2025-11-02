@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
 
 export type PegawaiProps = Prisma.PegawaiGetPayload<{
-  include: { User: true };
+  include: { user: true };
 }>;

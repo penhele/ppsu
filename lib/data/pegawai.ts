@@ -17,10 +17,10 @@ export const getPegawai = async () => {
             },
           },
         },
-        User: true,
+        user: true,
       },
       where: {
-        User: {
+        user: {
           role: Role.PEGAWAI,
         },
       },
@@ -37,7 +37,7 @@ export const getPegawaiById = async (pegawaiId: string) => {
     const result = await prisma.pegawai.findUnique({
       where: { id_pegawai: pegawaiId },
       include: {
-        User: true,
+        user: true,
       },
     });
     return result;
