@@ -1,5 +1,5 @@
+import { getPegawaiById } from "@/lib/data/pegawai";
 import { NextResponse } from "next/server";
-import { getPegawaiById } from "@/lib/data";
 
 export async function GET(
   req: Request,

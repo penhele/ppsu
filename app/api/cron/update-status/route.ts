@@ -1,4 +1,4 @@
-import { updatePegawaiStatusIfCutiEnded } from "@/lib/action";
+import { updatePegawaiStatusIfCutiEnded } from "@/lib/action/pegawai";
 import { NextResponse } from "next/server";
 
 export async function GET() {

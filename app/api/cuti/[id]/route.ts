@@ -1,4 +1,4 @@
-import { getCutiById } from "@/lib/data";
+import { getCutiById } from "@/lib/data/cuti";
 import { NextResponse } from "next/server";
 
 export async function GET(
