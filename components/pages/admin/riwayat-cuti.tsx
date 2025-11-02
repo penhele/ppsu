@@ -2,9 +2,9 @@ import SectionHeader from "@/components/header";
 import TableRiwayatCuti from "@/components/tables/table-riwayat-cuti";
 import CutiSummaryCard from "@/components/cuti-summary";
 import { Activity, CheckCircle, Clock, XCircle } from "lucide-react";
-import { getCuti } from "@/lib/data";
 import { CutiStatus } from "@prisma/client";
 import { capitalizeWords } from "@/lib/utils";
+import { getCuti } from "@/lib/data/cuti";
 
 const RiwayatCuti = async () => {
   const cuti = await getCuti();

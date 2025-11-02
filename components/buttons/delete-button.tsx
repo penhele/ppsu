@@ -1,5 +1,5 @@
-import { deletePegawaiById } from "@/lib/action";
 import { Button } from "@/components/ui/button";
+import { deletePegawaiById } from "@/lib/action/pegawai";
 import { Trash } from "lucide-react";
 
 export const DeleteButton = ({ id }: { id: string }) => {

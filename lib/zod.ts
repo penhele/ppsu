@@ -51,3 +51,13 @@ export const CutiSchema = object({
 });
 
 export type CutiType = z.infer<typeof CutiSchema>;
+
+export const AdminSchema = object({
+  email: email(),
+  password: string("Password is required")
+    .min(1, "Password is required")
+    .min(8, "Password must be more than 8 characters")
+    .max(32, "Password must be less than 32 characters"),
+});
+
+export type AdminType = z.infer<typeof AdminSchema>;

@@ -1,4 +1,3 @@
-import { getCutiByStatus } from "@/lib/data";
 import AcceptButton from "@/components/buttons/accept-button";
 import RejectButton from "@/components/buttons/reject-button";
 import {
@@ -18,6 +17,7 @@ import {
 import StatusLabel from "@/components/status-label";
 import Tableheader from "@/components/table-header";
 import { Clock } from "lucide-react";
+import { getCutiByStatus } from "@/lib/data/cuti";
 
 const TablePersetujuanCuti = async () => {
   const menungguStatus = await getCutiByStatus({

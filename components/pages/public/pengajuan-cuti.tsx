@@ -1,4 +1,4 @@
-import PengajuanCutiForm from "@/components/pengajuan-cuti-form";
+import PengajuanCutiForm from "@/components/forms/pengajuan-cuti-form";
 
 const PengajuanCuti = () => {
   return (

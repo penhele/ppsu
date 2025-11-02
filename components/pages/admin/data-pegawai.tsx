@@ -1,8 +1,7 @@
-import TableView from "@/components/tables/table-view";
-import { getPegawai } from "@/lib/data";
 import SectionHeader from "@/components/header";
 import { PegawaiStatus } from "@prisma/client";
-import { Slider } from "../../ui/slider";
+import TableDaftarPegawai from "@/components/tables/table-daftar-pegawai";
+import { getPegawai } from "@/lib/data/pegawai";
 
 const DataPegawai = async () => {
   const pegawai = await getPegawai();
@@ -46,7 +45,7 @@ const DataPegawai = async () => {
         ))}
       </div>
 
-      <TableView />
+      <TableDaftarPegawai />
     </div>
   );
 };

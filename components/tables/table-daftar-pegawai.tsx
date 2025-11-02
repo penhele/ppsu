@@ -7,7 +7,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { UserPlus } from "lucide-react";
-import { getPegawai } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { formatDate, getTextWithoutUnderscore } from "@/lib/utils";
@@ -16,8 +15,9 @@ import { DeleteButton } from "@/components/buttons/delete-button";
 import Tableheader from "@/components/table-header";
 import StatusLabel from "@/components/status-label";
 import { Slider } from "@/components/ui/slider";
+import { getPegawai } from "@/lib/data/pegawai";
 
-const TableView = async () => {
+const TableDaftarPegawai = async () => {
   const pegawai = await getPegawai();
   if (!pegawai) return <p>kosong</p>;
 
@@ -47,6 +47,7 @@ const TableView = async () => {
           <TableRow>
             <TableHead className="whitespace-nowrap">Nama</TableHead>
             <TableHead className="whitespace-nowrap">Status</TableHead>
+            <TableHead className="whitespace-nowrap">Email</TableHead>
             <TableHead className="whitespace-nowrap">Tanggal Lahir</TableHead>
             <TableHead className="whitespace-nowrap">No. Telepon</TableHead>
             <TableHead className="whitespace-nowrap">Jenis Pekerjaan</TableHead>
@@ -60,6 +61,9 @@ const TableView = async () => {
               <TableCell className="whitespace-nowrap">{item.nama}</TableCell>
               <TableCell className="whitespace-nowrap">
                 <StatusLabel value={getTextWithoutUnderscore(item.status)} />
+              </TableCell>
+              <TableCell className="whitespace-nowrap">
+                {item.User.email}
               </TableCell>
               <TableCell className="whitespace-nowrap">
                 {formatDate(item.tanggal_lahir)}
@@ -80,7 +84,7 @@ const TableView = async () => {
                     max={12}
                     step={1}
                     disabled
-                    className="[&_[role=slider]]:hidden bg-gray-200 rounded-full"
+                    className="**:[[role=slider]]:hidden bg-gray-200 rounded-full"
                   />
                 </div>
               </TableCell>
@@ -98,4 +102,4 @@ const TableView = async () => {
   );
 };
 
-export default TableView;
+export default TableDaftarPegawai;

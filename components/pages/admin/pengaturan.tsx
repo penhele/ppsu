@@ -1,5 +1,6 @@
 import PengaturanForm from "@/components/forms/pengaturan-form";
 import SectionHeader from "@/components/header";
+import TableDaftarAdmin from "@/components/tables/table-daftar-admin";
 
 const Pengaturan = () => {
   return (
@@ -8,6 +9,8 @@ const Pengaturan = () => {
         title="Pengaturan"
         description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, officiis."
       />
+
+      <TableDaftarAdmin />
 
       <PengaturanForm />
     </div>

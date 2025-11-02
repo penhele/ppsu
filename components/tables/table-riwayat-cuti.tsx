@@ -1,4 +1,3 @@
-import { getCutiByStatus } from "@/lib/data";
 import {
   Table,
   TableBody,
@@ -12,12 +11,11 @@ import {
   getDurationDays,
   getTextWithoutUnderscore,
 } from "@/lib/utils";
-import SearchBar from "@/components/filters/search-bar";
-import StatusSelect from "@/components/filters/status-select";
 import { ViewButton } from "@/components/buttons/view-button";
 import { CutiStatus } from "@prisma/client";
 import StatusValue from "@/components/status-label";
 import Tableheader from "@/components/table-header";
+import { getCutiByStatus } from "@/lib/data/cuti";
 
 const TableRiwayatCuti = async () => {
   const cuti = await getCutiByStatus({

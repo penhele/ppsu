@@ -1,6 +1,5 @@
 "use client";
 
-import { updatePegawai } from "@/lib/action";
 import { useEffect, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { PegawaiProps } from "@/types/pegawai";
@@ -12,6 +11,7 @@ import InputSingleDateController from "@/components/inputs/input-single-date-con
 import { useForm } from "react-hook-form";
 import { PegawaiSchema, PegawaiType } from "@/lib/zod";
 import { toast } from "sonner";
+import { updatePegawai } from "@/lib/action/pegawai";
 
 const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
   const [isPending, startTransition] = useTransition();

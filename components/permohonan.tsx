@@ -1,8 +1,8 @@
-import { getCutiByStatus } from "@/lib/data";
 import Tableheader from "@/components/table-header";
 import { CutiStatus } from "@prisma/client";
 import StatusLabel from "@/components/status-label";
 import { formatDate, getDurationDays } from "@/lib/utils";
+import { getCutiByStatus } from "@/lib/data/cuti";
 
 const Permohonan = async () => {
   const cuti = await getCutiByStatus({ status: CutiStatus.MENUNGGU });

@@ -1,7 +1,6 @@
 "use client";
 
-import { savePegawai } from "@/lib/action";
-import { startTransition, useEffect, useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,6 +11,7 @@ import InputSingleDateController from "@/components/inputs/input-single-date-con
 import { getTextWithoutUnderscore } from "@/lib/utils";
 import { toast } from "sonner";
 import clsx from "clsx";
+import { savePegawai } from "@/lib/action/pegawai";
 
 const CreateDaftarPegawaiForm = () => {
   const [isPending, startTransition] = useTransition();

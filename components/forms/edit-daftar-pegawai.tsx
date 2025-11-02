@@ -1,5 +1,5 @@
-import { getPegawaiById } from "@/lib/data";
 import EditDaftarPegawaiForm from "@/components/forms/edit-daftar-pegawai-form";
+import { getPegawaiById } from "@/lib/data/pegawai";
 import { notFound } from "next/navigation";
 
 const EditDaftarPegawai = async ({ pegawaiId }: { pegawaiId: string }) => {

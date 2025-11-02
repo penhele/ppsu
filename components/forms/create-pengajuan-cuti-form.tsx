@@ -1,83 +1,96 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { saveCuti } from "@/lib/action";
-import clsx from "clsx";
-import InputOption from "@/components/inputs/input-option";
-import InputRangeDate from "@/components/inputs/input-range-date";
-import InputTextarea from "@/components/inputs/input-textarea";
+import { useEffect, useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { CutiSchema, CutiType } from "@/lib/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import InputTextareaController from "@/components/inputs/input-textarea-controller";
+import { toast } from "sonner";
+import InputOptionController from "@/components/inputs/input-option-controller";
+import { TipeCuti } from "@prisma/client";
 import { capitalizeWords } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import InputRangeDateController from "@/components/inputs/input-range-date-controller";
+import InputText from "@/components/inputs/input-text";
+import { auth } from "@/auth";
+import { saveCuti } from "@/lib/action/cuti";
 
-const CreatePengajuanCutiForm = ({
-  pegawaiList,
-}: {
-  pegawaiList: { label: string; value: string }[];
-}) => {
+const CreatePengajuanCutiForm = ({ session }: { session: any }) => {
+  const [isPending, startTransition] = useTransition();
+
   const [tipeCutiList, setTipeCutiList] = useState<
     { label: string; value: string }[]
   >([]);
 
   useEffect(() => {
     const fetchEnums = async () => {
-      const tipeCutiRes = await fetch("/api/enum/tipe-cuti");
-      const tipeCutiData: string[] = await tipeCutiRes.json();
-
-      const formattedTipeCutiData = tipeCutiData.map((item) => ({
+      const tipeCutiData = Object.values(TipeCuti).map((item) => ({
         label: capitalizeWords(item),
         value: item,
       }));
 
-      setTipeCutiList(formattedTipeCutiData);
+      setTipeCutiList(tipeCutiData);
     };
 
     fetchEnums();
   }, []);
 
-  const [state, formAction, isPending] = useActionState(
-    saveCuti.bind(null),
-    null,
-  );
+  const form = useForm<CutiType>({
+    resolver: zodResolver(CutiSchema),
+    defaultValues: {
+      tipe_cuti: undefined,
+      tanggal_mulai: "",
+      tanggal_selesai: "",
+      alasan: "",
+    },
+  });
+
+  function onSubmit(data: CutiType) {
+    console.log(data);
+
+    startTransition(async () => {
+      try {
+        await saveCuti(data);
+        toast.success("Pengajuan cuti berhasil diajukan");
+      } catch (error) {
+        toast.error("Terjadi kesalahan saat mengajukan cuti");
+      }
+    });
+  }
 
   return (
-    <form action={formAction}>
-      <div className="flex flex-col gap-4">
-        <InputOption
-          title="Nama"
-          name="nama"
-          message={state?.error.id_pegawai}
-          options={pegawaiList}
-        />
+    <form
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="flex flex-col gap-4"
+    >
+      <InputText
+        title="Email"
+        name="email"
+        defaultValue={session.user.email ?? ""}
+        readOnly
+      />
 
-        <InputOption
-          title="Tipe Cuti"
-          name="tipe_cuti"
-          message={state?.error.tipe_cuti}
-          options={tipeCutiList}
-        />
+      <InputOptionController
+        title="Tipe Cuti"
+        name="tipe_cuti"
+        control={form.control}
+        options={tipeCutiList}
+      />
 
-        <InputRangeDate
-          title="Tanggal Cuti"
-          placeholder="Pilih tanggal cuti"
-          tanggal_mulai="tanggal_mulai"
-          tanggal_selesai="tanggal_selesai"
-        />
+      <InputRangeDateController
+        title="Tanggal Cuti"
+        control={form.control}
+        tanggal_mulai="tanggal_mulai"
+        tanggal_selesai="tanggal_selesai"
+      />
 
-        <InputTextarea
-          title="Alasan"
-          name="alasan"
-          placeholder="Masukkan alasan Anda"
-          message={state?.error.tanggal_mulai || []}
-        />
+      <InputTextareaController
+        title="Alasan"
+        name="alasan"
+        control={form.control}
+      />
 
-        <Button
-          className={clsx("bg-primary hover:bg-orange-500", {
-            "cursor-progress": isPending,
-          })}
-        >
-          {isPending ? "Menyimpan..." : "Simpan"}
-        </Button>
-      </div>
+      <Button>{isPending ? "Mengajukan..." : "Ajukan Cuti"}</Button>
     </form>
   );
 };

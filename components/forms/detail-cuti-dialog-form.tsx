@@ -4,9 +4,9 @@ import { useActionState } from "react";
 import { Button } from "@/components/ui/button";
 import { CutiProps } from "@/types/cuti";
 import { CutiStatus } from "@prisma/client";
-import { approveCutiById, rejectCutiById } from "@/lib/action";
 import clsx from "clsx";
 import InputTextarea from "@/components/inputs/input-textarea";
+import { approveCutiById, rejectCutiById } from "@/lib/action/cuti";
 
 const DetailCutiDialogForm = ({
   cuti,

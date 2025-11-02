@@ -1,5 +1,4 @@
 import { CircleX } from "lucide-react";
-import { getCutiById } from "@/lib/data";
 import {
   Dialog,
   DialogContent,
@@ -10,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import DetailCutiDialog from "@/components/forms/detail-cuti-dialog";
 import { CutiStatus } from "@prisma/client";
+import { getCutiById } from "@/lib/data/cuti";
 
 export const RejectButton = async ({ id }: { id: string }) => {
   const cuti = await getCutiById(id);

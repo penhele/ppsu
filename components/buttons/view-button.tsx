@@ -6,10 +6,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
-import DetailCutiDialog from "../forms/detail-cuti-dialog";
-import { getCutiById } from "@/lib/data";
+} from "@/components/ui/dialog";
+import DetailCutiDialog from "@/components/forms/detail-cuti-dialog";
 import { CutiStatus } from "@prisma/client";
+import { getCutiById } from "@/lib/data/cuti";
 
 export const ViewButton = async ({ id }: { id: string }) => {
   const cuti = await getCutiById(id);

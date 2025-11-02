@@ -1,10 +1,10 @@
-import { getCutiById } from "@/lib/data";
 import { formatDate, getDurationDays, getTextTrim } from "@/lib/utils";
 import DetailCutiDialogForm from "@/components/forms/detail-cuti-dialog-form";
 import { Separator } from "@/components/ui/separator";
 import { CutiStatus } from "@prisma/client";
 import InputDisplayed from "@/components/inputs/input-displayed";
 import StatusLabel from "@/components/status-label";
+import { getCutiById } from "@/lib/data/cuti";
 
 const DetailCutiDialog = async ({
   id,
