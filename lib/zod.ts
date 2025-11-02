@@ -1,11 +1,9 @@
 import { JenisPekerjaan, Pendidikan, TipeCuti } from "@prisma/client";
-import { z, object, string } from "zod";
+import { z, object, string, email } from "zod";
 
 export const PegawaiSchema = object({
   nama: string().min(1, "Nama wajib diisi"),
-  email: string("Email is required")
-    .min(1, "Email is required")
-    .email("Invalid email"),
+  email: email(),
   password: string("Password is required")
     .min(1, "Password is required")
     .min(8, "Password must be more than 8 characters")
@@ -19,10 +17,12 @@ export const PegawaiSchema = object({
   kelurahan: string().min(1, "Kelurahan wajib diisi"),
   rt: string().min(1, "RT wajib diisi"),
   rw: string().min(1, "RW wajib diisi"),
-  no_telepon: string().min(1, "No. telepon wajib diisi"),
-  no_ktp: string().min(1, "No. KTP wajib diisi"),
-  npwp: string().min(1, "NPWP wajib diisi"),
-  no_rekening: string().min(1, "No. Rekening wajib diisi"),
+  no_telepon: string()
+    .min(10, "No. Telepon minimal 10 angka")
+    .max(13, "No. Telepon maksimal 13 angka"),
+  no_ktp: string().length(16, "No. KTP harus terdiri dari 16 angka"),
+  npwp: string().length(16, "NPWP harus terdiri dari 16 angka"),
+  no_rekening: string().length(16, "No. rekening harus terdiri dari 10 angka"),
   bank_dki_cabang: string().min(1, "Bank DKI Cabang wajib diisi"),
   pendidikan: z.enum(Pendidikan, {
     message: "Input tidak valid",

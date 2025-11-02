@@ -24,7 +24,6 @@ const path = "dashboard";
 const items = [
   { url: `/${path}`, title: "Dashboard", icon: Home },
   { url: `/${path}/data-pegawai`, title: "Data Pegawai", icon: Users },
-  { url: `/${path}/pengajuan-cuti`, title: "Pengajuan Cuti", icon: FileText },
   {
     url: `/${path}/persetujuan-cuti`,
     title: "Persetujuan Cuti",
