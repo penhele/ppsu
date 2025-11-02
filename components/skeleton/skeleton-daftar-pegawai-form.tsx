@@ -16,6 +16,11 @@ const SkeletonDaftarPegawaiForm = () => {
           <SkeletonInputForm />
         </div>
 
+        <div className="grid grid-cols-2 gap-4">
+          <SkeletonInputForm />
+          <SkeletonInputForm />
+        </div>
+
         <SkeletonInputForm />
 
         <div className="grid grid-cols-5 gap-4">

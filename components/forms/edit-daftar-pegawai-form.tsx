@@ -20,6 +20,8 @@ const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
     resolver: zodResolver(PegawaiSchema),
     defaultValues: {
       nama: pegawai.nama,
+      email: pegawai.User.email,
+      password: "ppsu1234",
       tempat_lahir: pegawai.tempat_lahir,
       tanggal_lahir: pegawai.tanggal_lahir.toISOString(),
       alamat: pegawai.alamat,
@@ -95,6 +97,21 @@ const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
         control={form.control}
         placeholder="Masukkan nama pegawai"
       />
+
+      <div className="grid grid-cols-2 gap-4">
+        <InputTextController
+          name="email"
+          title="Email"
+          control={form.control}
+          isDisabled
+        />
+        <InputTextController
+          name="password"
+          title="Password"
+          control={form.control}
+          isDisabled
+        />
+      </div>
 
       <div className="grid grid-cols-2 gap-4">
         <InputTextController

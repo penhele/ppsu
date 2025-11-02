@@ -7,6 +7,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       String @id @default(cuid())
+  email    String @unique
+  password String
+  role     Role   @default(PEGAWAI)
+
+  pegawai Pegawai?
+}
+
 model Pegawai {
   id_pegawai      String         @id @default(cuid())
   nama            String
@@ -30,13 +39,15 @@ model Pegawai {
 
   cuti Cuti[]
 
+  user_id String @unique
+  User    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
 model Cuti {
   id_cuti         String     @id @default(cuid())
-  id_pegawai      String
   tanggal_mulai   DateTime
   tanggal_selesai DateTime
   tipe_cuti       TipeCuti
@@ -47,7 +58,8 @@ model Cuti {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  Pegawai Pegawai? @relation(fields: [id_pegawai], references: [id_pegawai], onDelete: Cascade)
+  id_pegawai String
+  Pegawai    Pegawai? @relation(fields: [id_pegawai], references: [id_pegawai], onDelete: Cascade)
 }
 
 enum Pendidikan {
@@ -77,4 +89,9 @@ enum TipeCuti {
   LIBURAN
   HAMIL
   KEDUKAAN
+}
+
+enum Role {
+  ADMIN
+  PEGAWAI
 }

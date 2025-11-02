@@ -8,12 +8,14 @@ const InputTextController = <T extends FieldValues>({
   placeholder = "",
   control,
   isNumeric,
+  isDisabled = false,
 }: {
   title: string;
   name: Path<T>;
   placeholder?: string;
   control: Control<T>;
   isNumeric?: boolean;
+  isDisabled?: boolean;
 }) => {
   return (
     <Controller
@@ -28,6 +30,7 @@ const InputTextController = <T extends FieldValues>({
             aria-invalid={fieldState.invalid}
             placeholder={placeholder}
             type={isNumeric ? "number" : "text"}
+            disabled={isDisabled}
           />
           {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
         </Field>

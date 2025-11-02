@@ -20,6 +20,8 @@ const CreateDaftarPegawaiForm = () => {
     resolver: zodResolver(PegawaiSchema),
     defaultValues: {
       nama: "",
+      email: "",
+      password: "ppsu1234",
       tempat_lahir: "",
       tanggal_lahir: "",
       alamat: "",
@@ -94,6 +96,20 @@ const CreateDaftarPegawaiForm = () => {
         control={form.control}
         placeholder="Masukkan nama pegawai"
       />
+
+      <div className="grid grid-cols-2 gap-4">
+        <InputTextController
+          name="email"
+          title="Email"
+          control={form.control}
+        />
+        <InputTextController
+          name="password"
+          title="Password"
+          control={form.control}
+          isDisabled
+        />
+      </div>
 
       <div className="grid grid-cols-2 gap-4">
         <InputTextController

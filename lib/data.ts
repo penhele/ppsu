@@ -30,6 +30,9 @@ export const getPegawaiById = async (pegawaiId: string) => {
   try {
     const result = await prisma.pegawai.findUnique({
       where: { id_pegawai: pegawaiId },
+      include: {
+        User: true,
+      },
     });
     return result;
   } catch (error) {
@@ -80,4 +83,11 @@ export const getCutiByStatus = async ({
     console.error("Error fetching cuti by status:", error);
     return [];
   }
+};
+
+export const getUserByEmail = async (email: string) => {
+  return await prisma.user.findUnique({
+    where: { email },
+    include: { pegawai: true },
+  });
 };

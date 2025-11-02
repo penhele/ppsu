@@ -5,12 +5,25 @@ import { CutiSchema, PegawaiType } from "@/lib/zod";
 import { CutiStatus, PegawaiStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import bcrypt from "bcryptjs";
+import { getPegawaiById } from "./data";
+import { hashPassword } from "./utils/password";
 
 export const savePegawai = async (data: PegawaiType) => {
   try {
+    const hashedPassword = await hashPassword(data.password);
+
+    const user = await prisma.user.create({
+      data: {
+        email: data.email,
+        password: hashedPassword,
+      },
+    });
+
     await prisma.pegawai.create({
       data: {
         nama: data.nama,
+        user_id: user.id,
         tempat_lahir: data.tempat_lahir,
         tanggal_lahir: data.tanggal_lahir,
         alamat: data.alamat,
@@ -184,4 +197,10 @@ export const updatePegawaiStatusIfCutiEnded = async () => {
   } catch (error) {
     console.log(error);
   }
+};
+
+// auth
+export const loginUser = async () => {
+  try {
+  } catch (error) {}
 };
