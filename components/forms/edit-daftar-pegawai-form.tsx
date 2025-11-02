@@ -20,7 +20,7 @@ const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
     resolver: zodResolver(PegawaiSchema),
     defaultValues: {
       nama: pegawai.nama,
-      email: pegawai.User.email,
+      email: pegawai.User.role,
       password: "ppsu1234",
       tempat_lahir: pegawai.tempat_lahir,
       tanggal_lahir: pegawai.tanggal_lahir.toISOString(),

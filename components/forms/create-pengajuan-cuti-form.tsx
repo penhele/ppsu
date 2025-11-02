@@ -12,7 +12,6 @@ import { capitalizeWords } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import InputRangeDateController from "@/components/inputs/input-range-date-controller";
 import InputText from "@/components/inputs/input-text";
-import { auth } from "@/auth";
 import { saveCuti } from "@/lib/action/cuti";
 
 const CreatePengajuanCutiForm = ({ session }: { session: any }) => {
