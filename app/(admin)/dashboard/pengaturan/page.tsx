@@ -1,4 +1,4 @@
-import Pengaturan from "@/components/pages/pengaturan";
+import Pengaturan from "@/components/pages/admin/pengaturan";
 
 export const metadata = {
   title: "Pengaturan",

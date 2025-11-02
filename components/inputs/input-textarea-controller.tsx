@@ -5,12 +5,12 @@ import { Textarea } from "@/components/ui/textarea";
 const InputTextareaController = <T extends FieldValues>({
   title,
   name,
-  placeholder,
+  placeholder = "Masukkan alasan Anda",
   control,
 }: {
   title: string;
   name: Path<T>;
-  placeholder: string;
+  placeholder?: string;
   control: Control<T>;
 }) => {
   return (

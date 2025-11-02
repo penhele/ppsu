@@ -42,11 +42,12 @@ export const SigninSchema = object({
 export type SigninType = z.infer<typeof SigninSchema>;
 
 export const CutiSchema = object({
-  id_pegawai: string(),
   tipe_cuti: z.enum(TipeCuti, {
     message: "Input tidak valid",
   }),
-  tanggal_mulai: string(),
+  tanggal_mulai: string().min(1, "Tanggal mulai wajib diisi"),
   tanggal_selesai: string(),
-  alasan: string(),
+  alasan: string().min(1, "Alasan wajib diisi"),
 });
+
+export type CutiType = z.infer<typeof CutiSchema>;

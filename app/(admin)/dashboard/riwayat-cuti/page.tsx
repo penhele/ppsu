@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-import RiwayatCuti from "@/components/pages/riwayat-cuti";
+import RiwayatCuti from "@/components/pages/admin/riwayat-cuti";
 
 export const metadata = {
   title: "Riwayat Cuti",

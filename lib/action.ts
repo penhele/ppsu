@@ -1,13 +1,14 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { CutiSchema, PegawaiType } from "@/lib/zod";
+import { CutiSchema, CutiType, PegawaiType } from "@/lib/zod";
 import { CutiStatus, PegawaiStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import bcrypt from "bcryptjs";
 import { getPegawaiById } from "./data";
 import { hashPassword } from "./utils/password";
+import { auth } from "@/auth";
 
 export const savePegawai = async (data: PegawaiType) => {
   try {
@@ -49,37 +50,60 @@ export const savePegawai = async (data: PegawaiType) => {
   redirect("/dashboard/data-pegawai");
 };
 
-export const saveCuti = async (prevState: unknown, formData: FormData) => {
-  const rawData = {
-    id_pegawai: formData.get("nama"),
-    tipe_cuti: formData.get("tipe_cuti"),
-    tanggal_mulai: formData.get("tanggal_mulai"),
-    tanggal_selesai: formData.get("tanggal_selesai"),
-    alasan: formData.get("alasan"),
-  };
+// export const saveCuti = async (prevState: unknown, formData: FormData) => {
+//   const rawData = {
+//     id_pegawai: formData.get("nama"),
+//     tipe_cuti: formData.get("tipe_cuti"),
+//     tanggal_mulai: formData.get("tanggal_mulai"),
+//     tanggal_selesai: formData.get("tanggal_selesai"),
+//     alasan: formData.get("alasan"),
+//   };
 
-  const validatedFields = CutiSchema.safeParse(rawData);
-  if (!validatedFields.success)
-    return { error: validatedFields.error.flatten().fieldErrors };
+//   const validatedFields = CutiSchema.safeParse(rawData);
+//   if (!validatedFields.success)
+//     return { error: validatedFields.error.flatten().fieldErrors };
 
-  const { id_pegawai, tipe_cuti, tanggal_mulai, tanggal_selesai, alasan } =
-    validatedFields.data;
+//   const { id_pegawai, tipe_cuti, tanggal_mulai, tanggal_selesai, alasan } =
+//     validatedFields.data;
+
+//   try {
+//     await prisma.cuti.create({
+//       data: {
+//         id_pegawai,
+//         tipe_cuti,
+//         tanggal_mulai,
+//         tanggal_selesai,
+//         alasan,
+//       },
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+
+//   redirect("/dashboard/pengajuan-cuti");
+// };
+
+export const saveCutiByPegawai = async (data: CutiType) => {
+  const session = await auth();
 
   try {
     await prisma.cuti.create({
       data: {
-        id_pegawai,
-        tipe_cuti,
-        tanggal_mulai,
-        tanggal_selesai,
-        alasan,
+        id_pegawai: session?.user?.id,
+        tipe_cuti: data.tipe_cuti,
+        tanggal_mulai: data.tanggal_mulai,
+        tanggal_selesai: data.tanggal_selesai,
+        alasan: data.alasan,
       },
     });
+
+    console.log(data);
   } catch (error) {
     console.log(error);
   }
 
-  redirect("/dashboard/pengajuan-cuti");
+  revalidatePath("/pengajuan-cuti");
+  redirect("/pengajuan-cuti");
 };
 
 // Delete

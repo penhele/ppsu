@@ -1,4 +1,4 @@
-import PengajuanCuti from "@/components/pages/pengajuan-cuti";
+import PengajuanCuti from "@/components/pages/admin/pengajuan-cuti";
 
 export const metadata = {
   title: "Pengajuan Cuti",

@@ -21,7 +21,7 @@ const InputText = ({
   const errorMessage = message.length > 0 ? message[0] : "";
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-3.5">
       <Label htmlFor={name}>{title}</Label>
       <Input
         id={name}

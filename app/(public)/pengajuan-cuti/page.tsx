@@ -1,7 +1,7 @@
-import React from "react";
+import PengajuanCuti from "@/components/pages/public/pengajuan-cuti";
 
 const page = () => {
-  return <div>page</div>;
+  return <PengajuanCuti />;
 };
 
 export default page;

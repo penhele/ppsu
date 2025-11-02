@@ -1,4 +1,4 @@
-import Laporan from "@/components/pages/laporan";
+import Laporan from "@/components/pages/admin/laporan";
 
 const page = () => {
   return <Laporan />;
