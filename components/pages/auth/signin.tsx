@@ -18,14 +18,16 @@ const Signin = () => {
         <CardDescription>
           Enter your email below to login to your account
         </CardDescription>
-        <CardAction>
-          <Button variant="link">Sign Up</Button>
-        </CardAction>
       </CardHeader>
 
       <CardContent>
         <SigninForm />
       </CardContent>
+
+      <CardFooter className="flex flex-col items-start">
+        <p>akun : stephen@ppsu.com (admin)</p>
+        <p>password : ppsu1234</p>
+      </CardFooter>
     </Card>
   );
 };

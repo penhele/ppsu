@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { SigninSchema } from "./lib/zod";
-import { verifyPassword } from "./lib/utils/password";
-import { getUserByEmail } from "./lib/data/user";
+import { SigninSchema } from "@/lib/zod";
+import { verifyPassword } from "@/lib/utils/password";
+import { getUserByEmail } from "@/lib/data/user";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -21,9 +21,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!isValid) return null;
 
         return {
-          id: user.pegawai?.id_pegawai,
+          id: user.id,
           email: user.email,
-          nama: user.pegawai?.nama,
           role: user.role,
         };
       },
@@ -32,15 +31,26 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
   session: { strategy: "jwt" },
   pages: { signIn: "/auth/signin" },
+
   callbacks: {
-    jwt({ token, user }) {
-      if (user) token.role = user.role;
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role;
+        token.email = user.email; 
+      }
       return token;
     },
-    session({ session, token }) {
-      session.user.id = token.sub;
-      session.user.role = token.role;
-      session.user.name = token.name;
+
+    async session({ session, token }) {
+      if (!token?.email) return null;
+
+      const user = await getUserByEmail(token.email);
+      if (!user) return null as any;
+
+      session.user.id = user.id;
+      session.user.email = user.email;
+      session.user.role = user.role;
+
       return session;
     },
   },
