@@ -1,5 +1,5 @@
 import ProfileForm from "@/components/forms/pengaturan-form";
-import SectionHeader from "@/components/header";
+import SectionHeader from "@/components/section-header";
 
 const Profile = () => {
   return (

@@ -17,6 +17,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -42,10 +43,15 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar variant="floating" collapsible="icon">
+    <Sidebar collapsible="icon" className="text-white">
+      <SidebarHeader>
+        <SidebarGroup>
+          <SidebarGroupLabel>Website Pendataan Cuti</SidebarGroupLabel>
+        </SidebarGroup>
+      </SidebarHeader>
+
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -70,7 +76,10 @@ export function AppSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link href={"/api/auth/signout"}>
-                    <Button variant={"link"} className="w-full flex items-center justify-start gap-4">
+                    <Button
+                      variant={"link"}
+                      className="w-full flex items-center justify-start gap-4 text-white hover:text-orange-500"
+                    >
                       <LogOut />
                       <span>Sign Out</span>
                     </Button>

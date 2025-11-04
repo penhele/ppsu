@@ -1,9 +1,7 @@
-import Profile from "@/components/pages/admin/profile"
+import Profile from "@/components/pages/admin/profile";
 
 const page = () => {
-  return (
-    <Profile/>
-  )
-}
+  return <Profile />;
+};
 
-export default page
+export default page;

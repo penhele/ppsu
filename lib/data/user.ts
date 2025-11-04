@@ -29,4 +29,4 @@ export const getAdminBySessionId = async (sessionId: string) => {
     },
     include: { pegawai: true },
   });
-} 
+};

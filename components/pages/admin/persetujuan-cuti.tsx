@@ -1,4 +1,4 @@
-import SectionHeader from "@/components/header";
+import SectionHeader from "@/components/section-header";
 import TablePersetujuanCuti from "@/components/tables/table-persetujuan-cuti";
 import TableRiwayatCuti from "@/components/tables/table-riwayat-cuti";
 

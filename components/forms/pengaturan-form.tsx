@@ -31,12 +31,9 @@ const PengaturanForm = async () => {
         </div>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4">
-        <Button variant={"outline"} className="hover:border-primary">
-          Ganti Password
-        </Button>
-        <Button className="bg-primary hover:bg-orange-500">Logout</Button>
-      </div>
+      <Button variant={"outline"} className="hover:border-primary">
+        Ganti Password
+      </Button>
     </div>
   );
 };
