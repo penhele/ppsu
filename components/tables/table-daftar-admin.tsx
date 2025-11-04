@@ -20,8 +20,9 @@ const TableDaftarAdmin = async () => {
       <div className="flex justify-between">
         <Tableheader
           title="Daftar Admin"
-          description={`Terdapat ${user.length} admin terdaftarF`}
+          description={`Terdapat ${user.length} admin terdaftar`}
         />
+
         <CreateAdminDialog />
       </div>
 
@@ -29,7 +30,6 @@ const TableDaftarAdmin = async () => {
         <TableHeader>
           <TableRow>
             <TableHead>ID</TableHead>
-            <TableHead>Nama</TableHead>
             <TableHead>Email</TableHead>
             <TableHead>Role</TableHead>
           </TableRow>
@@ -38,7 +38,6 @@ const TableDaftarAdmin = async () => {
           {user.map((item) => (
             <TableRow key={item.id}>
               <TableCell>{item.id}</TableCell>
-              <TableCell>...</TableCell>
               <TableCell>{item.email}</TableCell>
               <TableCell>{item.role}</TableCell>
             </TableRow>

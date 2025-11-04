@@ -6,14 +6,16 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { CutiStatus, PegawaiStatus } from "@prisma/client";
+import { getPegawaiByUserId } from "../data/pegawai";
 
 export const saveCuti = async (data: CutiType) => {
   const session = await auth();
+  const pegawai = await getPegawaiByUserId(session?.user?.id as string);
 
   try {
     await prisma.cuti.create({
       data: {
-        id_pegawai: session?.user?.id,
+        id_pegawai: pegawai?.id_pegawai,
         tipe_cuti: data.tipe_cuti,
         tanggal_mulai: data.tanggal_mulai,
         tanggal_selesai: data.tanggal_selesai,
@@ -26,8 +28,8 @@ export const saveCuti = async (data: CutiType) => {
     console.log(error);
   }
 
-  revalidatePath("/pengajuan-cuti");
-  redirect("/pengajuan-cuti");
+  revalidatePath("/");
+  redirect("/");
 };
 
 export const approveCutiById = async (

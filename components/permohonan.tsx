@@ -6,7 +6,7 @@ import { getCutiByStatus } from "@/lib/data/cuti";
 
 const Permohonan = async () => {
   const cuti = await getCutiByStatus({ status: CutiStatus.MENUNGGU });
-  if (!cuti) return null;
+  if (!cuti) return <p>tidak</p>;
 
   return (
     <div className="flex flex-col gap-4 col-span-3 md:col-span-2 border p-4 bg-white rounded-xl">

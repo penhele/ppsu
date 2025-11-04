@@ -20,3 +20,13 @@ export const getUserByRole = async (role: Role) => {
     console.error("Error fetching user by id:", error);
   }
 };
+
+export const getAdminBySessionId = async (sessionId: string) => {
+  return await prisma.user.findFirst({
+    where: {
+      id: sessionId,
+      role: Role.ADMIN,
+    },
+    include: { pegawai: true },
+  });
+};

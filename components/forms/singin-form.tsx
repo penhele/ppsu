@@ -43,11 +43,17 @@ const SigninForm = () => {
       onSubmit={form.handleSubmit(onSubmit)}
       className="flex flex-col gap-4"
     >
-      <InputTextController title="Email" name="email" control={form.control} />
+      <InputTextController
+        title="Email"
+        name="email"
+        control={form.control}
+        placeholder="Email"
+      />
       <InputTextController
         title="Password"
         name="password"
         control={form.control}
+        placeholder="Password"
       />
 
       <Button className="w-full">

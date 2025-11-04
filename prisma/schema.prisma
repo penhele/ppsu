@@ -72,7 +72,7 @@ enum Pendidikan {
 }
 
 enum JenisPekerjaan {
-  PETUGAS_PPSU
+  PETUGAS_PPSU  
 }
 
 enum CutiStatus {
