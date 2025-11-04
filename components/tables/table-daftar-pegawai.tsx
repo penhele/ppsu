@@ -6,9 +6,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { UserPlus } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { formatDate, getTextWithoutUnderscore } from "@/lib/utils";
 import { UpdateButton } from "@/components/buttons/update-button";
 import { DeleteButton } from "@/components/buttons/delete-button";
@@ -16,10 +13,11 @@ import Tableheader from "@/components/table-header";
 import StatusLabel from "@/components/status-label";
 import { Slider } from "@/components/ui/slider";
 import { getPegawai } from "@/lib/data/pegawai";
+import CreateButton from "@/components/buttons/create-button";
 
 const TableDaftarPegawai = async () => {
   const pegawai = await getPegawai();
-  if (!pegawai) return <p>kosong</p>;
+  if (!pegawai) return <p>Tidak ada data</p>;
 
   return (
     <div className="border p-4 rounded-xl flex flex-col gap-3 w-full bg-white">
@@ -29,20 +27,10 @@ const TableDaftarPegawai = async () => {
           description={`Total ${pegawai.length} pegawai terdaftar`}
         />
 
-        <div className="flex gap-3">
-          <Button className="bg-primary hover:bg-orange-500">
-            <Link
-              href={"/dashboard/data-pegawai/create"}
-              className="flex justify-between items-center gap-2"
-            >
-              <UserPlus />
-              <span>Tambah Pegawai</span>
-            </Link>
-          </Button>
-        </div>
+        <CreateButton href="/dashboard/data-pegawai/create" />
       </div>
 
-      <Table className="max-w-screen">
+      <Table>
         <TableHeader>
           <TableRow>
             <TableHead className="whitespace-nowrap">Nama</TableHead>

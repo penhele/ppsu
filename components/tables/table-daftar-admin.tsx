@@ -22,6 +22,7 @@ const TableDaftarAdmin = async () => {
           title="Daftar Admin"
           description={`Terdapat ${user.length} admin terdaftar`}
         />
+        
         <CreateAdminDialog />
       </div>
 

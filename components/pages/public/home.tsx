@@ -12,9 +12,15 @@ const Home = async () => {
       <p>user id : {session.user.id}</p>
       <p>user role : {session.user.role}</p>
 
-      <Button>
-        <Link href={"pengajuan-cuti"}>Pengajuan Cuti</Link>
-      </Button>
+      {session.user.role === "ADMIN" ? (
+        <Button>
+          <Link href={" /dashboard"}>Dashboard Admin</Link>
+        </Button>
+      ) : (
+        <Button>
+          <Link href={"pengajuan-cuti"}>Pengajuan Cuti</Link>
+        </Button>
+      )}
     </div>
   );
 };

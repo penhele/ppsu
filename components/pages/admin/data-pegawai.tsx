@@ -30,7 +30,7 @@ const DataPegawai = async () => {
     <div className="flex flex-col gap-8">
       <SectionHeader
         title="Data Pegawai"
-        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi sed delectus possimus tenetur fugiat nam?"
+        description="Halaman ini menampilkan daftar lengkap pegawai beserta status keaktifan mereka. Anda dapat memantau jumlah pegawai aktif, cuti, maupun tidak aktif secara real-time."
       />
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-4">

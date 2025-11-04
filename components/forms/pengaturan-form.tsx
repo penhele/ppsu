@@ -1,31 +1,33 @@
+import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { getAdminBySessionId } from "@/lib/data/user";
 
-const PengaturanForm = () => {
+const PengaturanForm = async () => {
+  const session = await auth();
+  if (!session) return null;
+
+  const admin = await getAdminBySessionId(session.user.id as string);
+
+  const items = [
+    { label: "ID", value: admin?.id },
+    { label: "Email", value: admin?.email },
+    { label: "Role", value: admin?.role },
+  ];
+
   return (
     <div className="flex flex-col gap-8 p-4 border rounded-lg bg-white">
       <h1 className="text-xl font-medium">Profil Admin</h1>
 
       <div className="flex flex-col gap-4">
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div className="flex flex-col gap-2">
-            <Label>Nama</Label>
-            <Input defaultValue={"Stephen Helenus"} disabled />
-          </div>
-          <div className="flex flex-col gap-2">
-            <Label>ID</Label>
-            <Input defaultValue={"ADMIN01"} disabled />
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <Label>Email</Label>
-            <Input defaultValue={"stephen@admin.com"} disabled />
-          </div>
-          <div className="flex flex-col gap-2">
-            <Label>Role</Label>
-            <Input defaultValue={"Admin"} disabled />
-          </div>
+        <div className="grid sm:grid-cols-3 gap-4">
+          {items.map((item) => (
+            <div key={item.label} className="flex flex-col gap-2">
+              <Label>{item.label}</Label>
+              <Input defaultValue={item.value as string} disabled />
+            </div>
+          ))}
         </div>
       </div>
 

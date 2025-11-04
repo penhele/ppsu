@@ -11,8 +11,6 @@ const Pengaturan = () => {
       />
 
       <TableDaftarAdmin />
-
-      <PengaturanForm />
     </div>
   );
 };
