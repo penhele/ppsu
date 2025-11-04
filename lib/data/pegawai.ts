@@ -18,6 +18,7 @@ export const getPegawai = async () => {
           },
         },
         user: true,
+        cuti: true,
       },
       where: {
         user: {
@@ -43,5 +44,16 @@ export const getPegawaiById = async (pegawaiId: string) => {
     return result;
   } catch (error) {
     console.error("Error fetching pegawai by id:", error);
+  }
+};
+
+export const getPegawaiByUserId = async (userId: string) => {
+  try {
+    const result = await prisma.pegawai.findUnique({
+      where: { user_id: userId },
+    });
+    return result;
+  } catch (error) {
+    console.error("Error fetching pegawai by user id:", error);
   }
 };

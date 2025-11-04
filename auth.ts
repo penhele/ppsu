@@ -21,7 +21,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!isValid) return null;
 
         return {
-          id: user.pegawai?.id_pegawai,
+          id: user.id,
           email: user.email,
           nama: user.pegawai?.nama,
           role: user.role,

@@ -20,7 +20,7 @@ const TableDaftarAdmin = async () => {
       <div className="flex justify-between">
         <Tableheader
           title="Daftar Admin"
-          description={`Terdapat ${user.length} admin terdaftarF`}
+          description={`Terdapat ${user.length} admin terdaftar`}
         />
         <CreateAdminDialog />
       </div>
