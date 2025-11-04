@@ -25,7 +25,9 @@ const Signin = () => {
       </CardContent>
 
       <CardFooter className="flex flex-col items-start">
-        <p>akun : stephen@ppsu.com (admin)</p>
+        <p>akun : admin@ppsu.com (admin)</p>
+        <p>password : ppsu1234</p>
+        <p>{"akun : <nama_panggilan_kalian>@ppsu.com (pegawai)"}</p>
         <p>password : ppsu1234</p>
       </CardFooter>
     </Card>
