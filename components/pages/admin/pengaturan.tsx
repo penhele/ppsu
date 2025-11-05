@@ -10,6 +10,8 @@ const Pengaturan = () => {
         description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, officiis."
       />
 
+      <PengaturanForm />
+
       <TableDaftarAdmin />
     </div>
   );

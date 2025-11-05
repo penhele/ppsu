@@ -2,11 +2,9 @@ import {
   ChartArea,
   CheckCircle,
   ClipboardList,
-  FileText,
   Home,
   LogOut,
   Settings,
-  UserCog,
   Users,
 } from "lucide-react";
 
@@ -23,7 +21,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 
 const path = "dashboard";
 
@@ -38,7 +36,6 @@ const items = [
   { url: `/${path}/riwayat-cuti`, title: "Riwayat Cuti", icon: ClipboardList },
   { url: `/${path}/pengaturan`, title: "Pengaturan", icon: Settings },
   { url: `/${path}/laporan`, title: "Laporan", icon: ChartArea },
-  { url: `/${path}/profile`, title: "Profile", icon: UserCog },
 ];
 
 export function AppSidebar() {

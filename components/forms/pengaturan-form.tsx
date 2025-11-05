@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getAdminBySessionId } from "@/lib/data/user";
+import Tableheader from "@/components/table-header";
 
 const PengaturanForm = async () => {
   const session = await auth();
@@ -18,7 +19,7 @@ const PengaturanForm = async () => {
 
   return (
     <div className="flex flex-col gap-8 p-4 border rounded-lg bg-white">
-      <h1 className="text-xl font-medium">Profil Admin</h1>
+      <Tableheader title="Profil Admin" />
 
       <div className="flex flex-col gap-4">
         <div className="grid sm:grid-cols-3 gap-4">

@@ -1,6 +1,6 @@
 import SectionHeader from "@/components/section-header";
 import { PegawaiStatus } from "@prisma/client";
-import TableDaftarPegawai from "@/components/tables/table-daftar-pegawai";
+import TableDaftarPegawai from "@/components/tables/pegawai/table-daftar-pegawai";
 import { getPegawai } from "@/lib/data/pegawai";
 
 const DataPegawai = async () => {
