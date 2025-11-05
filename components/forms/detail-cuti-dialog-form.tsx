@@ -7,6 +7,7 @@ import { CutiStatus } from "@prisma/client";
 import clsx from "clsx";
 import InputTextarea from "@/components/inputs/input-textarea";
 import { approveCutiById, rejectCutiById } from "@/lib/action/cuti";
+import { Spinner } from "@/components/ui/spinner";
 
 const DetailCutiDialogForm = ({
   cuti,
@@ -36,13 +37,23 @@ const DetailCutiDialogForm = ({
             "cursor-progress": isPending,
           })}
         >
-          {value === CutiStatus.DISETUJUI
-            ? isPending
-              ? "Menyetujui Cuti..."
-              : "Setujui Cuti"
-            : isPending
-              ? "Menolak Cuti..."
-              : "Tolak Cuti"}
+          {value === CutiStatus.DISETUJUI ? (
+            isPending ? (
+              <div className="flex gap-2 items-center">
+                <Spinner />
+                <span>Menyetujui...</span>
+              </div>
+            ) : (
+              "Setujui Cuti"
+            )
+          ) : isPending ? (
+            <div className="flex gap-2 items-center">
+              <Spinner />
+              <span>Menolak...</span>
+            </div>
+          ) : (
+            "Tolak Cuti"
+          )}
         </Button>
       </div>
     </form>

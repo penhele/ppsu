@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { PegawaiSchema, PegawaiType } from "@/lib/zod";
 import { toast } from "sonner";
 import { updatePegawai } from "@/lib/action/pegawai";
+import { Spinner } from "@/components/ui/spinner";
 
 const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
   const [isPending, startTransition] = useTransition();
@@ -216,7 +217,14 @@ const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
           "curp-progress": isPending,
         })}
       >
-        {isPending ? "Mempebarui..." : "Perbarui"}
+        {isPending ? (
+          <div className="flex gap-2 items-center">
+            <Spinner />
+            <span>Memperbarui...</span>
+          </div>
+        ) : (
+          "Perbarui"
+        )}
       </Button>
     </form>
   );

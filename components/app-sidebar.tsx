@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const path = "dashboard";
 
@@ -40,15 +41,22 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar>
       <SidebarHeader>
-        <SidebarGroup>
-          <SidebarGroupLabel>Website Pendataan Cuti</SidebarGroupLabel>
-        </SidebarGroup>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <a href="#">
+                <span className="text-base font-semibold">PPSU</span>
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
 
       <SidebarContent>
         <SidebarGroup>
+          <SidebarGroupLabel>Pegawai</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

@@ -12,6 +12,7 @@ import { getTextWithoutUnderscore } from "@/lib/utils";
 import { toast } from "sonner";
 import clsx from "clsx";
 import { savePegawai } from "@/lib/action/pegawai";
+import { Spinner } from "../ui/spinner";
 
 const CreateDaftarPegawaiForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -213,7 +214,14 @@ const CreateDaftarPegawaiForm = () => {
           "curp-progress": isPending,
         })}
       >
-        {isPending ? "Menyimpan..." : "Simpan"}
+        {isPending ? (
+          <div className="flex gap-2 items-center">
+            <Spinner />
+            <span>Menyimpan...</span>
+          </div>
+        ) : (
+          "Simpan"
+        )}
       </Button>
     </form>
   );

@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import InputRangeDateController from "@/components/inputs/input-range-date-controller";
 import InputText from "@/components/inputs/input-text";
 import { saveCuti } from "@/lib/action/cuti";
+import { Spinner } from "@/components/ui/spinner";
 
 const CreatePengajuanCutiForm = ({ session }: { session: any }) => {
   const [isPending, startTransition] = useTransition();
@@ -89,7 +90,16 @@ const CreatePengajuanCutiForm = ({ session }: { session: any }) => {
         control={form.control}
       />
 
-      <Button>{isPending ? "Mengajukan..." : "Ajukan Cuti"}</Button>
+      <Button>
+        {isPending ? (
+          <div className="flex gap-2 items-center">
+            <Spinner />
+            <span>Mengajukan...</span>
+          </div>
+        ) : (
+          "Ajukan Cuti"
+        )}
+      </Button>
     </form>
   );
 };

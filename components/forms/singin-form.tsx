@@ -1,14 +1,15 @@
 "use client";
 
-import InputTextController from "../inputs/input-text-controller";
+import InputTextController from "@/components/inputs/input-text-controller";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { useTransition } from "react";
 import { SigninSchema, SigninType } from "@/lib/zod";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { Spinner } from "@/components/ui/spinner";
 
 const SigninForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -33,7 +34,7 @@ const SigninForm = () => {
         toast.error("Email atau password salah.");
       } else {
         toast.success("Login berhasil!");
-        redirect("/");
+        redirect("/dashboard");
       }
     });
   };
@@ -54,10 +55,18 @@ const SigninForm = () => {
         name="password"
         control={form.control}
         placeholder="Password"
+        isPassword
       />
 
       <Button className="w-full">
-        {isPending ? "Logging in..." : "Login"}
+        {isPending ? (
+          <div className="flex gap-2 items-center">
+            <Spinner />
+            <span>Logging in...</span>
+          </div>
+        ) : (
+          "Login"
+        )}
       </Button>
     </form>
   );

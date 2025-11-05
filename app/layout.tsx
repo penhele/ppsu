@@ -1,4 +1,5 @@
 import "@/app/globals.css";
+import { Toaster } from "sonner";
 
 export const metadata = {
   title: "PPSU Kelurahan",
@@ -12,7 +13,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

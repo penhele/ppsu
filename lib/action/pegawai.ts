@@ -53,11 +53,14 @@ export const deletePegawaiById = async (id: string) => {
     await prisma.pegawai.delete({
       where: { id_pegawai: id },
     });
+
+    revalidatePath("/dashboard/data-pegawai");
+
+    return { success: true, message: "Berhasil menghapus pegawai" };
   } catch (error) {
     console.log(error);
+    return { success: true, message: "Gagal menghapus pegawai" };
   }
-
-  revalidatePath("/dashboard/data-pegawai");
 };
 
 // Update
