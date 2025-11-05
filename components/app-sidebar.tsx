@@ -43,7 +43,7 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar collapsible="icon" className="text-white">
+    <Sidebar collapsible="icon">
       <SidebarHeader>
         <SidebarGroup>
           <SidebarGroupLabel>Website Pendataan Cuti</SidebarGroupLabel>
@@ -78,7 +78,7 @@ export function AppSidebar() {
                   <Link href={"/api/auth/signout"}>
                     <Button
                       variant={"link"}
-                      className="w-full flex items-center justify-start gap-4 text-white hover:text-orange-500"
+                      className="w-full flex items-center justify-start gap-4"
                     >
                       <LogOut />
                       <span>Sign Out</span>

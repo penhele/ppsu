@@ -8,7 +8,7 @@ import {
   NavigationMenuTrigger,
 } from "../ui/navigation-menu";
 
-const Navbar = () => {  
+const Navbar = () => {
   return (
     <div className="max-w-screen-xl mx-auto flex items-center justify-between mt-5 rounded-lg px-4 py-2 bg-primary ">
       <Link href="/">PPSU</Link>
@@ -16,7 +16,7 @@ const Navbar = () => {
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <Link href="/pengajuan-cuti/" >Pengajuan Cuti</Link>
+              <Link href="/pengajuan-cuti/">Pengajuan Cuti</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>

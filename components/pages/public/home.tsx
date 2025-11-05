@@ -7,9 +7,7 @@ const Home = async () => {
   if (!session) return <p>tidak ada session</p>;
 
   return (
-    <div className="flex items-center flex-col justify-center min-h-screen">
-      
-    </div>
+    <div className="flex items-center flex-col justify-center min-h-screen"></div>
   );
 };
 
