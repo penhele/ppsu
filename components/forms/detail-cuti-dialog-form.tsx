@@ -1,13 +1,17 @@
 "use client";
 
-import { useActionState } from "react";
+import { act, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { CutiProps } from "@/types/cuti";
 import { CutiStatus } from "@prisma/client";
 import clsx from "clsx";
-import InputTextarea from "@/components/inputs/input-textarea";
-import { approveCutiById, rejectCutiById } from "@/lib/action/cuti";
 import { Spinner } from "@/components/ui/spinner";
+import { useForm } from "react-hook-form";
+import { CutiSchema, CutiType } from "@/lib/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import InputTextareaController from "@/components/inputs/input-textarea-controller";
+import { approveCutiById, rejectCutiById } from "@/lib/action/cuti";
+import { toast } from "sonner";
 
 const DetailCutiDialogForm = ({
   cuti,
@@ -16,19 +20,49 @@ const DetailCutiDialogForm = ({
   cuti: CutiProps;
   value: CutiStatus;
 }) => {
-  const actionFn =
-    value === CutiStatus.DISETUJUI
-      ? approveCutiById.bind(null, cuti.id_cuti)
-      : rejectCutiById.bind(null, cuti.id_cuti);
+  const [isPending, startTransition] = useTransition();
 
-  const [state, formAction, isPending] = useActionState(actionFn, null);
+  const form = useForm<CutiType>({
+    resolver: zodResolver(CutiSchema),
+    defaultValues: {
+      tipe_cuti: cuti.tipe_cuti,
+      tanggal_mulai: cuti.tanggal_mulai.toDateString(),
+      tanggal_selesai: cuti.tanggal_selesai.toDateString(),
+      alasan: cuti.alasan ?? "Tidak ada alasan/keterangan",
+      catatan: "",
+    },
+  });
+
+  function onSubmit(data: CutiType) {
+    console.log("submit data", data);
+
+    startTransition(async () => {
+      try {
+        const action =
+          value === CutiStatus.DISETUJUI
+            ? approveCutiById(cuti.id_cuti, data)
+            : rejectCutiById(cuti.id_cuti, data);
+
+        const result = await action;
+
+        if (result.success) {
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  }
 
   return (
-    <form action={formAction}>
+    <form onSubmit={form.handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-2">
-        <InputTextarea
-          title="Catatan Review (Opsional)"
+        <InputTextareaController
+          title={`Pesan untuk (opsional)`}
           name="catatan"
+          control={form.control}
           placeholder="Masukkan catatan jika diperlukan"
         />
 

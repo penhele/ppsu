@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/auth";
-import { CutiType } from "@/lib/zod";
+import { CutiType, PegawaiType } from "@/lib/zod";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -32,49 +32,40 @@ export const saveCuti = async (data: CutiType) => {
   redirect("/");
 };
 
-export const approveCutiById = async (
-  cutiId: string,
-  prevState: unknown,
-  formData: FormData,
-) => {
-  const catatan = (formData.get("catatan") as string | null)?.trim() ?? null;
-
-  const cuti = await prisma.cuti.findUnique({
-    where: { id_cuti: cutiId },
-    select: { id_pegawai: true },
-  });
-
+export const approveCutiById = async (cutiId: string, data: CutiType) => {
   try {
     await prisma.cuti.update({
       where: { id_cuti: cutiId },
       data: {
-        catatan: catatan,
+        catatan: data.catatan,
         status: CutiStatus.DISETUJUI,
       },
     });
 
-    await prisma.pegawai.update({
-      where: { id_pegawai: cuti?.id_pegawai },
-      data: { status: PegawaiStatus.CUTI },
-    });
+    revalidatePath("/dashboard/persetujuan-cuti");
+
+    return { success: true, message: "Cuti berhasil disetujui" };
   } catch (error) {
     console.log(error);
+    return { success: true, message: "Cuti gagal disetujui" };
   }
-
-  revalidatePath("/dashboard/persetujuan-cuti");
-  redirect("/dashboard/persetujuan-cuti");
 };
 
-export const rejectCutiById = async (id: string) => {
+export const rejectCutiById = async (cutiId: string, data: CutiType) => {
   try {
     await prisma.cuti.update({
-      where: { id_cuti: id },
-      data: { status: CutiStatus.DITOLAK },
+      where: { id_cuti: cutiId },
+      data: {
+        catatan: data.catatan,
+        status: CutiStatus.DITOLAK,
+      },
     });
+
+    revalidatePath("/dashboard/persetujuan-cuti");
+
+    return { success: true, message: "Cuti berhasil ditolak" };
   } catch (error) {
     console.log(error);
+    return { success: true, message: "Cuti gagal ditolak" };
   }
-
-  revalidatePath("/dashboard/persetujuan-cuti");
-  redirect("/dashboard/persetujuan-cuti");
 };
