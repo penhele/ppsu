@@ -10,12 +10,11 @@ export const getUserByEmail = async (email: string) => {
 
 export const getUserByRole = async (role: Role) => {
   try {
-    return await prisma.user.findMany({
+    const result = await prisma.user.findMany({
       where: { role },
-      include: {
-        pegawai: true,
-      },
     });
+
+    return result;
   } catch (error) {
     console.error("Error fetching user by id:", error);
   }

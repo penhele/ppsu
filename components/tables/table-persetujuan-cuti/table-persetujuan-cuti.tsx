@@ -10,7 +10,7 @@ const TablePersetujuanCuti = async () => {
 
   return (
     <div className="">
-      <DataTable columns={columns} data={cuti} />
+      <DataTable columns={columns} data={cuti} dataTablePagination />
     </div>
   );
 };

@@ -1,10 +1,9 @@
 import { getPegawai } from "@/lib/data/pegawai";
 import { DataTable } from "@/components/tables/data-table";
-import { columns } from "@/components/tables/table-pegawai/column";
+import { columns } from "@/components/tables/table-daftar-pegawai/column";
 
 const TableDaftarPegawai = async () => {
   const pegawai = await getPegawai();
-  if (!pegawai) return <p>Tidak ada data</p>;
 
   return (
     <div className="">
@@ -13,6 +12,9 @@ const TableDaftarPegawai = async () => {
         data={pegawai}
         tableSearchInput
         tableColumnVisibility
+        createUser
+        createUserUrl="/dashboard/data-pegawai/create"
+        dataTablePagination
       />
     </div>
   );

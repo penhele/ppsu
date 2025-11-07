@@ -1,6 +1,6 @@
 import PengaturanForm from "@/components/forms/pengaturan-form";
 import SectionHeader from "@/components/section-header";
-import TableDaftarAdmin from "@/components/tables/table-daftar-admin";
+import TableDaftarAdmin from "@/components/tables/table-daftar-admin/table-daftar-admin";
 
 const Pengaturan = () => {
   return (

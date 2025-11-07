@@ -12,7 +12,7 @@ const Tableheader = ({
   return (
     <div className="flex flex-col gap-0.5">
       <div className="flex gap-2 items-center">
-        {Icon ? <Icon className="size-5" /> : null}
+        {Icon && <Icon className="size-5" />}
         <h1 className="font-medium text-base">{title}</h1>
       </div>
 
