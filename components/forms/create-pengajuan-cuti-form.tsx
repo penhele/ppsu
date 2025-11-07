@@ -54,10 +54,10 @@ const CreatePengajuanCutiForm = ({ session }: { session: any }) => {
       const result = await saveCuti(data);
 
       if (result.success) {
-        toast.success("Pengajuan cuti berhasil diajukan");
+        toast.success(result.message);
         route.push("/");
       } else {
-        toast.error("Terjadi kesalahan saat mengajukan cuti");
+        toast.error(result.message);
       }
     });
   }
