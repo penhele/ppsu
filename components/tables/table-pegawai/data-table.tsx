@@ -6,6 +6,7 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   SortingState,
   useReactTable,
@@ -35,6 +36,7 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { Search } from "lucide-react";
+import { DataTablePagination } from "./data-table-pagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -53,6 +55,7 @@ export function DataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
@@ -114,7 +117,7 @@ export function DataTable<TData, TValue>({
                 .map((column) => {
                   return (
                     <DropdownMenuVisibilityItem
-                      key={column.id} 
+                      key={column.id}
                       checked={column.getIsVisible()}
                       onSelect={(e) => e.preventDefault()}
                       onCheckedChange={(value) =>
@@ -132,9 +135,9 @@ export function DataTable<TData, TValue>({
         </div>
       </div>
 
-      <div className="w-full overflow-x-auto">
+      <div className="w-full overflow-x-auto border rounded-lg">
         <Table>
-          <TableHeader className="">
+          <TableHeader className="bg-gray-200">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -182,6 +185,8 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
+
+      <DataTablePagination table={table} />
     </div>
   );
 }

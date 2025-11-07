@@ -23,13 +23,13 @@ export const saveCuti = async (data: CutiType) => {
       },
     });
 
-    console.log(data);
+    revalidatePath("/");
+
+    return { success: true, message: "Cuti berhasil diajukan" };
   } catch (error) {
     console.log(error);
+    return { success: false, message: "Cuti gagal diajukan" };
   }
-
-  revalidatePath("/");
-  redirect("/");
 };
 
 export const approveCutiById = async (cutiId: string, data: CutiType) => {
