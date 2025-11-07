@@ -9,7 +9,7 @@ import {
 import { getUserByRole } from "@/lib/data/user";
 import { Role } from "@prisma/client";
 import CreateAdminDialog from "@/components/forms/create-admin-dialog";
-import Tableheader from "../table-header";
+import Tableheader from "@/components/table-header";
 
 const TableDaftarAdmin = async () => {
   const user = await getUserByRole(Role.ADMIN);

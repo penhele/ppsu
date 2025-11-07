@@ -22,9 +22,9 @@ import {
 import { useEffect, useState } from "react";
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
+  DropdownMenuVisibilityItem,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import Tableheader from "@/components/table-header";
@@ -113,15 +113,16 @@ export function DataTable<TData, TValue>({
                 .filter((column) => column.getCanHide())
                 .map((column) => {
                   return (
-                    <DropdownMenuCheckboxItem
-                      key={column.id}
+                    <DropdownMenuVisibilityItem
+                      key={column.id} 
                       checked={column.getIsVisible()}
+                      onSelect={(e) => e.preventDefault()}
                       onCheckedChange={(value) =>
                         column.toggleVisibility(!!value)
                       }
                     >
                       {column.id}
-                    </DropdownMenuCheckboxItem>
+                    </DropdownMenuVisibilityItem>
                   );
                 })}
             </DropdownMenuContent>
@@ -143,7 +144,7 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext(),
+                            header.getContext()
                           )}
                     </TableHead>
                   );
@@ -162,7 +163,7 @@ export function DataTable<TData, TValue>({
                     <TableCell key={cell.id} className="whitespace-nowrap">
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext(),
+                        cell.getContext()
                       )}
                     </TableCell>
                   ))}

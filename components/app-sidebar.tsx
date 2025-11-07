@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
 const path = "dashboard";
 

@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import InputTextController from "@/components/inputs/input-text-controller";
 import { Button } from "@/components/ui/button";
-import { Spinner } from "../ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
 
 const CreateAdminDialogForm = () => {
   const [isPending, startTransition] = useTransition();

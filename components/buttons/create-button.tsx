@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { UserPlus } from "lucide-react";
 
 const CreateButton = ({ href }: { href: string }) => {

@@ -12,7 +12,7 @@ import { getTextWithoutUnderscore } from "@/lib/utils";
 import { toast } from "sonner";
 import clsx from "clsx";
 import { savePegawai } from "@/lib/action/pegawai";
-import { Spinner } from "../ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
 
 const CreateDaftarPegawaiForm = () => {
   const [isPending, startTransition] = useTransition();

@@ -1,6 +1,4 @@
 import { auth } from "@/auth";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 const Home = async () => {
   const session = await auth();

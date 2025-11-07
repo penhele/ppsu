@@ -6,7 +6,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "../ui/navigation-menu";
+} from "@/components/ui/navigation-menu";
 
 const Navbar = () => {
   return (
