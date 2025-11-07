@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import InputTextController from "@/components/inputs/input-text-controller";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 
 const CreateAdminDialogForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -21,14 +22,13 @@ const CreateAdminDialogForm = () => {
   });
 
   function onSubmit(data: AdminType) {
-    console.log("submit data", data);
-
     startTransition(async () => {
-      try {
-        await saveAdmin(data);
-        toast.success("Data admin berhasil disimpan!");
-      } catch (error) {
-        toast.error("Gagal menyimpan data admin.");
+      const result = await saveAdmin(data);
+
+      if (result.success) {
+        toast.success(result.message);
+      } else {
+        toast.error(result.message);
       }
     });
   }
@@ -47,7 +47,16 @@ const CreateAdminDialogForm = () => {
         isDisabled
       />
 
-      <Button>{isPending ? "Menyimpan..." : "Simpan"}</Button>
+      <Button>
+        {isPending ? (
+          <div className="flex gap-2 items-center">
+            <Spinner />
+            <span>Menyimpan...</span>
+          </div>
+        ) : (
+          "Simpan"
+        )}
+      </Button>
     </form>
   );
 };

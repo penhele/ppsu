@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { use, useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { CutiSchema, CutiType } from "@/lib/zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,9 +13,12 @@ import { Button } from "@/components/ui/button";
 import InputRangeDateController from "@/components/inputs/input-range-date-controller";
 import InputText from "@/components/inputs/input-text";
 import { saveCuti } from "@/lib/action/cuti";
+import { Spinner } from "@/components/ui/spinner";
+import { useRouter } from "next/navigation";
 
 const CreatePengajuanCutiForm = ({ session }: { session: any }) => {
   const [isPending, startTransition] = useTransition();
+  const route = useRouter();
 
   const [tipeCutiList, setTipeCutiList] = useState<
     { label: string; value: string }[]
@@ -48,10 +51,12 @@ const CreatePengajuanCutiForm = ({ session }: { session: any }) => {
     console.log(data);
 
     startTransition(async () => {
-      try {
-        await saveCuti(data);
+      const result = await saveCuti(data);
+
+      if (result.success) {
         toast.success("Pengajuan cuti berhasil diajukan");
-      } catch (error) {
+        route.push("/");
+      } else {
         toast.error("Terjadi kesalahan saat mengajukan cuti");
       }
     });
@@ -89,7 +94,16 @@ const CreatePengajuanCutiForm = ({ session }: { session: any }) => {
         control={form.control}
       />
 
-      <Button>{isPending ? "Mengajukan..." : "Ajukan Cuti"}</Button>
+      <Button>
+        {isPending ? (
+          <div className="flex gap-2 items-center">
+            <Spinner />
+            <span>Mengajukan...</span>
+          </div>
+        ) : (
+          "Ajukan Cuti"
+        )}
+      </Button>
     </form>
   );
 };

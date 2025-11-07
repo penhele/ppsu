@@ -36,16 +36,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.role = user.role;
-        token.email = user.email; 
+        token.email = user.email;
       }
       return token;
     },
 
     async session({ session, token }) {
-      if (!token?.email) return null;
+      if (!token?.email) return session;
 
       const user = await getUserByEmail(token.email);
-      if (!user) return null as any;
+      if (!user) return session;
 
       session.user.id = user.id;
       session.user.email = user.email;

@@ -12,9 +12,12 @@ import { useForm } from "react-hook-form";
 import { PegawaiSchema, PegawaiType } from "@/lib/zod";
 import { toast } from "sonner";
 import { updatePegawai } from "@/lib/action/pegawai";
+import { Spinner } from "@/components/ui/spinner";
+import { useRouter } from "next/navigation";
 
 const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   const form = useForm<PegawaiType>({
     resolver: zodResolver(PegawaiSchema),
@@ -49,14 +52,14 @@ const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
   >([]);
 
   function onSubmit(data: PegawaiType) {
-    console.log(data);
-
     startTransition(async () => {
-      try {
-        await updatePegawai(pegawai.id_pegawai, data);
-        toast.success("Data pegawai berhasil disimpan!");
-      } catch (error) {
-        toast.error("Gagal menyimpan data pegawai.");
+      const result = await updatePegawai(pegawai.id_pegawai, data);
+
+      if (result?.success) {
+        toast.success(result.message);
+        router.push("/dashboard/data-pegawai");
+      } else {
+        toast.error(result.message);
       }
     });
   }
@@ -216,7 +219,14 @@ const EditDaftarPegawaiForm = ({ pegawai }: { pegawai: PegawaiProps }) => {
           "curp-progress": isPending,
         })}
       >
-        {isPending ? "Mempebarui..." : "Perbarui"}
+        {isPending ? (
+          <div className="flex gap-2 items-center">
+            <Spinner />
+            <span>Memperbarui...</span>
+          </div>
+        ) : (
+          "Perbarui"
+        )}
       </Button>
     </form>
   );

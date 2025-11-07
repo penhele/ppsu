@@ -2,8 +2,8 @@ import {
   ChartArea,
   CheckCircle,
   ClipboardList,
-  FileText,
   Home,
+  LogOut,
   Settings,
   Users,
 } from "lucide-react";
@@ -11,13 +11,17 @@ import {
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const path = "dashboard";
 
@@ -36,10 +40,22 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar variant="floating" collapsible="icon">
+    <Sidebar>
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <a href="#">
+                <span className="text-base font-semibold">PPSU</span>
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Pegawai</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -56,6 +72,28 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      <SidebarFooter>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link href={"/api/auth/signout"}>
+                    <Button
+                      variant={"link"}
+                      className="w-full flex items-center justify-start gap-4"
+                    >
+                      <LogOut />
+                      <span>Sign Out</span>
+                    </Button>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarFooter>
     </Sidebar>
   );
 }

@@ -1,5 +1,5 @@
 import PengaturanForm from "@/components/forms/pengaturan-form";
-import SectionHeader from "@/components/header";
+import SectionHeader from "@/components/section-header";
 import TableDaftarAdmin from "@/components/tables/table-daftar-admin";
 
 const Pengaturan = () => {
@@ -10,9 +10,9 @@ const Pengaturan = () => {
         description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, officiis."
       />
 
-      <TableDaftarAdmin />
-
       <PengaturanForm />
+
+      <TableDaftarAdmin />
     </div>
   );
 };

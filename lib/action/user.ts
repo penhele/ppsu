@@ -4,7 +4,6 @@ import { Role } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { hashPassword } from "@/lib/utils/password";
 import { AdminType } from "@/lib/zod";
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 export const saveAdmin = async (data: AdminType) => {
@@ -18,10 +17,12 @@ export const saveAdmin = async (data: AdminType) => {
         role: Role.ADMIN,
       },
     });
+
+    revalidatePath("/dashboard/pengaturan");
+
+    return { success: true, message: "Data admin berhasil disimpan!" };
   } catch (error) {
     console.log(error);
+    return { success: false, message: "Gagal menyimpan data admin." };
   }
-
-  revalidatePath("/dashboard/pengaturan");
-  redirect("/dashboard/pengaturan");
 };

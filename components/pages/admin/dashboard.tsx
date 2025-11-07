@@ -1,7 +1,6 @@
-import SectionHeader from "@/components/header";
+import SectionHeader from "@/components/section-header";
 import Permohonan from "@/components/permohonan";
 import Overview from "@/components/overview";
-import CutiTerbanyak from "@/components/cuti-terbanyak";
 
 const Dashboard = () => {
   return (
@@ -11,14 +10,9 @@ const Dashboard = () => {
         description="Selamat datang di sistem manajemen cuti pegawai"
       />
 
-      <div className="">
-        <Overview />
-      </div>
+      <Overview />
 
-      <div className="grid grid-cols-3 gap-4">
-        <Permohonan />
-        <CutiTerbanyak />
-      </div>
+      <Permohonan />
     </div>
   );
 };

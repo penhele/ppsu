@@ -1,12 +1,12 @@
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
-import CreateAdminDialogForm from "./create-admin-dialog-form";
+} from "@/components/ui/dialog";
+import CreateAdminDialogForm from "@/components/forms/create-admin-dialog-form";
 
 const CreateAdminDialog = () => {
   return (

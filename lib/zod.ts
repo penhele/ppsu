@@ -48,6 +48,7 @@ export const CutiSchema = object({
   tanggal_mulai: string().min(1, "Tanggal mulai wajib diisi"),
   tanggal_selesai: string(),
   alasan: string().min(1, "Alasan wajib diisi"),
+  catatan: string().optional(),
 });
 
 export type CutiType = z.infer<typeof CutiSchema>;

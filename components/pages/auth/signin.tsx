@@ -1,5 +1,4 @@
 import SigninForm from "@/components/forms/singin-form";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -25,7 +24,13 @@ const Signin = () => {
       </CardContent>
 
       <CardFooter className="flex flex-col items-start">
-        <p>akun : stephen@ppsu.com (admin)</p>
+        <p>akun : admin@ppsu.com (admin)</p>
+        <p>akun : ahmad@ppsu.com (pegawai)</p>
+        <p>akun : alya@ppsu.com (pegawai)</p>
+        <p>akun : regina@ppsu.com (pegawai)</p>
+        <p>akun : prabu@ppsu.com (pegawai)</p>
+        <p>akun : hafizh@ppsu.com (pegawai)</p>
+        <p>akun : stephen@ppsu.com (pegawai)</p>
         <p>password : ppsu1234</p>
       </CardFooter>
     </Card>
