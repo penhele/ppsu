@@ -1,42 +1,41 @@
 import { DashboardCard } from "@/components/dashboardCard";
 import { Calendar, Check, Clock, TrendingUp } from "lucide-react";
 
-
 const DashboardCardPegawai = () => {
-    const cardData = [
-  {
-    title: "Sisa Cuti Tahunan",
-    value: 8,
-    description: "Hari",
-    icon: Calendar,
-    iconBgColor: "bg-blue-100", // Latar belakang biru muda
-    iconColor: "text-blue-600", // Ikon biru
-  },
-  {
-    title: "Cuti Diambil",
-    value: 4,
-    description: "Tahun ini",
-    icon: Check,
-    iconBgColor: "bg-green-100", // Latar belakang hijau muda
-    iconColor: "text-green-600", // Ikon hijau
-  },
-  {
-    title: "Pengajuan Pending",
-    value: 1,
-    description: "Menunggu persetujuan",
-    icon: Clock,
-    iconBgColor: "bg-orange-100", // Latar belakang oranye muda
-    iconColor: "text-orange-600", // Ikon oranye
-  },
-  {
-    title: "Total Pengajuan",
-    value: 7,
-    description: "Tahun ini",
-    icon: TrendingUp,
-    iconBgColor: "bg-purple-100", // Latar belakang ungu muda
-    iconColor: "text-purple-600", // Ikon ungu
-  },
-];
+  const cardData = [
+    {
+      title: "Sisa Cuti Tahunan",
+      value: 8,
+      description: "Hari",
+      icon: Calendar,
+      iconBgColor: "bg-blue-100", // Latar belakang biru muda
+      iconColor: "text-blue-600", // Ikon biru
+    },
+    {
+      title: "Cuti Diambil",
+      value: 4,
+      description: "Tahun ini",
+      icon: Check,
+      iconBgColor: "bg-green-100", // Latar belakang hijau muda
+      iconColor: "text-green-600", // Ikon hijau
+    },
+    {
+      title: "Pengajuan Pending",
+      value: 1,
+      description: "Menunggu persetujuan",
+      icon: Clock,
+      iconBgColor: "bg-orange-100", // Latar belakang oranye muda
+      iconColor: "text-orange-600", // Ikon oranye
+    },
+    {
+      title: "Total Pengajuan",
+      value: 7,
+      description: "Tahun ini",
+      icon: TrendingUp,
+      iconBgColor: "bg-purple-100", // Latar belakang ungu muda
+      iconColor: "text-purple-600", // Ikon ungu
+    },
+  ];
   return (
     <div className="p-6 bg-gray-50">
       {/* Header Dashboard */}

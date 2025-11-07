@@ -1,7 +1,6 @@
 "use client";
 
 import { formatDate, getTextWithoutUnderscore } from "@/lib/utils";
-import { JenisPekerjaan, PegawaiStatus, Pendidikan } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import StatusLabel from "@/components/status-label";
 import { UpdateButton } from "@/components/buttons/update-button";
@@ -9,32 +8,9 @@ import { DeleteButton } from "@/components/buttons/delete-button";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
+import { PegawaiProps } from "@/types/pegawai";
 
-export type Pegawai = {
-  id: string;
-  nama: string;
-  email: string;
-  tempat_lahir: string;
-  tanggal_lahir: Date;
-  alamat: string;
-  rt: string;
-  rw: string;
-  kelurahan: string;
-  kecamatan: string;
-  kota: string;
-  provinsi: string;
-  no_telepon: string;
-  no_ktp: string;
-  npwp: string;
-  no_rekening: string;
-  bank_dki_cabang: string;
-  status: PegawaiStatus;
-  pendidikan: Pendidikan;
-  jenis_pekerjaan: JenisPekerjaan;
-  total_cuti_disetujui: number;
-};
-
-export const columns: ColumnDef<Pegawai>[] = [
+export const columns: ColumnDef<PegawaiProps>[] = [
   {
     accessorKey: "nama",
     header: ({ column }) => {
@@ -172,8 +148,8 @@ export const columns: ColumnDef<Pegawai>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex gap-2">
-          <UpdateButton id={row.original.id} />
-          <DeleteButton id={row.original.id} />
+          <UpdateButton id={row.original.id_pegawai} />
+          <DeleteButton id={row.original.id_pegawai} />
         </div>
       );
     },

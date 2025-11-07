@@ -12,7 +12,7 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupContent,  
+  SidebarGroupContent,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -36,7 +36,7 @@ const AppSidebarPegawai = () => {
     <Sidebar variant="floating" collapsible="icon">
       <SidebarHeader className="p-4">
         <div className="flex items-center space-x-2">
-          <div className="bg-blue-600 p-2 rounded-lg text-white">            
+          <div className="bg-blue-600 p-2 rounded-lg text-white">
             <FileText />
           </div>
 

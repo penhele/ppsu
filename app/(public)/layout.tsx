@@ -1,4 +1,3 @@
-
 import AppSidebarPegawai from "@/components/app-sidebar-pegawai";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
@@ -15,6 +14,5 @@ export default function PublicLayout({
         {children}
       </main>
     </SidebarProvider>
-      
   );
 }

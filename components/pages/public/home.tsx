@@ -10,7 +10,7 @@ const Home = async () => {
   return (
     <div>
       <DashboardCardPegawai />
-      <InformasiCutiPegawai/>
+      <InformasiCutiPegawai />
     </div>
   );
 };
