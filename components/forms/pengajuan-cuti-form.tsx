@@ -6,7 +6,7 @@ const PengajuanCutiForm = async () => {
   if (!session) return null;
 
   return (
-    <div className="flex flex-col gap-8 p-4 border rounded-lg ">
+    <div className="flex flex-col gap-8 p-4 mt-[50px] border rounded-lg ">
       <h1 className="text-xl font-medium">Formulir Pengajuan</h1>
 
       <CreatePengajuanCutiForm session={session} />
