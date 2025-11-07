@@ -82,58 +82,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="border p-4 rounded-xl flex flex-col gap-3 w-full bg-white">
-      <div className="flex justify-between items-center">
-        <Tableheader title="Daftar Pegawai" description="Kelola pegawai PPSU" />
-
-        <div className="flex items-center gap-4">
-          <div className="flex items-center py-4">
-            <InputGroup>
-              <InputGroupInput
-                placeholder="Filter nama..."
-                value={
-                  (table.getColumn("nama")?.getFilterValue() as string) ?? ""
-                }
-                onChange={(event) =>
-                  table.getColumn("nama")?.setFilterValue(event.target.value)
-                }
-                className="max-w-sm"
-              />
-              <InputGroupAddon>
-                <Search />
-              </InputGroupAddon>
-            </InputGroup>
-          </div>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="ml-auto text-gray-400">
-                Columns
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {table
-                .getAllColumns()
-                .filter((column) => column.getCanHide())
-                .map((column) => {
-                  return (
-                    <DropdownMenuVisibilityItem
-                      key={column.id}
-                      checked={column.getIsVisible()}
-                      onSelect={(e) => e.preventDefault()}
-                      onCheckedChange={(value) =>
-                        column.toggleVisibility(!!value)
-                      }
-                    >
-                      {column.id}
-                    </DropdownMenuVisibilityItem>
-                  );
-                })}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <CreateButton href={"/dashboard/data-pegawai/create"} />
-        </div>
-      </div>
+      <Tableheader title="Daftar Pegawai" description="Kelola pegawai PPSU" />
 
       <div className="w-full overflow-x-auto border rounded-lg">
         <Table>
