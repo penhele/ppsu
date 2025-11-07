@@ -35,7 +35,7 @@ const TableRiwayatCuti = async () => {
           <StatusSelect />
         </div> */}
       </div>
-      <Table className="bg-gray-300">
+      <Table>
         <TableHeader>
           <TableRow>
             <TableHead className="whitespace-nowrap">Nama</TableHead>
