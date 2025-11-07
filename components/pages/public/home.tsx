@@ -1,5 +1,7 @@
 import { auth } from "@/auth";
-import DashboardCardPegawai from "./dashboard-card-pegawai";
+import DashboardCardPegawai from "@/components/dashboard-card-pegawai";
+
+import InformasiCutiPegawai from "@/components/informasi-cuti-pegawai";
 
 const Home = async () => {
   const session = await auth();
@@ -8,6 +10,7 @@ const Home = async () => {
   return (
     <div>
       <DashboardCardPegawai />
+      <InformasiCutiPegawai/>
     </div>
   );
 };
