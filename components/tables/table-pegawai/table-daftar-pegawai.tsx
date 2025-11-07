@@ -1,5 +1,5 @@
 import { getPegawai } from "@/lib/data/pegawai";
-import { DataTable } from "@/components/tables/table-pegawai/data-table";
+import { DataTable } from "@/components/tables/data-table";
 import { columns } from "@/components/tables/table-pegawai/column";
 
 const TableDaftarPegawai = async () => {
@@ -8,7 +8,12 @@ const TableDaftarPegawai = async () => {
 
   return (
     <div className="">
-      <DataTable columns={columns} data={pegawai} />
+      <DataTable
+        columns={columns}
+        data={pegawai}
+        tableSearchInput
+        tableColumnVisibility
+      />
     </div>
   );
 };

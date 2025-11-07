@@ -21,17 +21,31 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useEffect, useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuVisibilityItem,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 import Tableheader from "@/components/table-header";
-import { DataTablePagination } from "./data-table-pagination";
+import CreateButton from "@/components/buttons/create-button";
+import { DataTablePagination } from "../filters/data-table-pagination";
+import TableSearchInput from "@/components/filters/table-search-input";
+import TableColumnVisibility from "../filters/table-column-visibility";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  tableSearchInput?: boolean;
+  tableColumnVisibility?: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  tableSearchInput = false,
+  tableColumnVisibility = false,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -68,7 +82,25 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="border p-4 rounded-xl flex flex-col gap-3 w-full bg-white">
-      <Tableheader title="Daftar Pegawai" description="Kelola pegawai PPSU" />
+      <div className="flex justify-between items-center">
+        <Tableheader title="Daftar Pegawai" description="Kelola pegawai PPSU" />
+
+        <div className="flex items-center gap-4">
+          <div className="flex items-center py-4">
+            {tableSearchInput && (
+              <TableSearchInput
+                table={table}
+                columnId="nama"
+                placeholder="Cari nama..."
+              />
+            )}
+          </div>
+
+          {tableColumnVisibility && <TableColumnVisibility table={table} />}
+
+          <CreateButton href={"/dashboard/data-pegawai/create"} />
+        </div>
+      </div>
 
       <div className="w-full overflow-x-auto border rounded-lg">
         <Table>
