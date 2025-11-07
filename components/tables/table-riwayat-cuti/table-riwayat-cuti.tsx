@@ -1,5 +1,5 @@
 import { getCutiByStatus } from "@/lib/data/cuti";
-import { DataTable } from "@/components/tables/table-riwayat-cuti/data-table";
+import { DataTable } from "@/components/tables/data-table";
 import { CutiStatus } from "@prisma/client";
 import { columns } from "@/components/tables/table-riwayat-cuti/column";
 

@@ -21,22 +21,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useEffect, useState } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-  DropdownMenuVisibilityItem,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
 import Tableheader from "@/components/table-header";
-import CreateButton from "@/components/buttons/create-button";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/components/ui/input-group";
-import { Search } from "lucide-react";
-import { DataTablePagination } from "../data-table-pagination";
+import { DataTablePagination } from "./data-table-pagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
