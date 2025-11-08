@@ -21,11 +21,18 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useEffect, useState } from "react";
-import Tableheader from "@/components/table-header";
 import CreateButton from "@/components/buttons/create-button";
 import { DataTablePagination } from "@/components/filters/data-table-pagination";
 import TableSearchInput from "@/components/filters/table-search-input";
 import TableColumnVisibility from "@/components/filters/table-column-visibility";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -84,79 +91,86 @@ export function DataTable<TData, TValue>({
   }, [columnVisibility]);
 
   return (
-    <div className="border p-4 rounded-xl flex flex-col gap-3 w-full bg-white">
-      <div className="flex justify-between items-center">
-        <Tableheader title={title} description={description} />
+    <Card>
+      <CardHeader className="flex justify-between items-start">
+        <div className="flex flex-col gap-2">
+          <CardTitle>{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
+        </div>
 
-        <div className="flex items-center gap-4">
-          <div className="flex items-center py-4">
-            {tableSearchInput && (
-              <TableSearchInput
-                table={table}
-                columnId="nama"
-                placeholder="Cari nama..."
-              />
-            )}
-          </div>
+        <div className="flex gap-4">
+          {tableSearchInput && (
+            <TableSearchInput
+              table={table}
+              columnId="nama"
+              placeholder="Cari nama..."
+            />
+          )}
 
           {tableColumnVisibility && <TableColumnVisibility table={table} />}
 
           {createUser && <CreateButton href={createUserUrl ?? ""} />}
         </div>
-      </div>
+      </CardHeader>
 
-      <div className="w-full overflow-x-auto border rounded-lg">
-        <Table>
-          <TableHeader className="bg-gray-100">
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id} className="whitespace-nowrap">
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
-                    </TableHead>
-                  );
-                })}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="whitespace-nowrap">
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </TableCell>
-                  ))}
+      <CardContent>
+        <div className="w-full overflow-x-auto border rounded-lg">
+          <Table>
+            <TableHeader className="bg-gray-100">
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {
+                    return (
+                      <TableHead key={header.id} className="whitespace-nowrap">
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                      </TableHead>
+                    );
+                  })}
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center text-gray-500"
-                >
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id} className="whitespace-nowrap">
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center text-gray-500"
+                  >
+                    No results.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      </CardContent>
 
-      {dataTablePagination && <DataTablePagination table={table} />}
-    </div>
+      {dataTablePagination && (
+        <CardFooter>
+          <DataTablePagination table={table} />
+        </CardFooter>
+      )}
+    </Card>
   );
 }

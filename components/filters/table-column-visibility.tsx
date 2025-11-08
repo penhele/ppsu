@@ -3,7 +3,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
 } from "@radix-ui/react-dropdown-menu";
-import { DropdownMenuVisibilityItem } from "../ui/dropdown-menu";
+import { DropdownMenuVisibilityItem } from "@/components/ui/dropdown-menu";
 import { Table } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 

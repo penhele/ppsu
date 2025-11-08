@@ -40,10 +40,10 @@ const DetailCutiDialog = ({
 
             <InputDisplayed
               title="Durasi"
-              value={getDurationDays(
+              value={`${getDurationDays(
                 data.tanggal_mulai,
                 data.tanggal_selesai,
-              ).toString()}
+              ).toString()} hari`}
             />
           </div>
         </div>

@@ -11,7 +11,13 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Tableheader from "@/components/table-header";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
@@ -40,10 +46,10 @@ export function ChartAreaInteractive() {
   return (
     <Card>
       <CardHeader className="flex justify-between">
-        <Tableheader
-          title={`Riwayat cuti dalam ${days} hari kebelakang`}
-          description="Chart riwayat cuti"
-        />
+        <div className="flex flex-col gap-2 ">
+          <CardTitle>{`Riwayat cuti dalam ${days} hari kebelakang`}</CardTitle>
+          <CardDescription>Chart riwayat cuti</CardDescription>
+        </div>
 
         <ToggleGroup type="single">
           <ToggleGroupItem
