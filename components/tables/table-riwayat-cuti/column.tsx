@@ -16,7 +16,20 @@ export const columns: ColumnDef<CutiProps>[] = [
     header: "Jenis Pekerjaan",
     cell: ({ row }) => {
       return getTextWithoutUnderscore(
-        row.original.Pegawai?.jenis_pekerjaan ?? "",
+        row.original.Pegawai?.jenis_pekerjaan ?? ""
+      );
+    },
+  },
+  {
+    header: "Tanggal",
+    cell: ({ row }) => {
+      return (
+        <div className="flex flex-col font-medium">
+          <span>{formatDate(row.original.tanggal_mulai)}</span>
+          <span className="text-xs text-gray-500">
+            s.d. {formatDate(row.original.tanggal_selesai)}
+          </span>
+        </div>
       );
     },
   },

@@ -27,7 +27,10 @@ export const getPegawai = async () => {
       },
     });
 
-    return result;
+    return result.map((p) => ({
+      ...p,
+      total_cuti_disetujui: p._count.cuti,
+    }));
   } catch (error) {
     console.error("Error fetching pegawai:", error);
     return [];
