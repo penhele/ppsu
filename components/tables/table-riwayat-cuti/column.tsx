@@ -16,7 +16,7 @@ export const columns: ColumnDef<CutiProps>[] = [
     header: "Jenis Pekerjaan",
     cell: ({ row }) => {
       return getTextWithoutUnderscore(
-        row.original.Pegawai?.jenis_pekerjaan ?? ""
+        row.original.Pegawai?.jenis_pekerjaan ?? "",
       );
     },
   },

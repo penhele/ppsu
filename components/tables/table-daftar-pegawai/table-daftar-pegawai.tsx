@@ -10,6 +10,8 @@ const TableDaftarPegawai = async () => {
       <DataTable
         columns={columns}
         data={pegawai}
+        title="Tabel Daftar Pegawai"
+        description="Lorem ipsum dolor sit amet."
         tableSearchInput
         tableColumnVisibility
         createUser

@@ -1,7 +1,7 @@
 import { getCutiByStatus } from "@/lib/data/cuti";
 import { CutiStatus } from "@prisma/client";
 import { columns } from "@/components/tables/table-riwayat-cuti/column";
-import { DataTable } from "../data-table";
+import { DataTable } from "@/components/tables/data-table";
 
 const TableRiwayatCuti = async () => {
   const cuti = await getCutiByStatus({
@@ -10,7 +10,13 @@ const TableRiwayatCuti = async () => {
 
   return (
     <div className="">
-      <DataTable columns={columns} data={cuti} dataTablePagination />
+      <DataTable
+        title="Tabel Riwayat Cuti"
+        description="Lorem ipsum dolor sit amet."
+        columns={columns}
+        data={cuti}
+        dataTablePagination
+      />
     </div>
   );
 };

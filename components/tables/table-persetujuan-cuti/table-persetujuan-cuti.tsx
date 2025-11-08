@@ -10,7 +10,13 @@ const TablePersetujuanCuti = async () => {
 
   return (
     <div className="">
-      <DataTable columns={columns} data={cuti} dataTablePagination />
+      <DataTable
+        title="Tabel Persetujuan Cuti"
+        description="Lorem ipsum dolor sit amet."
+        columns={columns}
+        data={cuti}
+        dataTablePagination
+      />
     </div>
   );
 };

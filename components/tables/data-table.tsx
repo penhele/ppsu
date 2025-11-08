@@ -30,6 +30,8 @@ import TableColumnVisibility from "@/components/filters/table-column-visibility"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  title: string;
+  description: string;
   tableSearchInput?: boolean;
   tableColumnVisibility?: boolean;
   createUser?: boolean;
@@ -40,6 +42,8 @@ interface DataTableProps<TData, TValue> {
 export function DataTable<TData, TValue>({
   columns,
   data,
+  title,
+  description,
   tableSearchInput = false,
   tableColumnVisibility = false,
   createUser = false,
@@ -82,7 +86,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className="border p-4 rounded-xl flex flex-col gap-3 w-full bg-white">
       <div className="flex justify-between items-center">
-        <Tableheader title="Daftar Admin" description="Kelola pegawai PPSU" />
+        <Tableheader title={title} description={description} />
 
         <div className="flex items-center gap-4">
           <div className="flex items-center py-4">
