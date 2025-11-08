@@ -12,19 +12,10 @@ import {
 } from "@/components/ui/chart";
 import { useEffect, useState } from "react";
 
-const chartData = [
-  { date: "January", total: 80 },
-  { date: "February", total: 200 },
-  { date: "March", total: 120 },
-  { date: "April", total: 190 },
-  { date: "May", total: 130 },
-  { date: "June", total: 140 },
-];
-
 const chartConfig = {
   total: {
     label: "Total",
-    color: "#2563eb",
+    color: "var(--chart-1)",
   },
 } satisfies ChartConfig;
 
@@ -48,20 +39,6 @@ export function Chart() {
       className="aspect-auto h-[250px] w-full"
     >
       <AreaChart data={chartData}>
-        <defs>
-          <linearGradient id="fillTotal" x1="0" y1="0" x2="0" y2="1">
-            <stop
-              offset="5%"
-              stopColor="var(--color-total)"
-              stopOpacity={0.8}
-            />
-            <stop
-              offset="95%"
-              stopColor="var(--color-total)"
-              stopOpacity={0.1}
-            />
-          </linearGradient>
-        </defs>
         <CartesianGrid vertical={false} />
         <XAxis
           dataKey="date"
@@ -69,7 +46,7 @@ export function Chart() {
           tickMargin={10}
           axisLine={false}
         />
-        <ChartTooltip content={<ChartTooltipContent indicator="dot" />} />
+        <ChartTooltip content={<ChartTooltipContent indicator="dashed" />} />
         <ChartLegend content={<ChartLegendContent />} />
         <Area
           dataKey="total"

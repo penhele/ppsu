@@ -1,5 +1,5 @@
 import DaftarPegawaiForm from "@/components/forms/daftar-pegawai-form";
-import SkeletonDaftarPegawaiForm from "@/components/skeleton/skeleton-daftar-pegawai-form";
+import SkeletonDaftarPegawaiForm from "@/components/skeletons/skeleton-daftar-pegawai-form";
 import { Suspense } from "react";
 
 export const metadata = {

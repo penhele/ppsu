@@ -60,7 +60,7 @@ const DetailCutiDialogForm = ({
     <form onSubmit={form.handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-2">
         <InputTextareaController
-          title={`Pesan untuk (opsional)`}
+          title={`Pesan untuk ${cuti.Pegawai?.nama} (opsional)`}
           name="catatan"
           control={form.control}
           placeholder="Masukkan catatan jika diperlukan"

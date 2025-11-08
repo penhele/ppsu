@@ -1,6 +1,6 @@
 "use client";
 
-import { ViewButton } from "@/components/buttons/view-button";
+import ViewButton from "@/components/buttons/view-button";
 import StatusLabel from "@/components/status-label";
 import { formatDate, getTextWithoutUnderscore } from "@/lib/utils";
 import { CutiProps } from "@/types/cuti";
@@ -54,11 +54,11 @@ export const columns: ColumnDef<CutiProps>[] = [
       return formatDate(row.original.updated_at);
     },
   },
-  // {
-  //   id: "actions",
-  //   header: "Aksi",
-  //   cell: ({ row }) => {
-  //     return <ViewButton id={row.original.id_pegawai} />;
-  //   },
-  // },
+  {
+    id: "actions",
+    header: "Aksi",
+    cell: ({ row }) => {
+      return <ViewButton data={row.original} />;
+    },
+  },
 ];

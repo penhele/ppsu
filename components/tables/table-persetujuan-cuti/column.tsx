@@ -58,16 +58,16 @@ export const columns: ColumnDef<CutiProps>[] = [
       return formatDate(row.original.created_at);
     },
   },
-  //   {
-  //     id: "actions",
-  //     header: "Aksi",
-  //     cell: ({ row }) => {
-  //       return (
-  //         <div className="flex gap-2">
-  //           <AcceptButton id={row.original.id_pegawai} />
-  //           <RejectButton id={row.original.id_pegawai} />
-  //         </div>
-  //       );
-  //     },
-  //   },
+  {
+    id: "actions",
+    header: "Aksi",
+    cell: ({ row }) => {
+      return (
+        <div className="flex gap-2">
+          <AcceptButton data={row.original} />
+          <RejectButton data={row.original} />
+        </div>
+      );
+    },
+  },
 ];

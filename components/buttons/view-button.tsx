@@ -1,36 +1,34 @@
-import { Eye } from "lucide-react";
 import {
   Dialog,
+  DialogTrigger,
   DialogContent,
+  DialogTitle,
   DialogDescription,
   DialogHeader,
-  DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import DetailCutiDialog from "@/components/forms/detail-cuti-dialog";
+import { CutiProps } from "@/types/cuti";
 import { CutiStatus } from "@prisma/client";
-import { getCutiById } from "@/lib/data/cuti";
+import { Eye } from "lucide-react";
+import DetailCutiDialog from "../forms/detail-cuti-dialog";
 
-export const ViewButton = async ({ id }: { id: string }) => {
-  const cuti = await getCutiById(id);
-  if (!cuti) return null;
-
+const ViewButton = ({ data }: { data: CutiProps }) => {
   return (
     <Dialog>
       <DialogTrigger className="border rounded-md w-8 h-8 flex items-center justify-center border-gray-200 hover:border-gray-500">
         <Eye className="size-4" />
       </DialogTrigger>
-
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Detail Pengajuan Cuti</DialogTitle>
           <DialogDescription>
-            Detail pengajuan cuti dari {cuti.Pegawai?.nama}
+            Detail pengajuan cuti dari {data.Pegawai?.nama}
           </DialogDescription>
         </DialogHeader>
 
-        <DetailCutiDialog id={id} value={CutiStatus.MENUNGGU} />
+        <DetailCutiDialog data={data} value={CutiStatus.MENUNGGU} />
       </DialogContent>
     </Dialog>
   );
 };
+
+export default ViewButton;

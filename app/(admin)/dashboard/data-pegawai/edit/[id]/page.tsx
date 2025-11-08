@@ -1,5 +1,5 @@
 import EditDaftarPegawai from "@/components/forms/edit-daftar-pegawai";
-import SkeletonDaftarPegawaiForm from "@/components/skeleton/skeleton-daftar-pegawai-form";
+import SkeletonDaftarPegawaiForm from "@/components/skeletons/skeleton-daftar-pegawai-form";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
