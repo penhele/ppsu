@@ -19,7 +19,10 @@ export default function TableColumnVisibility<TData>({
           Columns
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="z-50">
+      <DropdownMenuContent
+        align="end"
+        className="z-20 bg-white rounded-lg shadow-md max-h-64 p-2 overflow-y-auto"
+      >
         {table
           .getAllColumns()
           .filter((column) => column.getCanHide())

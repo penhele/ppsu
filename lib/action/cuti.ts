@@ -29,12 +29,12 @@ export const saveCuti = async (data: CutiType) => {
       },
     });
 
-    if (existingCuti) {
-      return {
-        success: false,
-        message: "Cuti tidak bisa diajukan karena Anda telah mengajukan cuti.",
-      };
-    }
+    // if (existingCuti) {
+    //   return {
+    //     success: false,
+    //     message: "Cuti tidak bisa diajukan karena Anda telah mengajukan cuti.",
+    //   };
+    // }
 
     await prisma.cuti.create({
       data: {
@@ -48,6 +48,7 @@ export const saveCuti = async (data: CutiType) => {
 
     revalidatePath("/");
 
+    console.log(data);
     return { success: true, message: "Cuti berhasil diajukan" };
   } catch (error) {
     console.log(error);

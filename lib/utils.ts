@@ -15,6 +15,15 @@ export const formatDate = (date: Date) => {
   return formatter.format(date);
 };
 
+export const formatDateSmall = (date: Date) => {
+  const formatter = new Intl.DateTimeFormat("id-ID", {
+    day: "numeric",
+    month: "short",
+  });
+
+  return formatter.format(date);
+};
+
 export const getDurationDays = (startDate: Date, endDate: Date) => {
   const start = new Date(startDate);
   const end = new Date(endDate);
