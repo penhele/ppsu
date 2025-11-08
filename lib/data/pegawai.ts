@@ -43,7 +43,7 @@ export const getPegawaiById = async (pegawaiId: string) => {
       where: { id_pegawai: pegawaiId },
       include: {
         user: true,
-        cuti: true
+        cuti: true,
       },
     });
     return result;

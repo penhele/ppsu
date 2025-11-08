@@ -76,6 +76,32 @@ export function ChartAreaInteractive() {
           className="aspect-auto h-[250px] w-full"
         >
           <AreaChart data={chartData}>
+            <defs>
+              <linearGradient id="fillTotal" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="5%"
+                  stopColor="var(--color-total)"
+                  stopOpacity={1.0}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="var(--color-total)"
+                  stopOpacity={0.1}
+                />
+              </linearGradient>
+              <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="5%"
+                  stopColor="var(--color-mobile)"
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="var(--color-mobile)"
+                  stopOpacity={0.1}
+                />
+              </linearGradient>
+            </defs>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="date"
@@ -89,10 +115,10 @@ export function ChartAreaInteractive() {
             <ChartLegend content={<ChartLegendContent />} />
             <Area
               dataKey="total"
-              type={"natural"}
+              type="natural"
+              fill="url(#fillTotal)"
               stroke="var(--color-total)"
-              fill="var(--color-total)"
-              radius={4}
+              stackId="a"
             />
           </AreaChart>
         </ChartContainer>

@@ -27,7 +27,7 @@ const DataPegawai = async () => {
   ];
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <SectionHeader
         title="Data Pegawai"
         description="Halaman ini menampilkan daftar lengkap pegawai beserta status keaktifan mereka. Anda dapat memantau jumlah pegawai aktif, cuti, maupun tidak aktif secara real-time."

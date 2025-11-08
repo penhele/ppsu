@@ -6,6 +6,7 @@ import {
   LogOut,
   Settings,
   Users,
+  Warehouse,
 } from "lucide-react";
 
 import {
@@ -46,6 +47,7 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <a href="#">
+                <Warehouse className="size-5" />
                 <span className="text-base font-semibold">PPSU</span>
               </a>
             </SidebarMenuButton>

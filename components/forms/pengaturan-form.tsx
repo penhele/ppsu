@@ -32,7 +32,7 @@ const PengaturanForm = async () => {
         </div>
       </div>
 
-      <Button variant={"outline"} className="hover:border-primary">
+      <Button variant={"outline"} className="hover:border-primary bg-white">
         Ganti Password
       </Button>
     </div>

@@ -37,7 +37,7 @@ const RiwayatCuti = async () => {
   ];
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <SectionHeader
         title="Riwayat Cuti"
         description="Pantau semua pengajuan cuti beserta statusnya."

@@ -4,7 +4,7 @@ import TableRiwayatCuti from "@/components/tables/table-riwayat-cuti/table-riway
 
 const PersetujuanCuti = () => {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <SectionHeader
         title="Persetujuan Cuti"
         description="Kelola persetujuan pengajuan cuti pegawai"

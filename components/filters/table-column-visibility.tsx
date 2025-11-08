@@ -15,7 +15,7 @@ export default function TableColumnVisibility<TData>({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="ml-auto text-gray-400">
+        <Button variant="outline" className="ml-auto text-gray-400 bg-white">
           Columns
         </Button>
       </DropdownMenuTrigger>

@@ -4,7 +4,7 @@ import TableDaftarAdmin from "@/components/tables/table-daftar-admin/table-dafta
 
 const Pengaturan = () => {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <SectionHeader
         title="Pengaturan"
         description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, officiis."
