@@ -1,7 +1,7 @@
 import SectionHeader from "@/components/section-header";
 import Permohonan from "@/components/permohonan";
 import Overview from "@/components/overview";
-import { ChartAreaInteractive } from "@/components/chart";
+import ChartRiwayatCuti from "@/components/charts/chart-riwayat-cuti";
 const Dashboard = () => {
   return (
     <div className="flex flex-col gap-8">
@@ -14,7 +14,7 @@ const Dashboard = () => {
 
       <Permohonan />
 
-      <ChartAreaInteractive />
+      <ChartRiwayatCuti />
     </div>
   );
 };

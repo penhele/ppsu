@@ -28,7 +28,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function ChartAreaInteractive() {
+export function Chart() {
   const [chartData, setChartData] = useState<{ date: string; total: number }[]>(
     [],
   );

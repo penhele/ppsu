@@ -29,12 +29,12 @@ export const saveCuti = async (data: CutiType) => {
       },
     });
 
-    // if (existingCuti) {
-    //   return {
-    //     success: false,
-    //     message: "Cuti tidak bisa diajukan karena Anda telah mengajukan cuti.",
-    //   };
-    // }
+    if (existingCuti) {
+      return {
+        success: false,
+        message: "Cuti tidak bisa diajukan karena Anda telah mengajukan cuti.",
+      };
+    }
 
     await prisma.cuti.create({
       data: {
