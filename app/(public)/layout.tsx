@@ -1,4 +1,4 @@
-import AppSidebarPegawai from "@/components/app-sidebar-pegawai";
+import { AppSidebar } from "@/components/sidebar.tsx/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function PublicLayout({
@@ -8,8 +8,8 @@ export default function PublicLayout({
 }) {
   return (
     <SidebarProvider>
-      <AppSidebarPegawai />
-      <main className="w-full px-2 py-4 md:px-4">
+      <AppSidebar />
+      <main className="w-full px-2 py-4 md:py-2 md:px-4">
         <SidebarTrigger />
         {children}
       </main>
