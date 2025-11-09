@@ -52,7 +52,7 @@ const SectionCard = async () => {
       {items.map((item, index) => (
         <Card key={index} className="transition hover:shadow-md">
           <CardHeader className="flex justify-between items-center">
-            <div className="">
+            <div className="flex flex-col gap-2">
               <CardDescription>{item.title}</CardDescription>
               <CardTitle>{item.value}</CardTitle>
             </div>
