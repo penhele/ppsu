@@ -56,8 +56,35 @@ export const getPegawaiByUserId = async (userId: string) => {
   try {
     const result = await prisma.pegawai.findUnique({
       where: { user_id: userId },
+      include: {
+        cuti: {
+          orderBy: { created_at: "asc" },
+        },
+      },
     });
-    return result;
+
+    if (!result) return null;
+
+    const countTotal = result.cuti.length;
+    const countMenunggu = result.cuti.filter(
+      (c) => c.status === CutiStatus.MENUNGGU,
+    ).length;
+    const countDisetujui = result.cuti.filter(
+      (c) => c.status === CutiStatus.DISETUJUI,
+    ).length;
+    const countDitolak = result.cuti.filter(
+      (c) => c.status === CutiStatus.DITOLAK,
+    ).length;
+
+    return {
+      ...result,
+      _count: {
+        total: countTotal,
+        menunggu: countMenunggu,
+        disetujui: countDisetujui,
+        ditolak: countDitolak,
+      },
+    };
   } catch (error) {
     console.error("Error fetching pegawai by user id:", error);
   }

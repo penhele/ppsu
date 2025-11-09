@@ -9,7 +9,7 @@ export default function PublicLayout({
   return (
     <SidebarProvider>
       <AppSidebarPegawai />
-      <main className="w-full px-2 md:px-4">
+      <main className="w-full px-2 py-4 md:px-4">
         <SidebarTrigger />
         {children}
       </main>

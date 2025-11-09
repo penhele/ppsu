@@ -18,7 +18,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Tableheader from "@/components/table-header";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const chartConfig = {

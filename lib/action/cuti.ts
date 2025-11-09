@@ -48,7 +48,6 @@ export const saveCuti = async (data: CutiType) => {
 
     revalidatePath("/");
 
-    console.log(data);
     return { success: true, message: "Cuti berhasil diajukan" };
   } catch (error) {
     console.log(error);
