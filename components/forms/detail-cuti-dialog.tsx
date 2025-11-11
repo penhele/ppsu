@@ -1,78 +1,82 @@
+"use client"; // PENTING
+
+import dynamic from "next/dynamic";
+const DetailCutiDialogForm = dynamic(
+  () => import("@/components/forms/detail-cuti-dialog-form"),
+  { ssr: false },
+);
+
 import { formatDate, getDurationDays, getTextTrim } from "@/lib/utils";
-import DetailCutiDialogForm from "@/components/forms/detail-cuti-dialog-form";
 import { Separator } from "@/components/ui/separator";
 import { CutiStatus } from "@prisma/client";
 import InputDisplayed from "@/components/inputs/input-displayed";
 import StatusLabel from "@/components/status-label";
-import { getCutiById } from "@/lib/data/cuti";
+import { CutiProps } from "@/types/cuti";
 
-const DetailCutiDialog = async ({
-  id,
+const DetailCutiDialog = ({
+  data,
   value,
 }: {
-  id: string;
+  data: CutiProps;
   value: CutiStatus;
 }) => {
-  const cuti = await getCutiById(id);
-  if (!cuti) return null;
-
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-4">
         <div className="bg-white px-4 py-2 rounded-xl flex flex-col gap-6">
-          <InputDisplayed title="Nama" value={cuti.Pegawai?.nama} />
+          <InputDisplayed title="Nama" value={data.Pegawai?.nama} />
 
           <div className="grid grid-cols-5 gap-4">
             <div className="grid grid-cols-2 col-span-4 gap-4">
               <InputDisplayed
                 title="Tanggal Mulai"
-                value={formatDate(cuti.tanggal_mulai)}
+                value={formatDate(data.tanggal_mulai)}
               />
               <InputDisplayed
                 title="Tanggal Selesai"
-                value={formatDate(cuti.tanggal_selesai)}
+                value={formatDate(data.tanggal_selesai)}
               />
             </div>
 
             <InputDisplayed
               title="Durasi"
-              value={getDurationDays(
-                cuti.tanggal_mulai,
-                cuti.tanggal_selesai,
-              ).toString()}
+              value={`${getDurationDays(
+                data.tanggal_mulai,
+                data.tanggal_selesai,
+              ).toString()} hari`}
             />
           </div>
         </div>
 
         <InputDisplayed
           title="Tanggal Pegajuan"
-          value={formatDate(cuti.created_at)}
+          value={formatDate(data.created_at)}
         />
 
         <InputDisplayed
           title="Alasan/Keterangan"
-          value={getTextTrim(cuti.alasan, "Tidak ada alasan/keterangan")}
+          value={getTextTrim(data.alasan, "Tidak ada alasan/keterangan")}
         />
 
-        {cuti.status !== CutiStatus.MENUNGGU ? (
+        {data.status !== CutiStatus.MENUNGGU && (
           <>
             <InputDisplayed
               title="Catatan"
-              value={getTextTrim(cuti.catatan, "Tidak ada catatan")}
+              value={getTextTrim(data.catatan, "Tidak ada catatan")}
             />
 
-            <StatusLabel value={cuti.status} isFullWidth />
+            <StatusLabel value={data.status} isFullWidth />
           </>
-        ) : null}
+        )}
       </div>
 
-      {cuti.status === CutiStatus.MENUNGGU ? (
+      {data.status === CutiStatus.MENUNGGU && (
         <>
           <Separator />
 
-          <DetailCutiDialogForm cuti={cuti} value={value} />
+          <DetailCutiDialogForm cuti={data} value={value} />
         </>
-      ) : null}
+      )}
     </div>
   );
 };

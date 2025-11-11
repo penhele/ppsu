@@ -1,4 +1,5 @@
-import Navbar from "@/components/navbar/navbar";
+import { AppSidebar } from "@/components/sidebar.tsx/app-sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function PublicLayout({
   children,
@@ -6,9 +7,12 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full px-2 md:px-4">
-      <Navbar />
-      {children}
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <main className="w-full px-2 py-2 md:px-4">
+        <SidebarTrigger />
+        {children}
+      </main>
+    </SidebarProvider>
   );
 }

@@ -23,7 +23,7 @@ export function DataTablePagination<TData>({
   table,
 }: DataTablePaginationProps<TData>) {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex justify-between w-full">
       <div className="flex items-center space-x-2">
         <p className="text-sm font-medium">Rows per page</p>
         <Select
@@ -32,7 +32,7 @@ export function DataTablePagination<TData>({
             table.setPageSize(Number(value));
           }}
         >
-          <SelectTrigger className="h-8 w-[70px]">
+          <SelectTrigger className="h-8 w-[70px] border-gray-200">
             <SelectValue placeholder={table.getState().pagination.pageSize} />
           </SelectTrigger>
           <SelectContent side="top">
@@ -44,11 +44,13 @@ export function DataTablePagination<TData>({
           </SelectContent>
         </Select>
       </div>
-      <div className="flex space-x-6 lg:space-x-8">
+
+      <div className="flex space-x-2">
         <div className="flex w-[100px] items-center justify-center text-sm font-medium">
           Page {table.getState().pagination.pageIndex + 1} of{" "}
           {table.getPageCount()}
         </div>
+
         <div className="flex items-center space-x-2">
           <Button
             variant="outline"

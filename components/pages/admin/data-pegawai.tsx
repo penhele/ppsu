@@ -1,6 +1,6 @@
 import SectionHeader from "@/components/section-header";
 import { PegawaiStatus } from "@prisma/client";
-import TableDaftarPegawai from "@/components/tables/table-pegawai/table-daftar-pegawai";
+import TableDaftarPegawai from "@/components/tables/table-daftar-pegawai/table-daftar-pegawai";
 import { getPegawai } from "@/lib/data/pegawai";
 
 const DataPegawai = async () => {
@@ -27,7 +27,7 @@ const DataPegawai = async () => {
   ];
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <SectionHeader
         title="Data Pegawai"
         description="Halaman ini menampilkan daftar lengkap pegawai beserta status keaktifan mereka. Anda dapat memantau jumlah pegawai aktif, cuti, maupun tidak aktif secara real-time."

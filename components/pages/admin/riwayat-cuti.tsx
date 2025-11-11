@@ -1,10 +1,10 @@
 import SectionHeader from "@/components/section-header";
-import TableRiwayatCuti from "@/components/tables/table-riwayat-cuti";
 import CutiSummaryCard from "@/components/cuti-summary";
 import { Activity, CheckCircle, Clock, XCircle } from "lucide-react";
 import { CutiStatus } from "@prisma/client";
 import { capitalizeWords } from "@/lib/utils";
 import { getCuti } from "@/lib/data/cuti";
+import TableRiwayatCuti from "@/components/tables/table-riwayat-cuti/table-riwayat-cuti";
 
 const RiwayatCuti = async () => {
   const cuti = await getCuti();
@@ -37,7 +37,7 @@ const RiwayatCuti = async () => {
   ];
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <SectionHeader
         title="Riwayat Cuti"
         description="Pantau semua pengajuan cuti beserta statusnya."

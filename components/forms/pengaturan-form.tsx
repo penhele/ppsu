@@ -1,9 +1,8 @@
 import { auth } from "@/auth";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getAdminBySessionId } from "@/lib/data/user";
-import Tableheader from "@/components/table-header";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 const PengaturanForm = async () => {
   const session = await auth();
@@ -18,24 +17,24 @@ const PengaturanForm = async () => {
   ];
 
   return (
-    <div className="flex flex-col gap-8 p-4 border rounded-lg bg-white">
-      <Tableheader title="Profil Admin" />
+    <Card>
+      <CardHeader>
+        <CardTitle>Profil Admin</CardTitle>
+      </CardHeader>
 
-      <div className="flex flex-col gap-4">
-        <div className="grid sm:grid-cols-3 gap-4">
-          {items.map((item) => (
-            <div key={item.label} className="flex flex-col gap-2">
-              <Label>{item.label}</Label>
-              <Input defaultValue={item.value as string} disabled />
-            </div>
-          ))}
+      <CardContent>
+        <div className="flex flex-col gap-4">
+          <div className="grid sm:grid-cols-3 gap-4">
+            {items.map((item) => (
+              <div key={item.label} className="flex flex-col gap-2">
+                <Label>{item.label}</Label>
+                <Input defaultValue={item.value as string} disabled />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-
-      <Button variant={"outline"} className="hover:border-primary">
-        Ganti Password
-      </Button>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

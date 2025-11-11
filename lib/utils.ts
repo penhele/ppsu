@@ -15,18 +15,26 @@ export const formatDate = (date: Date) => {
   return formatter.format(date);
 };
 
+export const formatDateSmall = (date: Date) => {
+  const formatter = new Intl.DateTimeFormat("id-ID", {
+    day: "numeric",
+    month: "short",
+  });
+
+  return formatter.format(date);
+};
+
 export const getDurationDays = (startDate: Date, endDate: Date) => {
   const start = new Date(startDate);
   const end = new Date(endDate);
 
-  // Samakan jam supaya perhitungan murni hari
   start.setHours(0, 0, 0, 0);
   end.setHours(0, 0, 0, 0);
 
   const diffTime = end.getTime() - start.getTime();
   const diffDays = diffTime / (1000 * 60 * 60 * 24);
 
-  return diffDays + 1; // termasuk hari pertama
+  return diffDays + 1;
 };
 
 export const capitalizeWords = (text: string) => {

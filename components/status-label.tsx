@@ -12,7 +12,7 @@ const StatusLabel = ({
   return (
     <div
       className={clsx(
-        "font-medium w-fit py-0.5 px-2 rounded-full text-center",
+        "font-medium w-fit h-fit py-0.5 px-2 rounded-full text-center",
         {
           "bg-green-100 text-green-800":
             value === CutiStatus.DISETUJUI || value === PegawaiStatus.AKTIF,

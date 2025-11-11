@@ -1,16 +1,22 @@
 import { auth } from "@/auth";
 import CreatePengajuanCutiForm from "@/components/forms/create-pengajuan-cuti-form";
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "../ui/card";
 
 const PengajuanCutiForm = async () => {
   const session = await auth();
   if (!session) return null;
 
   return (
-    <div className="flex flex-col gap-8 p-4 border rounded-lg ">
-      <h1 className="text-xl font-medium">Formulir Pengajuan</h1>
+    <Card>
+      <CardHeader>
+        <CardTitle>Formulir Pengajuan Cuti</CardTitle>
+        <CardDescription>Ajukan cuti Anda di sini</CardDescription>
+      </CardHeader>
 
-      <CreatePengajuanCutiForm session={session} />
-    </div>
+      <CardContent>
+        <CreatePengajuanCutiForm session={session} />
+      </CardContent>
+    </Card>
   );
 };
 

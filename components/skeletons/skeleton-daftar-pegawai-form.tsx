@@ -1,7 +1,7 @@
 "use client";
 
-import { SkeletonButton, SkeletonTitle } from "@/components/skeleton/skeleton";
-import SkeletonInputForm from "@/components/skeleton/skeleton-input-form";
+import { SkeletonButton, SkeletonTitle } from "@/components/skeletons/skeleton";
+import SkeletonInputForm from "@/components/skeletons/skeleton-input-form";
 
 const SkeletonDaftarPegawaiForm = () => {
   return (

@@ -1,18 +1,41 @@
 "use server";
 
 import { auth } from "@/auth";
-import { CutiType, PegawaiType } from "@/lib/zod";
+import { CutiType } from "@/lib/zod";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import { CutiStatus, PegawaiStatus } from "@prisma/client";
-import { getPegawaiByUserId } from "../data/pegawai";
+import { CutiStatus } from "@prisma/client";
+import { getPegawaiByUserId } from "@/lib/data/pegawai";
 
 export const saveCuti = async (data: CutiType) => {
   const session = await auth();
   const pegawai = await getPegawaiByUserId(session?.user?.id as string);
 
+  if (!pegawai) {
+    return { success: false, message: "Data pegawai tidak ditemukan" };
+  }
+
   try {
+    const existingCuti = await prisma.cuti.findFirst({
+      where: {
+        id_pegawai: pegawai?.id_pegawai,
+        OR: [
+          { status: CutiStatus.MENUNGGU },
+          {
+            status: CutiStatus.DISETUJUI,
+            tanggal_selesai: { gte: new Date() },
+          },
+        ],
+      },
+    });
+
+    if (existingCuti) {
+      return {
+        success: false,
+        message: "Cuti tidak bisa diajukan karena Anda telah mengajukan cuti.",
+      };
+    }
+
     await prisma.cuti.create({
       data: {
         id_pegawai: pegawai?.id_pegawai,

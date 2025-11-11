@@ -1,10 +1,10 @@
 import SectionHeader from "@/components/section-header";
-import TablePersetujuanCuti from "@/components/tables/table-persetujuan-cuti";
-import TableRiwayatCuti from "@/components/tables/table-riwayat-cuti";
+import TablePersetujuanCuti from "@/components/tables/table-persetujuan-cuti/table-persetujuan-cuti";
+import TableRiwayatCuti from "@/components/tables/table-riwayat-cuti/table-riwayat-cuti";
 
 const PersetujuanCuti = () => {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <SectionHeader
         title="Persetujuan Cuti"
         description="Kelola persetujuan pengajuan cuti pegawai"

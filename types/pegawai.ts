@@ -1,5 +1,9 @@
 import { Prisma } from "@prisma/client";
+import { CutiStatus, Role } from "@prisma/client";
 
 export type PegawaiProps = Prisma.PegawaiGetPayload<{
-  include: { user: true };
+  include: {
+    cuti: true;
+    user: true;
+  };
 }>;
