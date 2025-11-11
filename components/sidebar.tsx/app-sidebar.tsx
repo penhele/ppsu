@@ -49,7 +49,11 @@ const data = {
 
   navPegawai: [
     { url: `/`, title: "Dashboard", icon: Home },
-    { url: `/pengajuan-cuti`, title: "Pengajuan Cuti", icon: ArrowUpNarrowWide },
+    {
+      url: `/pengajuan-cuti`,
+      title: "Pengajuan Cuti",
+      icon: ArrowUpNarrowWide,
+    },
     {
       url: `/riwayat-cuti`,
       title: "Riwayat Cuti",

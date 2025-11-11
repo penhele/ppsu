@@ -1,9 +1,16 @@
-import { getCutiByStatus } from "@/lib/data/cuti";
+import { getCutiById, getCutiByStatus, getCutiByUserId } from "@/lib/data/cuti";
 import { CutiStatus } from "@prisma/client";
 import { columns } from "@/components/tables/table-riwayat-cuti/column";
 import { DataTable } from "@/components/tables/data-table";
+import { auth } from "@/auth";
 
-const TableRiwayatCuti = async () => {
+const TableRiwayatCuti = async ({
+  isPegawai = false,
+}: {
+  isPegawai?: boolean;
+}) => {
+  const session = await auth();
+  const cutiPegawai = await getCutiByUserId(session?.user.id ?? "");
   const cuti = await getCutiByStatus({
     status: [CutiStatus.DISETUJUI, CutiStatus.DITOLAK],
   });
@@ -14,7 +21,7 @@ const TableRiwayatCuti = async () => {
         title="Tabel Riwayat Cuti"
         description="Lorem ipsum dolor sit amet."
         columns={columns}
-        data={cuti}
+        data={isPegawai ? cutiPegawai : cuti}
         dataTablePagination
       />
     </div>

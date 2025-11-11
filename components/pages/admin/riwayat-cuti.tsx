@@ -45,7 +45,7 @@ const RiwayatCuti = async () => {
 
       <CutiSummaryCard items={data} />
 
-      <TableRiwayatCuti />
+      <TableRiwayatCuti isPegawai />
     </div>
   );
 };

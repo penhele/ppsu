@@ -62,7 +62,9 @@ const InputRangeDateComtroller = <T extends FieldValues>({
                     }}
                     disabled={{
                       before: new Date(new Date().setHours(0, 0, 0, 0)),
-                      after: new Date(new Date().setDate(new Date().getDate() + 2)),
+                      after: new Date(
+                        new Date().setDate(new Date().getDate() + 2),
+                      ),
                     }}
                     className="bg-white"
                   />

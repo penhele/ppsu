@@ -1,5 +1,6 @@
 import { CutiStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { getPegawaiByUserId } from "./pegawai";
 
 export const getCuti = async () => {
   try {
@@ -42,6 +43,25 @@ export const getCutiByStatus = async ({
     return result;
   } catch (error) {
     console.error("Error fetching cuti by status:", error);
+    return [];
+  }
+};
+
+export const getCutiByUserId = async (userId: string) => {
+  try {
+    const user = await getPegawaiByUserId(userId);
+    const result = await prisma.cuti.findMany({
+      where: {
+        id_pegawai: user?.id_pegawai,
+      },
+      include: {
+        Pegawai: true,
+      },
+    });
+
+    return result;
+  } catch (error) {
+    console.error("Error fetching cuti by user ID:", error);
     return [];
   }
 };

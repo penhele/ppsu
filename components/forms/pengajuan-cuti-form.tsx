@@ -1,6 +1,12 @@
 import { auth } from "@/auth";
 import CreatePengajuanCutiForm from "@/components/forms/create-pengajuan-cuti-form";
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "../ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from "../ui/card";
 
 const PengajuanCutiForm = async () => {
   const session = await auth();

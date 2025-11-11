@@ -4,7 +4,7 @@ import SectionHeader from "@/components/section-header";
 const PengajuanCuti = () => {
   return (
     <div className="flex flex-col gap-4">
-      <SectionHeader title="Pengajuan Cuti"/>
+      <SectionHeader title="Pengajuan Cuti" />
 
       <PengajuanCutiForm />
     </div>
