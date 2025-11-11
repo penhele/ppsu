@@ -1,12 +1,17 @@
 import CreateDaftarPegawaiForm from "@/components/forms/create-daftar-pegawai-form";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 const DaftarPegawaiForm = () => {
   return (
-    <div className="flex flex-col gap-8 p-4 border rounded-lg bg-white">
-      <div className="text-xl font-medium">Tambah Pegawai</div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Tambah Pegawai</CardTitle>
+      </CardHeader>
 
-      <CreateDaftarPegawaiForm />
-    </div>
+      <CardContent>
+        <CreateDaftarPegawaiForm />
+      </CardContent>
+    </Card>
   );
 };
 
