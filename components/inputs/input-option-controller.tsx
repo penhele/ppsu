@@ -12,7 +12,7 @@ import {
 const InputOptionController = <T extends FieldValues>({
   title,
   name,
-  placeholder,
+  placeholder = "Pilih Tipe",
   control,
   options,
 }: {

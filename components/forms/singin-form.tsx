@@ -8,7 +8,7 @@ import { useTransition } from "react";
 import { SigninSchema, SigninType } from "@/lib/zod";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
 
 const SigninForm = () => {
@@ -22,6 +22,8 @@ const SigninForm = () => {
     },
   });
 
+  const router = useRouter();
+
   const onSubmit = (data: SigninType) => {
     startTransition(async () => {
       const res = await signIn("credentials", {
@@ -34,7 +36,7 @@ const SigninForm = () => {
         toast.error("Email atau password salah.");
       } else {
         toast.success("Login berhasil!");
-        redirect("/dashboard");
+        router.push("/dashboard");
       }
     });
   };

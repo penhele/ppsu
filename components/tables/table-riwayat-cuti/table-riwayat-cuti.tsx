@@ -1,4 +1,4 @@
-import { getCutiById, getCutiByStatus, getCutiByUserId } from "@/lib/data/cuti";
+import { getCutiByStatus, getCutiByUserId } from "@/lib/data/cuti";
 import { CutiStatus } from "@prisma/client";
 import { columns } from "@/components/tables/table-riwayat-cuti/column";
 import { DataTable } from "@/components/tables/data-table";
