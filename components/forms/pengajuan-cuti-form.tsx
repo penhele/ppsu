@@ -6,7 +6,7 @@ import {
   CardTitle,
   CardContent,
   CardDescription,
-} from "../ui/card";
+} from "@/components/ui/card";
 
 const PengajuanCutiForm = async () => {
   const session = await auth();

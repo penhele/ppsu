@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { deletePegawaiById } from "@/lib/action/pegawai";
 import { Trash } from "lucide-react";
-import { FormEvent, useTransition } from "react";
+import { useTransition } from "react";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 

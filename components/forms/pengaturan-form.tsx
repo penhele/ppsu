@@ -2,7 +2,7 @@ import { auth } from "@/auth";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getAdminBySessionId } from "@/lib/data/user";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const PengaturanForm = async () => {
   const session = await auth();

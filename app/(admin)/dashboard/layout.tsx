@@ -1,9 +1,8 @@
 import {
-  SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/sidebar.tsx/app-sidebar";
+import { AppSidebar } from "@/components/sidebar/app-sidebar";
 
 export default function DashboardLayout({
   children,

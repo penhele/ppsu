@@ -1,6 +1,6 @@
 import { CutiStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { getPegawaiByUserId } from "./pegawai";
+import { getPegawaiByUserId } from "@/lib/data/pegawai";
 
 export const getCuti = async () => {
   try {

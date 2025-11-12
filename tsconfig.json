@@ -29,7 +29,8 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "lib/data/statistic.ts"
+    "lib/data/statistic.ts",
+    "components/sidebar"
   ],
   "exclude": ["node_modules"]
 }

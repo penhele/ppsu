@@ -1,6 +1,6 @@
 import { CutiStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { formatDateSmall } from "../utils";
+import { formatDateSmall } from "@/lib/utils";
 
 export const getJumlahCutiPerTanggal = async (date: Date) => {
   const startOfDay = new Date(date);

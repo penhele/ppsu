@@ -1,5 +1,5 @@
 import CreateDaftarPegawaiForm from "@/components/forms/create-daftar-pegawai-form";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const DaftarPegawaiForm = () => {
   return (

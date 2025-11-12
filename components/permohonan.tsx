@@ -8,7 +8,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from "@/components/ui/card";
 
 const Permohonan = async () => {
   const cuti = await getCutiByStatus({ status: CutiStatus.MENUNGGU });

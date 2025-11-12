@@ -4,7 +4,7 @@ import {
   InputGroup,
   InputGroupInput,
   InputGroupAddon,
-} from "../ui/input-group";
+} from "@/components/ui/input-group";
 
 export default function TableSearchInput<TData>({
   table,

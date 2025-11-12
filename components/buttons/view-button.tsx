@@ -9,7 +9,7 @@ import {
 import { CutiProps } from "@/types/cuti";
 import { CutiStatus } from "@prisma/client";
 import { Eye } from "lucide-react";
-import DetailCutiDialog from "../forms/detail-cuti-dialog";
+import DetailCutiDialog from "@/components/forms/detail-cuti-dialog";
 
 const ViewButton = ({ data }: { data: CutiProps }) => {
   return (

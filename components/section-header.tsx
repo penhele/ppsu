@@ -1,5 +1,3 @@
-import dynamic from "next/dynamic";
-
 const SectionHeader = ({
   title,
   description,

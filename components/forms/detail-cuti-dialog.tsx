@@ -1,4 +1,4 @@
-"use client"; // PENTING
+"use client";
 
 import dynamic from "next/dynamic";
 const DetailCutiDialogForm = dynamic(
