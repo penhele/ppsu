@@ -55,6 +55,7 @@ export function ChartAreaInteractive() {
             value="7"
             variant={"outline"}
             onClick={() => setDays(7)}
+            className="flex items-center justify-center"
           >
             1 Minggu
           </ToggleGroupItem>
@@ -62,6 +63,7 @@ export function ChartAreaInteractive() {
             value="30"
             variant={"outline"}
             onClick={() => setDays(30)}
+            className="flex items-center justify-center"
           >
             1 Bulan
           </ToggleGroupItem>
@@ -69,6 +71,7 @@ export function ChartAreaInteractive() {
             value="90"
             variant={"outline"}
             onClick={() => setDays(90)}
+            className="flex items-center justify-center"
           >
             3 Bulan
           </ToggleGroupItem>
