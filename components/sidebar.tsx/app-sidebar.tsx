@@ -6,6 +6,7 @@ import {
   Home,
   LogOut,
   Settings,
+  User,
   Users,
   Warehouse,
 } from "lucide-react";
@@ -59,7 +60,7 @@ const data = {
       title: "Riwayat Cuti",
       icon: ClipboardList,
     },
-    { url: `/pengaturan`, title: "Pengaturan", icon: Settings },
+    { url: `/profile`, title: "Profile", icon: User },
   ],
 };
 
