@@ -1,4 +1,6 @@
 import "@/app/globals.css";
+import { auth } from "@/auth";
+import { SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
 
 export const metadata = {
@@ -6,16 +8,20 @@ export const metadata = {
   description: "Sistem Cuti Pegawai PPSU",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth();
+
   return (
     <html lang="id">
       <body>
-        {children}
-        <Toaster />
+        <SessionProvider session={session}>
+          {children}
+          <Toaster />
+        </SessionProvider>
       </body>
     </html>
   );

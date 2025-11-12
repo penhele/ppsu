@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import AktivitasTerbaru from "@/components/aktivitas-terbaru";
-import InformasiCuti from "@/components/informasi-cuti";
+import { ChartPieLabel } from "@/components/charts/chart-pie-label";
 import SectionCard from "@/components/section-card";
 import SectionHeader from "@/components/section-header";
 import { getPegawaiByUserId } from "@/lib/data/pegawai";
@@ -20,7 +20,8 @@ const Home = async () => {
 
       <div className="grid lg:grid-cols-2 gap-4">
         <AktivitasTerbaru />
-        <InformasiCuti />
+        <ChartPieLabel />
+        {/* <InformasiCuti /> */}
       </div>
     </div>
   );
