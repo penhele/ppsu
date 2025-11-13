@@ -21,11 +21,11 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 const chartConfig = {
-  chrome: {
+  sisa: {
     label: "Sisa Cuti",
     color: "var(--chart-1)",
   },
-  safari: {
+  total: {
     label: "Total Cuti",
     color: "var(--chart-2)",
   },
@@ -61,7 +61,7 @@ export function ChartPieLabel() {
           <PieChart>
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
             <Pie data={chartData} dataKey="total" label nameKey="title" />
-            <ChartLegend content={<ChartLegendContent nameKey="chrome" />} />
+            <ChartLegend content={<ChartLegendContent nameKey="title" />} />
           </PieChart>
         </ChartContainer>
       </CardContent>

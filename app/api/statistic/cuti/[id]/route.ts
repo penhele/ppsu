@@ -14,12 +14,12 @@ export async function GET(
       title: "Sisa Cuti",
       total:
         12 - cuti.filter((item) => item.status == CutiStatus.DISETUJUI).length,
-      fill: "var(--color-chrome)",
+      fill: "var(--color-sisa)",
     },
     {
       title: "Total Cuti",
       total: cuti.filter((item) => item.status == CutiStatus.DISETUJUI).length,
-      fill: "var(--color-safari)",
+      fill: "var(--color-total)",
     },
   ];
 
